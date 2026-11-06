@@ -1,0 +1,1923 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Профиль·7 — ЕГЭ-2027</title>
+<meta name="description" content="Подготовка к ЕГЭ-2027 по профильной математике за 7 месяцев: тренажёр, план, пробники.">
+<meta name="theme-color" content="#2747c9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Профиль·7">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif;-webkit-text-size-adjust:100%}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+
+<style>
+  /* Layout: тетрадь в клетку. Сверху липкая панель-закладки, ниже одна колонка 960px; тренажёр — лист поверх страницы */
+  :root {
+    --paper: #fbfcfe; --grid: #e2e8f3; --ink: #1c2540; --muted: #5b6684; --faint: #8b94ad;
+    --pen: #2747c9; --pen-soft: #e6ebfb; --margin: #d93a4c; --margin-soft: #fbe7ea;
+    --done: #18804a; --done-soft: #e1f3e8; --warn: #b26a00; --warn-soft: #fbefd9;
+    --line: #d3dbea; --surface: #ffffff; --shadow: 0 10px 30px -18px rgba(28, 37, 64, .45);
+    --f-display: "Unbounded", "Segoe UI", Arial, sans-serif;
+    --f-body: "PT Sans", "Segoe UI", Arial, sans-serif;
+    --f-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #12162a; --grid: #1c2238; --ink: #e7eaf5; --muted: #a0a8c3; --faint: #6f7895;
+      --pen: #8ea4ff; --pen-soft: #222b4d; --margin: #f27585; --margin-soft: #3a1f2b;
+      --done: #4fcf8d; --done-soft: #17362a; --warn: #f0b34a; --warn-soft: #3a2e17;
+      --line: #2b3352; --surface: #181d33; --shadow: 0 10px 30px -18px rgba(0, 0, 0, .8); color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12162a; --grid: #1c2238; --ink: #e7eaf5; --muted: #a0a8c3; --faint: #6f7895;
+    --pen: #8ea4ff; --pen-soft: #222b4d; --margin: #f27585; --margin-soft: #3a1f2b;
+    --done: #4fcf8d; --done-soft: #17362a; --warn: #f0b34a; --warn-soft: #3a2e17;
+    --line: #2b3352; --surface: #181d33; --shadow: 0 10px 30px -18px rgba(0, 0, 0, .8); color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background-color: var(--paper);
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.55;
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface); }
+  h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-height: 1.2; font-weight: 500; }
+  button { font: inherit; color: inherit; }
+  a { color: var(--pen); }
+  .f { font-family: var(--f-mono); font-size: .9em; color: var(--pen); }
+  .mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+  .muted { color: var(--muted); }
+
+  /* ---------- App bar ---------- */
+  .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--line); }
+  .bar-in { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+    padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .brand { font-family: var(--f-display); font-weight: 700; font-size: 17px; display: flex; align-items: baseline; gap: 6px; text-decoration: none; color: var(--ink); }
+  .brand b { color: var(--margin); }
+  .tabs { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; flex: 1 1 auto; min-width: 0; order: 3; width: 100%; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { white-space: nowrap; text-decoration: none; color: var(--muted); padding: 7px 12px; border-radius: 8px; font-size: 15px; position: relative; transition: color .2s, background-color .2s; }
+  .tab:hover { color: var(--pen); background: var(--pen-soft); }
+  .tab[aria-current="page"] { color: var(--pen); font-weight: 700; }
+  .tab[aria-current="page"]::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 1px; height: 2px; background: var(--pen); border-radius: 2px; animation: grow .35s var(--ease); }
+  .acct { margin-left: auto; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .acct i { width: 8px; height: 8px; border-radius: 50%; background: var(--faint); display: inline-block; }
+  .acct.on i { background: var(--done); box-shadow: 0 0 0 3px var(--done-soft); }
+  @media (min-width: 760px) { .tabs { order: 0; width: auto; justify-content: center; } }
+
+  /* ---------- Layout ---------- */
+  main { max-width: 1000px; margin: 0 auto; padding-block: 28px 80px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .view { display: grid; gap: 22px; animation: rise .45s var(--ease) both; }
+  .head { display: grid; gap: 6px; }
+  .eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--margin); }
+  .head h1 { font-size: clamp(26px, 4.6vw, 40px); }
+  .head p { margin: 0; color: var(--muted); max-width: 64ch; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; min-width: 0; }
+  .card h2 { font-size: 19px; margin-bottom: 4px; }
+  .grid2 { display: grid; gap: 16px; align-items: start; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .spread { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; }
+  .stack { display: grid; gap: 10px; align-content: start; }
+
+  .btn { border: 1px solid var(--pen); background: var(--pen); color: var(--paper); padding: 9px 16px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 700; transition: transform .15s, filter .2s, background-color .2s; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:active { transform: scale(.96); }
+  .btn.ghost { background: transparent; color: var(--pen); border-style: dashed; font-weight: 400; }
+  .btn.quiet { background: transparent; color: var(--muted); border-color: var(--line); font-weight: 400; }
+  .btn.ok { background: var(--done); border-color: var(--done); }
+  .btn:disabled { opacity: .45; cursor: default; transform: none; }
+  .btn:focus-visible, .tab:focus-visible, summary:focus-visible, input:focus-visible { outline: 2px solid var(--pen); outline-offset: 2px; }
+
+  .chip { display: inline-flex; align-items: center; gap: 5px; font-family: var(--f-mono); font-size: 12px; padding: 2px 9px; border-radius: 999px; background: var(--pen-soft); color: var(--pen); white-space: nowrap; }
+  .chip.done { background: var(--done-soft); color: var(--done); }
+  .chip.warn { background: var(--warn-soft); color: var(--warn); }
+  .chip.red { background: var(--margin-soft); color: var(--margin); }
+  .chip.gray { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+
+  .meter { height: 8px; background: var(--pen-soft); border-radius: 999px; overflow: hidden; }
+  .meter > div { height: 100%; background: var(--pen); border-radius: 999px; transition: width .7s var(--ease); }
+  .meter.g > div { background: var(--done); }
+
+  /* ---------- Today ---------- */
+  .hero { display: grid; gap: 18px; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .hero { grid-template-columns: 1.4fr 1fr; } }
+  .now { border-left: 4px solid var(--margin); }
+  .now .num { font-family: var(--f-mono); font-size: 54px; font-weight: 600; line-height: 1; color: var(--pen); }
+  .stats3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .stats3 div { display: grid; gap: 2px; }
+  .stats3 b { font-family: var(--f-mono); font-size: 26px; font-variant-numeric: tabular-nums; }
+  .stats3 span { font-size: 13px; color: var(--muted); }
+  .todo { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .todo li { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper); }
+  .todo li.done { opacity: .6; }
+  .todo .ic { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; font-family: var(--f-mono); font-size: 13px; font-weight: 600; background: var(--pen-soft); color: var(--pen); }
+  .todo li.done .ic { background: var(--done-soft); color: var(--done); }
+  .todo .tx { flex: 1 1 200px; min-width: 0; }
+  .todo .tx small { display: block; color: var(--muted); font-size: 14px; }
+
+  /* ---------- Tasks list ---------- */
+  .numgrid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+  .numcard { display: grid; gap: 8px; text-decoration: none; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px; transition: transform .2s var(--ease), box-shadow .2s, border-color .2s; }
+  .numcard:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--pen); }
+  .numcard .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .numcard .n { font-family: var(--f-mono); font-size: 26px; font-weight: 600; color: var(--pen); }
+  .numcard.p2 .n { color: var(--margin); }
+  .numcard.cur { border-color: var(--margin); box-shadow: 0 0 0 3px var(--margin-soft); }
+  .numcard .ttl { font-weight: 700; line-height: 1.25; }
+
+  /* ---------- Task detail ---------- */
+  .theory-group { display: grid; gap: 6px; }
+  .theory-group h3 { font-size: 15px; font-family: var(--f-mono); font-weight: 400; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .theory-group ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .mistakes { border-left: 3px solid var(--margin); padding-left: 14px; }
+  .mistakes ul { margin: 6px 0 0; padding-left: 18px; }
+  .tplrow { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 8px 0; border-bottom: 1px dashed var(--line); }
+  .tplrow:last-child { border-bottom: 0; }
+
+  /* ---------- Plan ---------- */
+  .month { display: grid; gap: 12px; }
+  .month-head { display: flex; gap: 14px; align-items: center; }
+  .month-head .mn { font-family: var(--f-mono); font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .month.cur { border-color: var(--margin); box-shadow: 0 0 0 3px var(--margin-soft); }
+  .ring { width: 54px; height: 54px; flex-shrink: 0; }
+  .ring circle { fill: none; stroke-width: 6; }
+  .ring .bg { stroke: var(--pen-soft); }
+  .ring .fg { stroke: var(--done); stroke-linecap: round; transition: stroke-dashoffset .8s var(--ease); transform: rotate(-90deg); transform-origin: 50% 50%; }
+  .ring text { font-family: var(--f-mono); font-size: 13px; fill: var(--ink); text-anchor: middle; dominant-baseline: central; }
+  .item { border: 1px solid var(--line); border-radius: 10px; background: var(--paper); transition: border-color .2s; }
+  .item[open] { border-color: var(--pen); }
+  .item summary { list-style: none; cursor: pointer; display: flex; gap: 12px; align-items: flex-start; padding: 11px 14px; }
+  .item summary::-webkit-details-marker { display: none; }
+  .item .box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--line); flex-shrink: 0; margin-top: 2px; display: grid; place-items: center; transition: background-color .3s, border-color .3s; }
+  .item.ok .box { background: var(--done); border-color: var(--done); }
+  .item.ok .box::after { content: ""; width: 10px; height: 6px; border-left: 2.5px solid var(--paper); border-bottom: 2.5px solid var(--paper); transform: rotate(-45deg) translate(1px, -1px); animation: pop .3s var(--ease); }
+  .item.ok .it-t { color: var(--muted); }
+  .item .it-t { flex: 1; min-width: 0; }
+  .item .chev { font-family: var(--f-mono); color: var(--muted); transition: transform .3s var(--ease); }
+  .item[open] .chev { transform: rotate(90deg); }
+  .item .content { overflow: hidden; }
+  .item .inner { padding: 0 14px 14px 48px; display: grid; gap: 12px; }
+  @media (max-width: 560px) { .item .inner { padding-left: 14px; } }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  table.steps { width: 100%; border-collapse: collapse; min-width: 480px; font-size: 15px; }
+  table.steps th, table.steps td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.steps tr:last-child td { border-bottom: 0; }
+  table.steps th { font-family: var(--f-mono); font-size: 12px; font-weight: 400; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+
+  /* ---------- Mocks ---------- */
+  .mockform { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+  .mockform label { display: grid; gap: 3px; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+  .mockform label.p2 { color: var(--margin); }
+  input[type="number"], input[type="date"], input.ans { font: inherit; font-family: var(--f-mono); padding: 8px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); width: 100%; transition: border-color .2s, box-shadow .2s; }
+  input:focus { outline: none; border-color: var(--pen); box-shadow: 0 0 0 3px var(--pen-soft); }
+  .chart { width: 100%; height: auto; display: block; }
+  .chart text { font-family: var(--f-mono); font-size: 11px; fill: var(--muted); }
+  .chart .gridl { stroke: var(--line); stroke-width: 1; }
+  .chart .ln { fill: none; stroke: var(--pen); stroke-width: 2.5; stroke-linejoin: round; }
+  .chart .area { fill: var(--pen-soft); opacity: .7; }
+  .chart .pt { fill: var(--surface); stroke: var(--pen); stroke-width: 2.5; }
+  .chart .last { fill: var(--pen); }
+  .chart .lbl { fill: var(--ink); font-weight: 600; }
+  .weak { display: grid; gap: 8px; }
+  .weak > div { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; background: var(--paper); border: 1px solid var(--line); }
+  .ai { white-space: pre-wrap; background: var(--paper); border: 1px dashed var(--pen); border-radius: 10px; padding: 12px 14px; font-size: 16px; }
+  table.hist { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+  table.hist th, table.hist td { padding: 6px 6px; border-bottom: 1px solid var(--line); text-align: center; font-family: var(--f-mono); }
+  table.hist th:first-child, table.hist td:first-child { text-align: left; }
+
+  /* ---------- Progress ---------- */
+  .heat { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; max-width: 280px; }
+  .heat i { aspect-ratio: 1; border-radius: 4px; background: var(--pen-soft); display: block; max-width: 100%; }
+  .heat i.l1 { background: color-mix(in srgb, var(--done) 35%, var(--pen-soft)); }
+  .heat i.l2 { background: color-mix(in srgb, var(--done) 65%, var(--pen-soft)); }
+  .heat i.l3 { background: var(--done); }
+  .heat i.today { outline: 2px solid var(--margin); outline-offset: 1px; }
+  .numrow { display: grid; grid-template-columns: 48px 1fr auto; gap: 4px 14px; align-items: center; padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .numrow:last-child { border-bottom: 0; }
+  .numrow .n { font-family: var(--f-mono); font-size: 20px; font-weight: 600; color: var(--pen); }
+  .grade { font-family: var(--f-display); font-weight: 700; font-size: 22px; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 10px; }
+  .g5 { background: var(--done-soft); color: var(--done); }
+  .g4 { background: var(--pen-soft); color: var(--pen); }
+  .g3 { background: var(--warn-soft); color: var(--warn); }
+  .g2 { background: var(--margin-soft); color: var(--margin); }
+
+  /* ---------- Trainer overlay ---------- */
+  .overlay { position: fixed; inset: 0; z-index: 50; background: color-mix(in srgb, var(--ink) 45%, transparent); backdrop-filter: blur(3px); display: grid; place-items: start center; overflow-y: auto;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 24px); padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 24px);
+    padding-left: max(12px, env(safe-area-inset-left, 0px)); padding-right: max(12px, env(safe-area-inset-right, 0px)); animation: fade .25s ease both; }
+  .sheet { width: min(720px, 100%); background: var(--surface); border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 20px; display: grid; gap: 16px; animation: sheet .4s var(--ease) both;
+    background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 22px 22px; background-color: var(--surface); }
+  .sheet-top { display: flex; align-items: center; gap: 12px; }
+  .sheet-top .ttl { flex: 1; min-width: 0; font-family: var(--f-display); font-size: 16px; }
+  .x { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-size: 20px; line-height: 1; color: var(--muted); }
+  .tcard { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 14px; animation: slide .35s var(--ease) both; }
+  .tcard .meta { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .tcard .q { font-size: 18px; }
+  .ansrow { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ansrow input { width: 170px; max-width: 100%; font-size: 18px; }
+  input.bad { border-color: var(--margin); animation: shake .4s ease; }
+  input.good { border-color: var(--done); box-shadow: 0 0 0 4px var(--done-soft); }
+  .msg { border-radius: 10px; padding: 12px 14px; animation: rise .35s var(--ease) both; }
+  .msg b.t { display: block; margin-bottom: 4px; }
+  .msg.hint { background: var(--pen-soft); border-left: 3px solid var(--pen); }
+  .msg.wrong { background: var(--margin-soft); border-left: 3px solid var(--margin); }
+  .msg.right { background: var(--done-soft); border-left: 3px solid var(--done); }
+  .msg.tip { background: var(--warn-soft); border-left: 3px solid var(--warn); }
+  table.dist { border-collapse: collapse; margin-top: 10px; font-family: var(--f-mono); font-size: 15px; }
+  table.dist th, table.dist td { border: 1px solid var(--line); padding: 4px 12px; text-align: center; }
+  table.dist th { color: var(--muted); font-weight: 400; }
+  .result { text-align: center; display: grid; gap: 10px; justify-items: center; }
+  .bigGrade { font-family: var(--f-display); font-size: 72px; font-weight: 700; line-height: 1; width: 120px; height: 120px; border-radius: 28px; display: grid; place-items: center; animation: popbig .6s var(--ease) both; }
+  .errlist { display: grid; gap: 10px; text-align: left; width: 100%; }
+  .errlist > div { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: var(--surface); }
+
+  /* ---------- Greeting ---------- */
+  .greet { width: min(560px, 100%); }
+  .greet .sun { width: 64px; height: 64px; }
+  .greet h2 { font-size: clamp(22px, 5vw, 30px); }
+  .greet .underline { display: block; height: 10px; width: 180px; margin-top: 4px; }
+  .greet .underline path { stroke: var(--margin); stroke-width: 3; fill: none; stroke-linecap: round; stroke-dasharray: 220; stroke-dashoffset: 220; animation: draw 1s .3s var(--ease) forwards; }
+  .greet .todo li { animation: rise .45s var(--ease) both; }
+  .greet .todo li:nth-child(2) { animation-delay: .08s; } .greet .todo li:nth-child(3) { animation-delay: .16s; } .greet .todo li:nth-child(4) { animation-delay: .24s; } .greet .todo li:nth-child(5) { animation-delay: .32s; }
+  .flame { display: inline-flex; align-items: baseline; gap: 6px; font-family: var(--f-mono); }
+  .flame b { font-size: 28px; color: var(--margin); }
+
+  /* ---------- Toast ---------- */
+  .toasts { position: fixed; z-index: 60; left: 50%; transform: translateX(-50%); bottom: calc(env(safe-area-inset-bottom, 0px) + 18px); display: grid; gap: 8px; width: min(440px, calc(100% - 32px)); }
+  .toast { background: var(--ink); color: var(--paper); border-radius: 12px; padding: 12px 16px; box-shadow: var(--shadow); animation: toast .4s var(--ease) both; font-size: 15px; }
+  .toast.out { animation: toastout .3s ease forwards; }
+
+  footer { max-width: 1000px; margin: 0 auto; padding: 0 16px 40px; color: var(--faint); font-size: 13px; }
+
+  @keyframes rise { from { opacity: .001; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sheet { from { opacity: 0; transform: translateY(26px) scale(.98); } to { opacity: 1; transform: none; } }
+  @keyframes slide { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { transform: scale(0) rotate(-45deg); } to { transform: scale(1) rotate(-45deg) translate(1px, -1px); } }
+  @keyframes popbig { 0% { transform: scale(.3); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @keyframes shake { 0%,100% { transform: none; } 20% { transform: translateX(-7px); } 40% { transform: translateX(7px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes toast { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes toastout { to { opacity: 0; transform: translateY(10px); } }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001s !important; animation-delay: 0s !important; transition: none !important; } }
+</style>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#today">Профиль<b>·</b>7</a>
+    <nav class="tabs" aria-label="Разделы">
+      <a class="tab" href="#today" data-v="today">Сегодня</a>
+      <a class="tab" href="#tasks" data-v="tasks">Задания</a>
+      <a class="tab" href="#plan" data-v="plan">План</a>
+      <a class="tab" href="#mocks" data-v="mocks">Пробники</a>
+      <a class="tab" href="#progress" data-v="progress">Прогресс</a>
+    </nav>
+    <div class="acct" id="acct"><i></i><span>Загружаю прогресс…</span></div>
+  </div>
+</header>
+
+<main id="app">
+  <div class="view">
+    <div class="head"><div class="eyebrow">ЕГЭ-2027 · профильная математика</div><h1>Подготовка за 7 месяцев</h1><p>Загружаю ваш прогресс…</p></div>
+  </div>
+</main>
+<footer>Задачи составлены по образцу открытого банка ФИПИ и проверены автоматически. Структура — по демоверсии ЕГЭ-2027; перед экзаменом сверьтесь с fipi.ru.</footer>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div id="layer"></div>
+
+<script>
+/* ===== Теория по заданиям ЕГЭ-2027 ===== */
+var THEORY = [
+  { n: 1, t: 'Планиметрия', pts: 1, groups: [
+    ['Треугольники', [
+      'Сумма углов треугольника 180°, внешний угол равен сумме двух внутренних, не смежных с ним',
+      'Сумма углов выпуклого n-угольника: <span class="f">180°·(n − 2)</span>',
+      'Равнобедренный: углы при основании равны; биссектриса к основанию — также медиана и высота',
+      'Теорема Пифагора: <span class="f">c² = a² + b²</span>; частые тройки 3-4-5, 5-12-13, 8-15-17, 7-24-25',
+      '<span class="f">sin A = a/c</span>, <span class="f">cos A = b/c</span>, <span class="f">tg A = a/b</span> (a — противолежащий катет, b — прилежащий, c — гипотенуза)',
+      'Медиана к гипотенузе равна половине гипотенузы; катет против угла 30° равен половине гипотенузы',
+      'Средняя линия параллельна стороне и равна её половине',
+      'Теорема синусов: <span class="f">a/sin A = 2R</span>; теорема косинусов: <span class="f">a² = b² + c² − 2bc·cos A</span>',
+      'Подобные треугольники: отношение сторон k, отношение площадей k²']],
+    ['Площади', [
+      'Треугольник: <span class="f">S = ½ah = ½ab·sin C</span>; прямоугольный: <span class="f">S = ½ab</span>',
+      'Формула Герона: <span class="f">S = √(p(p−a)(p−b)(p−c))</span>, p — полупериметр',
+      'Через радиусы: <span class="f">S = pr</span> (вписанная окружность), <span class="f">S = abc/(4R)</span> (описанная)',
+      'Параллелограмм <span class="f">S = ah = ab·sin α</span>; ромб <span class="f">S = ½d₁d₂</span>; трапеция <span class="f">S = (a + b)/2 · h</span>',
+      'Круг <span class="f">S = πR²</span>, длина окружности <span class="f">C = 2πR</span>, сектор <span class="f">S = πR²·α/360°</span>']],
+    ['Окружность', [
+      'Вписанный угол равен половине центрального, опирающегося на ту же дугу',
+      'Вписанный угол, опирающийся на диаметр, — прямой',
+      'Касательная перпендикулярна радиусу в точке касания; отрезки касательных из одной точки равны',
+      'В четырёхугольник можно вписать окружность ⇔ <span class="f">a + c = b + d</span>; описать ⇔ сумма противоположных углов 180°',
+      'Радиус вписанной в прямоугольный треугольник: <span class="f">r = (a + b − c)/2</span>; описанной: <span class="f">R = c/2</span>']]],
+    mistakes: ['Путают вписанный и центральный углы', 'Забывают делить на 2 в площади треугольника и трапеции', 'Берут не тот катет в определении синуса/косинуса'] },
+
+  { n: 2, t: 'Векторы', pts: 1, groups: [
+    ['Координаты и действия', [
+      'Вектор AB: <span class="f">(x_B − x_A; y_B − y_A)</span>',
+      'Сумма и разность — покоординатно, умножение на число — каждую координату',
+      'Длина: <span class="f">|a| = √(x² + y²)</span>; в пространстве <span class="f">√(x² + y² + z²)</span>',
+      'Середина отрезка: <span class="f">((x₁ + x₂)/2; (y₁ + y₂)/2)</span>']],
+    ['Скалярное произведение', [
+      '<span class="f">a·b = x₁x₂ + y₁y₂ = |a|·|b|·cos φ</span>',
+      '<span class="f">a·a = |a|²</span>; <span class="f">a ⊥ b ⇔ a·b = 0</span>',
+      'Угол между векторами: <span class="f">cos φ = a·b / (|a|·|b|)</span>',
+      'Коллинеарность: координаты пропорциональны <span class="f">x₁/x₂ = y₁/y₂</span>',
+      'Табличные косинусы: cos 0° = 1, cos 30° = √3/2, cos 45° = √2/2, cos 60° = ½, cos 90° = 0, cos 120° = −½, cos 180° = −1']]],
+    mistakes: ['Складывают длины вместо векторов', 'Ошибаются со знаками при перемножении отрицательных координат', 'Вычитают координаты в неправильном порядке'] },
+
+  { n: 3, t: 'Стереометрия', pts: 1, groups: [
+    ['Многогранники', [
+      'Прямоугольный параллелепипед: <span class="f">V = abc</span>, <span class="f">S = 2(ab + bc + ac)</span>, диагональ <span class="f">d² = a² + b² + c²</span>',
+      'Куб: <span class="f">V = a³</span>, <span class="f">S = 6a²</span>, диагональ <span class="f">a√3</span>',
+      'Призма: <span class="f">V = S<sub>осн</sub>·h</span>; боковая поверхность прямой призмы <span class="f">P<sub>осн</sub>·h</span>',
+      'Пирамида: <span class="f">V = ⅓·S<sub>осн</sub>·h</span>; правильная: <span class="f">S<sub>бок</sub> = ½·P<sub>осн</sub>·апофема</span>']],
+    ['Тела вращения', [
+      'Цилиндр: <span class="f">V = πR²h</span>, <span class="f">S<sub>бок</sub> = 2πRh</span>, <span class="f">S<sub>полн</sub> = 2πR(R + h)</span>',
+      'Конус: <span class="f">V = ⅓πR²h</span>, <span class="f">S<sub>бок</sub> = πRl</span>, <span class="f">l² = R² + h²</span>',
+      'Шар: <span class="f">V = 4/3·πR³</span>, <span class="f">S = 4πR²</span>']],
+    ['Приёмы', [
+      'Подобие: размеры ×k ⇒ площади ×k², объёмы ×k³',
+      'При переливании жидкости объём сохраняется',
+      'Объём составного тела = сумма или разность объёмов частей',
+      'Если просят «V/π» — посчитайте формулу без π']]],
+    mistakes: ['Забывают ⅓ в объёме пирамиды и конуса', 'Путают радиус и диаметр', 'Возводят коэффициент подобия не в ту степень'] },
+
+  { n: 4, t: 'Вероятность', pts: 1, groups: [
+    ['Основы', [
+      'Классическое определение: <span class="f">P = m/n</span> (благоприятные / все равновозможные исходы)',
+      '<span class="f">0 ≤ P ≤ 1</span>; достоверное событие — 1, невозможное — 0',
+      'Противоположное событие: <span class="f">P(Ā) = 1 − P(A)</span>',
+      'Монета: при n бросках <span class="f">2ⁿ</span> исходов; кубик: при двух бросках 36 исходов',
+      'Число сочетаний <span class="f">C(n, k) = n!/(k!(n−k)!)</span> — сколько способов выбрать k из n']],
+    ['Как решать', [
+      'Определите, что такое один исход, и посчитайте их общее число',
+      'Посчитайте благоприятные исходы (иногда проще выписать все варианты)',
+      'Проверьте, что ответ — число от 0 до 1; округляйте, только если просят']]],
+    mistakes: ['Считают (2;6) и (6;2) одним исходом', 'Отвечают на противоположный вопрос («будет» вместо «не будет»)', 'Не учитывают «остальные» в группах'] },
+
+  { n: 5, t: 'Вероятности сложных событий', pts: 1, groups: [
+    ['Теоремы', [
+      'Несовместные события: <span class="f">P(A + B) = P(A) + P(B)</span>',
+      'Совместные: <span class="f">P(A + B) = P(A) + P(B) − P(AB)</span>',
+      'Независимые: <span class="f">P(AB) = P(A)·P(B)</span>',
+      '«Хотя бы один»: <span class="f">1 − P(ни одного)</span>',
+      'Условная вероятность: <span class="f">P(A|B) = P(AB)/P(B)</span>',
+      'Полная вероятность: <span class="f">P(A) = P(H₁)P(A|H₁) + P(H₂)P(A|H₂) + …</span>',
+      'Формула Бернулли: <span class="f">P = C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ</span>']],
+    ['Приёмы', [
+      'Рисуйте дерево вариантов: по ветке вероятности перемножаются, разные ветки складываются',
+      'Если событие B содержится в A: P(A без B) = P(A) − P(B)']]],
+    mistakes: ['Складывают вероятности независимых событий вместо умножения', 'Забывают вычесть пересечение у совместных событий', 'Путают «ровно один» и «хотя бы один»'] },
+
+  { n: 6, t: 'Случайные величины (новое в 2027)', pts: 1, groups: [
+    ['Распределение', [
+      'Случайная величина X принимает значения x₁, x₂, … с вероятностями p₁, p₂, …',
+      'Сумма всех вероятностей распределения равна 1',
+      'Таблица распределения: верхняя строка — значения, нижняя — вероятности']],
+    ['Числовые характеристики', [
+      'Математическое ожидание: <span class="f">E(X) = x₁p₁ + x₂p₂ + … + xₙpₙ</span>',
+      'Дисперсия: <span class="f">D(X) = E(X²) − (E(X))²</span> или <span class="f">D(X) = Σ(xᵢ − E)²·pᵢ</span>',
+      'Стандартное отклонение: <span class="f">σ = √D(X)</span>',
+      '<span class="f">E(aX + b) = a·E(X) + b</span>; <span class="f">D(aX + b) = a²·D(X)</span>',
+      '<span class="f">E(X + Y) = E(X) + E(Y)</span> всегда; <span class="f">D(X + Y) = D(X) + D(Y)</span> для независимых']],
+    ['Важные распределения', [
+      'Бернулли (одно испытание): <span class="f">E = p</span>, <span class="f">D = p(1 − p)</span>',
+      'Биномиальное (n испытаний): <span class="f">E = np</span>, <span class="f">D = np(1 − p)</span>',
+      'Равномерное на {1, …, n}: <span class="f">E = (n + 1)/2</span>']]],
+    mistakes: ['Возводят в квадрат вероятности вместо значений', 'Забывают, что сдвиг не меняет дисперсию', 'Путают σ и D'] },
+
+  { n: 7, t: 'Уравнения', pts: 1, groups: [
+    ['Алгебраические', [
+      'Линейное: <span class="f">ax = b ⇒ x = b/a</span>',
+      'Квадратное: <span class="f">D = b² − 4ac</span>, <span class="f">x = (−b ± √D)/(2a)</span>; Виета: <span class="f">x₁ + x₂ = −b/a</span>, <span class="f">x₁x₂ = c/a</span>',
+      'Дробное: умножить на знаменатель и проверить, что он ≠ 0',
+      'Иррациональное: <span class="f">√f = g ⇔ f = g², g ≥ 0</span>']],
+    ['Показательные и логарифмические', [
+      '<span class="f">aᶠ = aᵍ ⇔ f = g</span> (a > 0, a ≠ 1); 1/a = a⁻¹, √a = a^½',
+      '<span class="f">logₐf = b ⇔ f = aᵇ</span>, ОДЗ: f > 0, a > 0, a ≠ 1',
+      '<span class="f">logₐf = logₐg ⇔ f = g > 0</span>']],
+    ['Тригонометрические', [
+      '<span class="f">sin x = a ⇒ x = (−1)ⁿ arcsin a + πn</span>',
+      '<span class="f">cos x = a ⇒ x = ±arccos a + 2πn</span>',
+      '<span class="f">tg x = a ⇒ x = arctg a + πn</span>',
+      'Частные случаи: sin x = 0 ⇒ πn; cos x = 0 ⇒ π/2 + πn; sin x = 1 ⇒ π/2 + 2πn',
+      'Если корней несколько, в ответ записывают тот, который указан в условии']]],
+    mistakes: ['Не проверяют ОДЗ логарифма и знаменателя', 'Записывают не тот корень (больший вместо меньшего)', 'Теряют минус при переходе к основанию 1/a'] },
+
+  { n: 8, t: 'Преобразования выражений', pts: 1, groups: [
+    ['Степени и корни', [
+      '<span class="f">aᵐ·aⁿ = aᵐ⁺ⁿ</span>, <span class="f">aᵐ : aⁿ = aᵐ⁻ⁿ</span>, <span class="f">(aᵐ)ⁿ = aᵐⁿ</span>, <span class="f">(ab)ⁿ = aⁿbⁿ</span>',
+      '<span class="f">a⁰ = 1</span>, <span class="f">a⁻ⁿ = 1/aⁿ</span>, <span class="f">a^(m/n) = ⁿ√(aᵐ)</span>',
+      '<span class="f">√(a²) = |a|</span>, <span class="f">√a·√b = √(ab)</span>',
+      'Сокращённое умножение: <span class="f">a² − b² = (a − b)(a + b)</span>, <span class="f">(a ± b)² = a² ± 2ab + b²</span>, <span class="f">a³ ± b³ = (a ± b)(a² ∓ ab + b²)</span>']],
+    ['Логарифмы', [
+      '<span class="f">a^(logₐb) = b</span>; <span class="f">logₐa = 1</span>; <span class="f">logₐ1 = 0</span>',
+      '<span class="f">logₐ(bc) = logₐb + logₐc</span>, <span class="f">logₐ(b/c) = logₐb − logₐc</span>',
+      '<span class="f">logₐbᵏ = k·logₐb</span>, <span class="f">log_(aᵏ)b = (1/k)·logₐb</span>',
+      'Переход: <span class="f">logₐb = log_c b / log_c a</span>; <span class="f">logₐb·log_b c = logₐc</span>']],
+    ['Тригонометрия', [
+      '<span class="f">sin²α + cos²α = 1</span>, <span class="f">tg α = sin α/cos α</span>, <span class="f">1 + tg²α = 1/cos²α</span>',
+      '<span class="f">sin 2α = 2sin α cos α</span>, <span class="f">cos 2α = cos²α − sin²α = 2cos²α − 1 = 1 − 2sin²α</span>',
+      'Знаки по четвертям: I — все +; II — sin +; III — tg +; IV — cos +',
+      'Формулы приведения: для π/2 ± α и 3π/2 ± α функция меняется на кофункцию, для π ± α и 2π ± α — нет; знак — по исходной функции в нужной четверти']]],
+    mistakes: ['Неверный знак синуса/косинуса в четверти', 'log(a + b) ≠ log a + log b', 'Складывают показатели при сложении степеней'] },
+
+  { n: 9, t: 'Производная и первообразная', pts: 1, groups: [
+    ['Производная', [
+      'Таблица: <span class="f">(C)′ = 0</span>, <span class="f">(xⁿ)′ = nxⁿ⁻¹</span>, <span class="f">(√x)′ = 1/(2√x)</span>, <span class="f">(eˣ)′ = eˣ</span>, <span class="f">(aˣ)′ = aˣ ln a</span>, <span class="f">(ln x)′ = 1/x</span>, <span class="f">(sin x)′ = cos x</span>, <span class="f">(cos x)′ = −sin x</span>',
+      'Правила: <span class="f">(u ± v)′ = u′ ± v′</span>, <span class="f">(uv)′ = u′v + uv′</span>, <span class="f">(u/v)′ = (u′v − uv′)/v²</span>, <span class="f">(f(g(x)))′ = f′(g)·g′</span>',
+      'Геометрический смысл: <span class="f">f′(x₀) = k = tg α</span> касательной',
+      'Уравнение касательной: <span class="f">y = f(x₀) + f′(x₀)(x − x₀)</span>',
+      'Физический смысл: <span class="f">v = x′(t)</span>, <span class="f">a = v′(t)</span>']],
+    ['Исследование функции', [
+      'f′ > 0 — возрастает, f′ < 0 — убывает',
+      'Максимум: f′ меняет знак с + на −; минимум: с − на +',
+      'Наибольшее/наименьшее на отрезке: критические точки внутри + концы отрезка, сравнить значения',
+      'По графику производной: нули f′ — точки экстремума, где f′ выше оси — f растёт']],
+    ['Первообразная и интеграл', [
+      '<span class="f">F′(x) = f(x)</span>; первообразная xⁿ — <span class="f">xⁿ⁺¹/(n + 1)</span>',
+      'Формула Ньютона — Лейбница: <span class="f">∫ₐᵇ f(x)dx = F(b) − F(a)</span> — площадь под графиком']]],
+    mistakes: ['Дают значение функции вместо точки экстремума', 'Забывают проверить концы отрезка', 'Путают графики f и f′'] },
+
+  { n: 10, t: 'Задача с прикладным содержанием', pts: 1, groups: [
+    ['Алгоритм', [
+      'Выпишите, что дано и что нужно найти; переведите единицы (мин → ч, см → м)',
+      'Подставьте известные числа в формулу из условия',
+      'Решите получившееся уравнение или неравенство',
+      '«Не менее / не более / наименьшее» — найдите граничное значение и проверьте смысл',
+      'Если спрашивают «сколько секунд» — нужна длина промежутка, а не момент времени']],
+    ['Частые формулы', [
+      '<span class="f">E = mv²/2</span>, <span class="f">h = 5t²</span>, <span class="f">I = U/R</span>, <span class="f">P = I²R = U²/R</span>',
+      'Формула линзы <span class="f">1/f = 1/d₁ + 1/d₂</span>; путь при разгоне <span class="f">s = v₀t + at²/2</span>']]],
+    mistakes: ['Не переводят единицы', 'Берут корень вместо длины промежутка', 'Не проверяют, какой из двух корней подходит по смыслу'] },
+
+  { n: 11, t: 'Текстовые задачи', pts: 1, groups: [
+    ['Движение', [
+      '<span class="f">S = vt</span>; навстречу — скорости складываются, вдогонку — вычитаются',
+      'По течению <span class="f">v + u</span>, против течения <span class="f">v − u</span>',
+      'Средняя скорость = весь путь / всё время (не среднее арифметическое!)']],
+    ['Работа, проценты, смеси', [
+      'Работа: <span class="f">A = p·t</span>; совместная производительность — сумма',
+      'Увеличение на p% — умножить на <span class="f">(1 + p/100)</span>, уменьшение — на <span class="f">(1 − p/100)</span>',
+      'Смеси: масса вещества = концентрация × масса раствора; при смешивании складываются массы вещества и растворов']],
+    ['Прогрессии', [
+      'Арифметическая: <span class="f">aₙ = a₁ + d(n − 1)</span>, <span class="f">Sₙ = (a₁ + aₙ)n/2</span>',
+      'Геометрическая: <span class="f">bₙ = b₁qⁿ⁻¹</span>, <span class="f">Sₙ = b₁(qⁿ − 1)/(q − 1)</span>']]],
+    mistakes: ['Складывают проценты подряд', 'Неверно составляют уравнение на время', 'Отвечают не на тот вопрос (время вместо скорости)'] },
+
+  { n: 12, t: 'Графики функций', pts: 1, groups: [
+    ['Виды функций', [
+      'Линейная <span class="f">y = kx + b</span>: k — наклон (Δy/Δx), b — пересечение с Oy',
+      'Квадратичная <span class="f">y = ax² + bx + c</span>: a > 0 ветви вверх; вершина <span class="f">x₀ = −b/(2a)</span>; c — пересечение с Oy',
+      'Через вершину: <span class="f">y = a(x − x₀)² + y₀</span>',
+      'Гипербола <span class="f">y = k/(x − a) + b</span>: асимптоты x = a, y = b; k = (x − a)(y − b)',
+      'Корень <span class="f">y = a√(x − b) + c</span>; показательная <span class="f">y = aˣ + b</span>; логарифмическая <span class="f">y = logₐ(x − b)</span>']],
+    ['Приёмы', [
+      'Коэффициенты находите по точкам с целыми координатами',
+      'Пересечение графиков — решите уравнение f(x) = g(x)',
+      'Сдвиг: y = f(x − a) — вправо на a; y = f(x) + b — вверх на b']]],
+    mistakes: ['Путают знак сдвига по x', 'Неверно считают k по клеткам', 'Забывают, что a⁰ = 1'] },
+
+  { n: 13, t: 'Финансовая математика (в 2027 — часть 1)', pts: 1, groups: [
+    ['Базовые идеи', [
+      'Начисление r% — умножение долга на <span class="f">b = 1 + r/100</span>',
+      'Сложные проценты за n лет: <span class="f">S·bⁿ</span>',
+      'Переплата = все выплаты − сумма кредита']],
+    ['Схемы кредитов', [
+      'Дифференцированная: долг уменьшается равномерно на S/n; сумма процентов <span class="f">S·(r/100)·(n + 1)/2</span>',
+      'Аннуитет (равные платежи x): <span class="f">S·bⁿ = x(bⁿ⁻¹ + … + b + 1)</span> ⇒ <span class="f">x = S·bⁿ(b − 1)/(bⁿ − 1)</span>',
+      'Два платежа: <span class="f">x = S·b²/(b + 1)</span>',
+      'Таблица «год / долг до начисления / после / платёж» помогает не запутаться']]],
+    mistakes: ['Начисляют проценты на исходную сумму вместо остатка', 'Путают сумму выплат и переплату', 'Ошибаются в сумме прогрессии 1 + 2 + … + n'] },
+
+  { n: 14, t: 'Уравнения (развёрнутое решение)', pts: 2, groups: [
+    ['Что проверяют', [
+      'Пункт а — решить уравнение (обычно тригонометрическое, иногда с логарифмами или показательными функциями)',
+      'Пункт б — отобрать корни на отрезке; 2 балла за оба пункта, 1 балл за верный пункт а']],
+    ['Методы', [
+      'Сведение к одной функции: sin²x = 1 − cos²x, cos 2x = 1 − 2sin²x = 2cos²x − 1',
+      'Разложение на множители: вынесение общего множителя, группировка',
+      'Однородные уравнения: <span class="f">a sin²x + b sin x cos x + c cos²x = 0</span> — разделить на cos²x',
+      'Замена переменной t = sin x (|t| ≤ 1), t = 2ˣ (t > 0), t = log x',
+      'Отбор: тригонометрическая окружность, двойное неравенство относительно n, перебор n']],
+    ['Оформление', [
+      'Пишите ОДЗ, если есть знаменатели, логарифмы, тангенсы',
+      'Явно запишите серии корней в ответе к пункту а и список корней к пункту б']]],
+    mistakes: ['Теряют серию корней при делении на sin x или cos x', 'Не проверяют концы отрезка', 'Не учитывают ОДЗ (tg, знаменатель)'] },
+
+  { n: 15, t: 'Стереометрия (развёрнутое решение)', pts: 3, groups: [
+    ['Структура', [
+      'Пункт а — доказательство (2 из 3 баллов можно потерять без него), пункт б — вычисление',
+      'Типовые величины: угол между прямыми, прямой и плоскостью, плоскостями; расстояние; площадь сечения; объём']],
+    ['Ключевые теоремы', [
+      'Прямая ⊥ плоскости, если она ⊥ двум пересекающимся прямым этой плоскости',
+      'Теорема о трёх перпендикулярах',
+      'Угол между прямой и плоскостью — угол между прямой и её проекцией',
+      'Двугранный угол — угол между перпендикулярами к ребру в каждой грани']],
+    ['Метод координат', [
+      'Плоскость <span class="f">ax + by + cz + d = 0</span>, нормаль <span class="f">n(a; b; c)</span>',
+      'Расстояние от точки: <span class="f">|ax₀ + by₀ + cz₀ + d| / √(a² + b² + c²)</span>',
+      'Угол между прямыми: <span class="f">cos φ = |u·v|/(|u||v|)</span>; прямой и плоскостью: <span class="f">sin φ = |u·n|/(|u||n|)</span>']]],
+    mistakes: ['Пропускают пункт а — а он стоит балл', 'Неверно строят сечение', 'Ошибаются в координатах вершин'] },
+
+  { n: 16, t: 'Неравенства (развёрнутое решение)', pts: 2, groups: [
+    ['Методы', [
+      'Метод интервалов: нули числителя и знаменателя на ось, знаки на промежутках',
+      'Показательные: при a > 1 знак сохраняется, при 0 < a < 1 меняется',
+      'Логарифмические: ОДЗ (аргумент > 0, основание > 0 и ≠ 1) + сравнение аргументов',
+      'Рационализация: <span class="f">logₐf − logₐg</span> ~ <span class="f">(a − 1)(f − g)</span>; <span class="f">aᶠ − aᵍ</span> ~ <span class="f">(a − 1)(f − g)</span>',
+      'Замена переменной: t = 2ˣ > 0, t = log₂x']],
+    ['Оформление', [
+      'Обязательно запишите ОДЗ и пересеките с ним решение',
+      'Круглые скобки — граница не входит, квадратные — входит; у знаменателя и ∞ всегда круглые']]],
+    mistakes: ['Забывают ОДЗ', 'Не меняют знак при основании меньше 1', 'Включают нули знаменателя'] },
+
+  { n: 17, t: 'Математическое моделирование (новое в 2027)', pts: 2, groups: [
+    ['Что это', [
+      'Задача из физики, экономики или жизни: нужно составить функцию и найти её максимум/минимум или решить уравнение',
+      'В демоверсии — выбор одной из двух физических задач (мощность генератора, колебания)']],
+    ['Как решать', [
+      'Введите переменную и запишите целевую функцию (мощность, выручка, высота)',
+      'Найдите производную и критические точки, определите максимум/минимум',
+      'Квадратичная функция — максимум/минимум в вершине <span class="f">x = −b/(2a)</span>',
+      'Проверьте, что ответ имеет физический смысл (положительный, в допустимых границах)']],
+    ['Полезные модели', [
+      'Мощность на нагрузке <span class="f">P = E²R/(R + r)²</span>, максимум при <span class="f">R = r</span>',
+      'Вертикальный бросок <span class="f">h = v₀t − gt²/2</span>, максимум при <span class="f">t = v₀/g</span>',
+      'Выручка = цена × спрос']]],
+    mistakes: ['Не обосновывают, что найденная точка — максимум', 'Теряют единицы измерения', 'Неверно составляют функцию'] },
+
+  { n: 18, t: 'Планиметрия (развёрнутое решение)', pts: 3, groups: [
+    ['Ключевые факты', [
+      'Признаки подобия; отношение площадей подобных фигур — k²',
+      'Свойство биссектрисы: делит сторону пропорционально прилежащим сторонам',
+      'Вписанный четырёхугольник: сумма противоположных углов 180°; описанный: суммы противоположных сторон равны',
+      'Теорема о касательной и секущей: <span class="f">MA² = MB·MC</span>; о пересекающихся хордах: <span class="f">AE·EB = CE·ED</span>',
+      'Теоремы синусов и косинусов, формула медианы <span class="f">m² = (2b² + 2c² − a²)/4</span>',
+      'Метод площадей: одну площадь записывают двумя способами']],
+    ['Стратегия', [
+      'Пункт а — доказательство: ищите равные углы, подобные треугольники, вписанные углы',
+      'Пункт б — используйте доказанное в а',
+      'Делайте большой аккуратный чертёж']]],
+    mistakes: ['Чертёж «частного случая» вводит в заблуждение', 'Не используют результат пункта а', 'Пишут «очевидно» без обоснования'] },
+
+  { n: 19, t: 'Задача с параметром', pts: 4, groups: [
+    ['Методы', [
+      'Графический: постройте семейство графиков в осях (x; y) или (x; a) и найдите, при каких a нужное число пересечений',
+      'Аналитический: условия на дискриминант, вершину, значения в точках',
+      'Симметрия: если x₀ — корень, то и −x₀ — корень ⇒ единственный корень только при x₀ = 0']],
+    ['Частые фигуры', [
+      'Окружность <span class="f">(x − x₀)² + (y − y₀)² = r²</span>',
+      'Пучок прямых через точку <span class="f">y − y₀ = k(x − x₀)</span>',
+      '«Уголок» <span class="f">y = |x − a| + b</span>, полосы, ромбы <span class="f">|x| + |y| = c</span>',
+      'Касание прямой и окружности: расстояние от центра до прямой равно r']],
+    ['Оформление', [
+      'Обязательно проверяйте граничные значения параметра',
+      'Даже частичный разбор (верное построение, найденные особые значения) приносит баллы']]],
+    mistakes: ['Теряют граничные случаи', 'Неверно строят модули', 'Забывают ОДЗ при переходе к графикам'] },
+
+  { n: 20, t: 'Числа и их свойства', pts: 4, groups: [
+    ['Структура', [
+      'Обычно три пункта: а — привести пример, б — доказать, что нельзя, в — найти наибольшее/наименьшее',
+      'Пункт в = оценка + пример, нужны обе части']],
+    ['Инструменты', [
+      'Чётность и делимость, остатки, признаки делимости на 2, 3, 4, 5, 9, 11',
+      'НОД и НОК, разложение на простые множители',
+      'Среднее арифметическое: сумма = среднее × количество',
+      'Оценки через неравенства и крайние случаи',
+      'Перебор малых случаев для поиска закономерности']]],
+    mistakes: ['Дают оценку без примера (или пример без оценки)', 'Не проверяют пример по всем условиям', 'Пропускают пункт а — он самый лёгкий'] }
+];
+
+/* ===== План на 7 месяцев (ноябрь 2026 — май 2027) ===== */
+// kind: quiz — проверка задачами; master — освоить номер (50 задач); mock — пробники (need — сколько всего); manual — отметить самому
+var PLAN = [
+  { m: 'Ноябрь', t: 'Диагностика и фундамент', goal: 'Узнать стартовый балл и закрыть №1–3', items: [
+    { id: 'mock1', kind: 'mock', need: 1, t: 'Написать первый пробник и записать балл', steps: [
+      ['Скачайте демоверсию ЕГЭ-2027 на fipi.ru', '1 вариант', 'Вариант распечатан или открыт'],
+      ['Решите вариант без подсказок, засеките 3 ч 55 мин', '1 раз', 'Все задания, которые смогли, решены'],
+      ['Проверьте по ответам и запишите баллы по каждому номеру в «Пробниках»', '20 полей', 'Сайт показал ваши слабые места']] },
+    { id: 'q_pyth', kind: 'quiz', t: 'Выучить теорему Пифагора и прямоугольный треугольник', check: { n: 1, tpls: ['pyth_hyp', 'pyth_leg', 'sinright', 'median'], count: 6 }, steps: [
+      ['Выпишите формулы Пифагора и sin/cos/tg острого угла', '1 раз', 'Можете написать их по памяти'],
+      ['Запомните тройки 3-4-5, 5-12-13, 8-15-17, 7-24-25', '4 тройки', 'Узнаёте их сразу'],
+      ['Пройдите проверку на сайте', '6 задач', '6 из 6 верно']] },
+    { id: 'q_circle', kind: 'quiz', t: 'Разобраться с углами и окружностью', check: { n: 1, tpls: ['inscribed', 'isosceles', 'para_angle'], count: 6 }, steps: [
+      ['Повторите вписанный и центральный угол', 'теория №1', 'Объясните разницу своими словами'],
+      ['Повторите углы равнобедренного треугольника и параллелограмма', '2 правила', 'Знаете, какие углы равны'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_area', kind: 'quiz', t: 'Запомнить формулы площадей', check: { n: 1, tpls: ['trapezoid', 'sector'], count: 5 }, steps: [
+      ['Выпишите формулы площадей треугольника, трапеции, ромба, круга, сектора', '6 формул', 'Пишете по памяти за 2 минуты'],
+      ['Пройдите проверку', '5 задач', 'Без ошибок']] },
+    { id: 'q_vec', kind: 'quiz', t: 'Векторы: координаты, длина, скалярное произведение', check: { n: 2, count: 6 }, steps: [
+      ['Прочитайте теорию №2', '10 минут', 'Знаете 4 формулы'],
+      ['Решите задачи по номеру 2 на сайте', 'серия из 10', 'Оценка 4 или 5'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_stereo', kind: 'quiz', t: 'Объёмы и площади поверхностей тел', check: { n: 3, count: 6 }, steps: [
+      ['Выпишите объёмы призмы, пирамиды, цилиндра, конуса, шара', '5 формул', 'Помните, где стоит ⅓'],
+      ['Разберите подобие тел: k² и k³', '1 правило', 'Не путаете площадь и объём'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'm1', kind: 'master', n: 1, t: 'Освоить №1 — 50 задач', steps: [['Решайте серии по 10 задач', '5 серий', '45+ задач решено, точность от 85%']] },
+    { id: 'm2', kind: 'master', n: 2, t: 'Освоить №2 — 50 задач', steps: [['Решайте серии по 10 задач', '5 серий', '45+ задач решено, точность от 85%']] },
+    { id: 'm3', kind: 'master', n: 3, t: 'Освоить №3 — 50 задач', steps: [['Решайте серии по 10 задач', '5 серий', '45+ задач решено, точность от 85%']] }] },
+
+  { m: 'Декабрь', t: 'Вероятность и алгебра', goal: 'Закрыть №4–8', items: [
+    { id: 'q_prob', kind: 'quiz', t: 'Классическая вероятность', check: { n: 4, count: 6 }, steps: [
+      ['Повторите формулу P = m/n и противоположное событие', 'теория №4', 'Можете объяснить на примере монеты'],
+      ['Научитесь выписывать исходы для двух кубиков', 'таблица 6×6', 'Находите любую сумму за минуту'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_prob2', kind: 'quiz', t: 'Сложение и умножение вероятностей', check: { n: 5, count: 6 }, steps: [
+      ['Разберите, когда складывать, а когда умножать', 'теория №5', 'Рисуете дерево вариантов'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_rv', kind: 'quiz', t: 'Случайные величины: E, D, σ (новое задание №6)', check: { n: 6, count: 6 }, steps: [
+      ['Выучите формулы E(X), D(X), σ', '3 формулы', 'Пишете по памяти'],
+      ['Разберите свойства E(aX + b) и D(aX + b)', '2 свойства', 'Знаете, почему сдвиг не меняет D'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_eq', kind: 'quiz', t: 'Простейшие уравнения всех типов', check: { n: 7, count: 6 }, steps: [
+      ['Повторите показательные, логарифмические, квадратные, иррациональные', 'теория №7', 'Знаете алгоритм для каждого'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_expr', kind: 'quiz', t: 'Свойства степеней, логарифмов и тригонометрии', check: { n: 8, count: 7 }, steps: [
+      ['Выпишите все свойства логарифмов на карточку', '8 свойств', 'Пишете по памяти'],
+      ['Выучите знаки тригонометрических функций по четвертям', '4 четверти', 'Определяете знак за 5 секунд'],
+      ['Пройдите проверку', '7 задач', 'Без ошибок']] },
+    { id: 'mock2', kind: 'mock', need: 2, t: 'Второй пробник', steps: [['Решите вариант на время и внесите баллы', '1 вариант', 'Балл за первую часть вырос']] },
+    { id: 'm4', kind: 'master', n: 4, t: 'Освоить №4', steps: [['Серии по 10 задач', '5 серий', '45+ задач, точность от 85%']] },
+    { id: 'm5', kind: 'master', n: 5, t: 'Освоить №5', steps: [['Серии по 10 задач', '5 серий', '45+ задач, точность от 85%']] },
+    { id: 'm6', kind: 'master', n: 6, t: 'Освоить №6', steps: [['Серии по 10 задач', '5 серий', '45+ задач, точность от 85%']] }] },
+
+  { m: 'Январь', t: 'Вся первая часть', goal: 'Стабильно 11–13 из 13 в первой части', items: [
+    { id: 'q_deriv', kind: 'quiz', t: 'Производная: смысл, экстремумы, первообразная', check: { n: 9, count: 6 }, steps: [
+      ['Выучите таблицу производных и правила', '10 формул', 'Пишете по памяти'],
+      ['Разберите, чем точка максимума отличается от наибольшего значения', '1 разбор', 'Не путаете x и y в ответе'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_app', kind: 'quiz', t: 'Прикладные задачи с формулами', check: { n: 10, count: 6 }, steps: [['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_text', kind: 'quiz', t: 'Текстовые задачи: движение, работа, проценты, смеси', check: { n: 11, count: 7 }, steps: [
+      ['Для каждого типа выпишите «шаблон уравнения»', '5 типов', 'Знаете, с чего начать любую задачу'],
+      ['Пройдите проверку', '7 задач', 'Без ошибок']] },
+    { id: 'q_graph', kind: 'quiz', t: 'Графики функций', check: { n: 12, count: 6 }, steps: [['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_part1', kind: 'quiz', t: 'Вся первая часть без ошибок (по задаче на номер)', check: { mix: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], count: 13 }, steps: [
+      ['Решите по одной задаче каждого номера 1–13', '13 задач', 'Без ошибок'],
+      ['Засекайте время', 'до 70 минут', 'Укладываетесь']] },
+    { id: 'mock3', kind: 'mock', need: 3, t: 'Третий пробник', steps: [['Вариант на время + внести баллы', '1 вариант', 'Первая часть 11+ из 13']] },
+    { id: 'm7', kind: 'master', n: 7, t: 'Освоить №7', steps: [['Серии по 10 задач', '5 серий', '45+ задач, точность от 85%']] },
+    { id: 'm8', kind: 'master', n: 8, t: 'Освоить №8', steps: [['Серии по 10 задач', '5 серий', '45+ задач, точность от 85%']] },
+    { id: 'm9', kind: 'master', n: 9, t: 'Освоить №9', steps: [['Серии по 10 задач', '5 серий', '45+ задач, точность от 85%']] }] },
+
+  { m: 'Февраль', t: 'Финансы и уравнения', goal: 'Закрыть №10–13 и начать №14', items: [
+    { id: 'q_fin', kind: 'quiz', t: 'Финансовая математика: кредиты и вклады (№13)', check: { n: 13, count: 6 }, steps: [
+      ['Разберите дифференцированную и аннуитетную схемы', 'теория №13', 'Рисуете таблицу платежей'],
+      ['Пройдите проверку', '6 задач', 'Без ошибок']] },
+    { id: 'q_14', kind: 'quiz', t: 'Тригонометрические уравнения с отбором корней (№14)', check: { n: 14, count: 5 }, steps: [
+      ['Выучите формулы двойного угла и сведения к одной функции', 'теория №14', 'Знаете 3 способа решения'],
+      ['Научитесь отбирать корни на окружности', '10 задач', 'Не теряете корни на концах отрезка'],
+      ['Пройдите проверку', '5 задач', 'Без ошибок']] },
+    { id: 'man_14', kind: 'manual', t: 'Оформить 5 решений №14 по критериям ФИПИ', steps: [
+      ['Прочитайте критерии оценивания №14 в демоверсии', '1 раз', 'Знаете, за что дают 1 и 2 балла'],
+      ['Решите 5 задач письменно с полным оформлением', '5 задач', 'Есть ответ к пункту а и б'],
+      ['Сверьте оформление с образцом решения', '5 задач', 'Нет пропущенных шагов']] },
+    { id: 'mock4', kind: 'mock', need: 4, t: 'Четвёртый пробник', steps: [['Вариант на время + баллы', '1 вариант', 'Пробуете №14']] },
+    { id: 'm10', kind: 'master', n: 10, t: 'Освоить №10', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] },
+    { id: 'm11', kind: 'master', n: 11, t: 'Освоить №11', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] },
+    { id: 'm12', kind: 'master', n: 12, t: 'Освоить №12', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] },
+    { id: 'm13', kind: 'master', n: 13, t: 'Освоить №13', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] }] },
+
+  { m: 'Март', t: 'Неравенства и моделирование', goal: 'Получать баллы за №14, №16, №17', items: [
+    { id: 'q_16', kind: 'quiz', t: 'Неравенства: метод интервалов, логарифмы, показательные (№16)', check: { n: 16, count: 5 }, steps: [
+      ['Повторите метод интервалов и метод рационализации', 'теория №16', 'Знаете, когда меняется знак'],
+      ['Пройдите проверку', '5 задач', 'Без ошибок']] },
+    { id: 'q_17', kind: 'quiz', t: 'Математическое моделирование (№17, новое)', check: { n: 17, count: 5 }, steps: [
+      ['Разберите модели: мощность, бросок, выручка', 'теория №17', 'Составляете функцию сами'],
+      ['Пройдите проверку', '5 задач', 'Без ошибок']] },
+    { id: 'man_15', kind: 'manual', t: 'Стереометрия №15: сечения и углы', steps: [
+      ['Научитесь строить сечения куба и пирамиды', '10 построений', 'Сечение строится без подсказок'],
+      ['Решите пункт а (доказательство) в 5 задачах из сборника', '5 задач', 'Доказательство без пробелов'],
+      ['Освойте метод координат для пункта б', '5 задач', 'Находите угол и расстояние']] },
+    { id: 'mock5', kind: 'mock', need: 6, t: 'Два пробника за месяц', steps: [['Пробник каждые 2 недели', '2 варианта', 'Балл растёт']] },
+    { id: 'm14', kind: 'master', n: 14, t: 'Освоить отбор корней в №14', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] },
+    { id: 'm16', kind: 'master', n: 16, t: 'Освоить №16', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] }] },
+
+  { m: 'Апрель', t: 'Геометрия, параметр, числа', goal: 'Брать пункты «а» в №15, 18, 19, 20', items: [
+    { id: 'man_18', kind: 'manual', t: 'Планиметрия №18: подобие и окружности', steps: [
+      ['Повторите подобие, вписанные четырёхугольники, касательные', 'теория №18', 'Помните 6 ключевых фактов'],
+      ['Решите пункт а в 8 задачах', '8 задач', 'Доказываете без подсказок']] },
+    { id: 'man_19', kind: 'manual', t: 'Параметр №19: графический метод', steps: [
+      ['Освойте построение окружностей, «уголков», пучков прямых', '10 построений', 'Строите быстро'],
+      ['Решите 5 задач с параметром', '5 задач', 'Хотя бы частично']] },
+    { id: 'man_20', kind: 'manual', t: 'Числа №20: пункты а и б', steps: [
+      ['Решите пункт а в 10 задачах', '10 задач', 'Пример подбирается за 10 минут'],
+      ['Разберите идеи «оценка + пример»', '3 задачи', 'Понимаете структуру пункта в']] },
+    { id: 'q_17b', kind: 'master', n: 17, t: 'Освоить №17', steps: [['Серии по 10 задач', '5 серий', '45+ задач']] },
+    { id: 'q_part1b', kind: 'quiz', t: 'Повторить всю первую часть', check: { mix: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], count: 13 }, steps: [['13 задач, по одной на номер', '13 задач', 'Без ошибок']] },
+    { id: 'mock6', kind: 'mock', need: 8, t: 'Два пробника за месяц', steps: [['Пробник каждые 2 недели', '2 варианта', 'Балл растёт']] }] },
+
+  { m: 'Май', t: 'Финишная прямая', goal: 'Не терять баллы на невнимательности', items: [
+    { id: 'mock7', kind: 'mock', need: 12, t: 'Пробник каждую неделю', steps: [['Вариант строго на 3 ч 55 мин', '4 варианта', 'Внесены в «Пробники»']] },
+    { id: 'q_part1c', kind: 'quiz', t: 'Финальная проверка первой части', check: { mix: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], count: 13 }, steps: [['13 задач без ошибок', '13 задач', 'Без ошибок']] },
+    { id: 'man_formulas', kind: 'manual', t: 'Запомнить все формулы', steps: [
+      ['Сделайте одну шпаргалку со всеми формулами', '1 лист', 'Всё на одной странице'],
+      ['Каждый день перед сном проговаривайте формулы', '7 дней', 'Не подглядываете']] },
+    { id: 'man_strategy', kind: 'manual', t: 'Выбрать стратегию на экзамене', steps: [
+      ['Решить, в каком порядке решать задания', '1 план', 'Есть план на 3 ч 55 мин'],
+      ['Оставить 20 минут на проверку первой части', '20 минут', 'Учтено в плане']] },
+    { id: 'man_rest', kind: 'manual', t: 'Последняя неделя: повторение и сон', steps: [
+      ['Только лёгкие задачи и повторение', '7 дней', 'Нет новых тем'],
+      ['Спать не меньше 8 часов', '7 ночей', 'Высыпаетесь']] }] }
+];
+
+/* ===== Генераторы задач ЕГЭ-2027 (профиль) ===== */
+var GEN = (function () {
+  function rng(seed) {
+    var s = seed >>> 0;
+    return function () {
+      s = (s + 0x6D2B79F5) >>> 0;
+      var t = s;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function ri(r, a, b) { return a + Math.floor(r() * (b - a + 1)); }
+  function pick(r, arr) { return arr[Math.floor(r() * arr.length)]; }
+  function nz(r, a, b) { var v; do { v = ri(r, a, b); } while (v === 0); return v; }
+  function rnd(x, d) { var m = Math.pow(10, d); return Math.round(x * m) / m; }
+  function clean(x) { return rnd(x, 8); }
+  function f(x) { // число по-русски
+    x = clean(x);
+    var s = String(x);
+    if (s.indexOf('e') >= 0) s = x.toFixed(10).replace(/0+$/, '');
+    return s.replace('.', ',').replace('-', '−');
+  }
+  function F(s) { return '<span class="f">' + s + '</span>'; }
+  function sgn(v) { return v < 0 ? '− ' + f(-v) : '+ ' + f(v); } // «+ 3» / «− 3»
+  function C(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+  var TRIPLES = [[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25], [20, 21, 29], [6, 8, 10], [9, 12, 15], [12, 16, 20], [9, 40, 41], [15, 20, 25]];
+  function sup(n) { return '<sup>' + n + '</sup>'; }
+  function poly(terms) { // [[coef, 'x²'], ...] → строка
+    var s = '';
+    terms.forEach(function (t, i) {
+      var c = t[0], v = t[1];
+      if (c === 0) return;
+      var abs = Math.abs(c);
+      var body = (abs === 1 && v) ? v : f(abs) + v;
+      if (s === '') s = (c < 0 ? '−' : '') + body;
+      else s += (c < 0 ? ' − ' : ' + ') + body;
+    });
+    return s || '0';
+  }
+
+  var T = {}; // номер → шаблоны
+
+  /* ---------- №1 Планиметрия ---------- */
+  T[1] = [
+    { id: 'pyth_hyp', name: 'Теорема Пифагора: гипотенуза', fix: 'Гипотенуза лежит напротив прямого угла и всегда самая длинная сторона. Квадрат гипотенузы равен сумме квадратов катетов — не забудьте извлечь корень в конце.',
+      gen: function (r) { var t = pick(r, TRIPLES), k = ri(r, 1, 2), a = t[0] * k, b = t[1] * k, c = t[2] * k;
+        return { q: 'В треугольнике ABC угол C равен 90°, ' + F('AC = ' + a) + ', ' + F('BC = ' + b) + '. Найдите AB.', a: c,
+          h: 'AB лежит напротив прямого угла — это гипотенуза. Вспомните теорему Пифагора.',
+          e: F('AB² = ' + a + '² + ' + b + '² = ' + (a * a) + ' + ' + (b * b) + ' = ' + (c * c)) + ', значит ' + F('AB = ' + c) + '.' }; } },
+    { id: 'pyth_leg', name: 'Теорема Пифагора: катет', fix: 'Чтобы найти катет, из квадрата гипотенузы вычитают квадрат другого катета (а не складывают).',
+      gen: function (r) { var t = pick(r, TRIPLES), k = ri(r, 1, 2), a = t[0] * k, b = t[1] * k, c = t[2] * k;
+        return { q: 'В треугольнике ABC угол C равен 90°, ' + F('AB = ' + c) + ', ' + F('AC = ' + a) + '. Найдите BC.', a: b,
+          h: 'AB — гипотенуза. Катет находится через разность квадратов.',
+          e: F('BC² = AB² − AC² = ' + (c * c) + ' − ' + (a * a) + ' = ' + (b * b)) + ', ' + F('BC = ' + b) + '.' }; } },
+    { id: 'inscribed', name: 'Вписанный и центральный угол', fix: 'Вписанный угол в 2 раза меньше центрального, опирающегося на ту же дугу. Обозначьте вписанный угол через x, тогда центральный — 2x.',
+      gen: function (r) { if (r() < 0.5) { var d = ri(r, 12, 88);
+          return { q: 'Центральный угол на ' + d + '° больше острого вписанного угла, опирающегося на ту же дугу окружности. Найдите вписанный угол. Ответ дайте в градусах.', a: d,
+            h: 'Пусть вписанный угол равен x. Чему тогда равен центральный?', e: 'Центральный угол равен ' + F('2x') + '. ' + F('2x − x = ' + d) + ', значит ' + F('x = ' + d + '°') + '.' }; }
+        var x = ri(r, 11, 89);
+        return { q: 'Вписанный угол ACB равен ' + x + '°. Найдите центральный угол AOB, опирающийся на ту же дугу. Ответ дайте в градусах.', a: 2 * x,
+          h: 'Как связаны вписанный и центральный углы, опирающиеся на одну дугу?', e: 'Центральный угол вдвое больше вписанного: ' + F('2 · ' + x + ' = ' + (2 * x) + '°') + '.' }; } },
+    { id: 'isosceles', name: 'Углы равнобедренного треугольника', fix: 'В равнобедренном треугольнике углы при основании равны: (180° − угол при вершине) / 2.',
+      gen: function (r) { var x = 2 * ri(r, 10, 80);
+        return { q: 'В треугольнике ABC стороны AC и BC равны, угол C равен ' + x + '°. Найдите угол A. Ответ дайте в градусах.', a: (180 - x) / 2,
+          h: 'Треугольник равнобедренный с основанием AB. Какие углы в нём равны?', e: 'Углы A и B равны: ' + F('(180° − ' + x + '°) / 2 = ' + ((180 - x) / 2) + '°') + '.' }; } },
+    { id: 'trapezoid', name: 'Площадь трапеции', fix: 'Площадь трапеции — полусумма оснований, умноженная на высоту. Частая ошибка — забыть разделить на 2.',
+      gen: function (r) { var a, b, h; do { a = ri(r, 2, 15); b = ri(r, a + 1, 25); h = ri(r, 2, 14); } while (((a + b) * h) % 2);
+        return { q: 'Основания трапеции равны ' + a + ' и ' + b + ', высота равна ' + h + '. Найдите площадь трапеции.', a: (a + b) * h / 2,
+          h: 'Площадь трапеции = полусумма оснований × высота.', e: F('S = (' + a + ' + ' + b + ') / 2 · ' + h + ' = ' + ((a + b) * h / 2)) + '.' }; } },
+    { id: 'sinright', name: 'Синус в прямоугольном треугольнике', fix: 'Синус острого угла — это противолежащий катет, делённый на гипотенузу. Значит, катет = гипотенуза × синус.',
+      gen: function (r) { var c = pick(r, [10, 20, 30, 40, 50]), s = ri(r, 1, 9) / 10;
+        return { q: 'В треугольнике ABC угол C равен 90°, ' + F('AB = ' + c) + ', ' + F('sin A = ' + f(s)) + '. Найдите BC.', a: clean(c * s),
+          h: 'BC — катет, противолежащий углу A. Как синус связан с этим катетом и гипотенузой?', e: F('sin A = BC / AB') + ', значит ' + F('BC = ' + c + ' · ' + f(s) + ' = ' + f(c * s)) + '.' }; } },
+    { id: 'median', name: 'Медиана к гипотенузе', fix: 'Медиана, проведённая к гипотенузе, равна половине гипотенузы. Сначала найдите гипотенузу по Пифагору.',
+      gen: function (r) { var t = pick(r, TRIPLES), a = t[0], b = t[1], c = t[2];
+        return { q: 'Катеты прямоугольного треугольника равны ' + a + ' и ' + b + '. Найдите медиану, проведённую к гипотенузе.', a: c / 2,
+          h: 'Найдите гипотенузу. Есть особое свойство медианы, проведённой к гипотенузе.', e: 'Гипотенуза ' + F('√(' + (a * a) + ' + ' + (b * b) + ') = ' + c) + '. Медиана к ней равна половине: ' + F(f(c / 2)) + '.' }; } },
+    { id: 'para_angle', name: 'Углы параллелограмма', fix: 'Соседние углы параллелограмма в сумме дают 180°. Составьте уравнение x + (x + d) = 180.',
+      gen: function (r) { var d = 2 * ri(r, 5, 60);
+        return { q: 'Один из углов параллелограмма на ' + d + '° больше другого. Найдите больший угол. Ответ дайте в градусах.', a: (180 + d) / 2,
+          h: 'Чему равна сумма соседних углов параллелограмма?', e: F('x + x + ' + d + ' = 180') + ', ' + F('x = ' + ((180 - d) / 2)) + '. Больший угол: ' + F(((180 + d) / 2) + '°') + '.' }; } },
+    { id: 'sector', name: 'Площадь сектора', fix: 'Площадь сектора — это часть площади круга: S · α / 360°.',
+      gen: function (r) { var al = pick(r, [30, 45, 60, 90, 120, 135, 150, 180, 270]), S = 24 * ri(r, 1, 6);
+        return { q: 'Площадь круга равна ' + S + '. Найдите площадь сектора этого круга с центральным углом ' + al + '°.', a: S * al / 360,
+          h: 'Какую долю полного угла 360° составляет угол сектора?', e: F(S + ' · ' + al + ' / 360 = ' + f(S * al / 360)) + '.' }; } }
+  ];
+
+  /* ---------- №2 Векторы ---------- */
+  T[2] = [
+    { id: 'dot', name: 'Скалярное произведение по координатам', fix: 'Скалярное произведение = x₁x₂ + y₁y₂. Внимательно перемножайте знаки у отрицательных координат.',
+      gen: function (r) { var x1 = nz(r, -9, 9), y1 = nz(r, -9, 9), x2 = nz(r, -9, 9), y2 = nz(r, -9, 9);
+        return { q: 'Даны векторы ' + F('a(' + f(x1) + '; ' + f(y1) + ')') + ' и ' + F('b(' + f(x2) + '; ' + f(y2) + ')') + '. Найдите скалярное произведение ' + F('a · b') + '.', a: x1 * x2 + y1 * y2,
+          h: 'Перемножьте соответствующие координаты и сложите результаты.', e: F(f(x1) + '·(' + f(x2) + ') + ' + f(y1) + '·(' + f(y2) + ') = ' + f(x1 * x2) + ' + (' + f(y1 * y2) + ') = ' + f(x1 * x2 + y1 * y2)) + '.' }; } },
+    { id: 'len_sum', name: 'Длина суммы векторов', fix: 'Сначала сложите векторы покоординатно, затем найдите длину по формуле √(x² + y²). Длины векторов складывать нельзя.',
+      gen: function (r) { var t = pick(r, TRIPLES.slice(0, 6)), p = t[0] * (r() < .5 ? -1 : 1), q = t[1] * (r() < .5 ? -1 : 1);
+        if (r() < .5) { var tmp = p; p = q; q = tmp; }
+        var a1 = nz(r, -6, 6), a2 = nz(r, -6, 6), b1 = p - a1, b2 = q - a2;
+        return { q: 'Даны векторы ' + F('a(' + f(a1) + '; ' + f(a2) + ')') + ' и ' + F('b(' + f(b1) + '; ' + f(b2) + ')') + '. Найдите длину вектора ' + F('a + b') + '.', a: t[2],
+          h: 'Найдите координаты вектора a + b, затем его длину.', e: F('a + b = (' + f(p) + '; ' + f(q) + ')') + ', ' + F('|a + b| = √(' + (p * p) + ' + ' + (q * q) + ') = ' + t[2]) + '.' }; } },
+    { id: 'perp', name: 'Перпендикулярность векторов', fix: 'Векторы перпендикулярны, когда их скалярное произведение равно нулю. Составьте уравнение и решите его относительно k.',
+      gen: function (r) { var x1, y1, y2, k, ok = false;
+        while (!ok) { x1 = nz(r, -6, 6); y1 = nz(r, -6, 6); k = nz(r, -8, 8); if ((-x1 * k) % y1 === 0) { y2 = -x1 * k / y1; ok = Math.abs(y2) <= 12 && y2 !== 0; } }
+        return { q: 'При каком значении k векторы ' + F('a(' + f(x1) + '; ' + f(y1) + ')') + ' и ' + F('b(k; ' + f(y2) + ')') + ' перпендикулярны?', a: k,
+          h: 'Условие перпендикулярности — скалярное произведение равно 0.', e: F(f(x1) + '·k + ' + f(y1) + '·(' + f(y2) + ') = 0') + ' ⇒ ' + F(f(x1) + 'k = ' + f(-y1 * y2)) + ' ⇒ ' + F('k = ' + f(k)) + '.' }; } },
+    { id: 'angle_dot', name: 'Скалярное произведение через угол', fix: 'a · b = |a|·|b|·cos φ. Запомните: cos 60° = ½, cos 90° = 0, cos 120° = −½.',
+      gen: function (r) { var m = ri(r, 2, 10), n = 2 * ri(r, 1, 6), ang = pick(r, [60, 120, 90]), c = ang === 60 ? .5 : ang === 120 ? -.5 : 0;
+        return { q: 'Длины векторов a и b равны ' + m + ' и ' + n + ', угол между ними ' + ang + '°. Найдите скалярное произведение ' + F('a · b') + '.', a: m * n * c,
+          h: 'Используйте формулу скалярного произведения через косинус угла.', e: F(m + ' · ' + n + ' · cos ' + ang + '° = ' + m * n + ' · ' + f(c) + ' = ' + f(m * n * c)) + '.' }; } },
+    { id: 'ab_len', name: 'Длина вектора по точкам', fix: 'Координаты вектора AB = (координаты B) − (координаты A). Порядок важен, но для длины знак не влияет.',
+      gen: function (r) { var t = pick(r, TRIPLES.slice(0, 6)), x = ri(r, -6, 6), y = ri(r, -6, 6), dx = t[0] * (r() < .5 ? -1 : 1), dy = t[1] * (r() < .5 ? -1 : 1);
+        return { q: 'Найдите длину вектора AB, если ' + F('A(' + f(x) + '; ' + f(y) + ')') + ', ' + F('B(' + f(x + dx) + '; ' + f(y + dy) + ')') + '.', a: t[2],
+          h: 'Найдите координаты вектора: из координат конца вычтите координаты начала.', e: F('AB = (' + f(dx) + '; ' + f(dy) + ')') + ', ' + F('|AB| = √(' + dx * dx + ' + ' + dy * dy + ') = ' + t[2]) + '.' }; } },
+    { id: 'lin_comb', name: 'Координаты линейной комбинации', fix: 'Умножение на число умножает каждую координату. Считайте x и y отдельно, потом складывайте.',
+      gen: function (r) { var a1 = nz(r, -5, 5), a2 = nz(r, -5, 5), b1 = nz(r, -5, 5), b2 = nz(r, -5, 5), k = ri(r, 2, 4), m = ri(r, 2, 4);
+        var x = k * a1 - m * b1, y = k * a2 - m * b2;
+        return { q: 'Даны векторы ' + F('a(' + f(a1) + '; ' + f(a2) + ')') + ' и ' + F('b(' + f(b1) + '; ' + f(b2) + ')') + '. Найдите сумму координат вектора ' + F(k + 'a − ' + m + 'b') + '.', a: x + y,
+          h: 'Посчитайте отдельно абсциссу и ординату вектора ' + k + 'a − ' + m + 'b.', e: F('x = ' + k + '·' + f(a1) + ' − ' + m + '·(' + f(b1) + ') = ' + f(x)) + ', ' + F('y = ' + k + '·' + f(a2) + ' − ' + m + '·(' + f(b2) + ') = ' + f(y)) + '. Сумма: ' + F(f(x + y)) + '.' }; } }
+  ];
+
+  /* ---------- №3 Стереометрия ---------- */
+  T[3] = [
+    { id: 'box', name: 'Прямоугольный параллелепипед', fix: 'Объём = a·b·c; площадь поверхности = 2(ab + bc + ac) — у параллелепипеда 6 граней, по две одинаковых.',
+      gen: function (r) { var a = ri(r, 2, 9), b = ri(r, 2, 9), c = ri(r, 2, 9);
+        if (r() < .5) return { q: 'Измерения прямоугольного параллелепипеда равны ' + a + ', ' + b + ' и ' + c + '. Найдите его объём.', a: a * b * c, h: 'Объём параллелепипеда — произведение трёх измерений.', e: F(a + '·' + b + '·' + c + ' = ' + a * b * c) + '.' };
+        return { q: 'Измерения прямоугольного параллелепипеда равны ' + a + ', ' + b + ' и ' + c + '. Найдите площадь его поверхности.', a: 2 * (a * b + b * c + a * c), h: 'Поверхность состоит из трёх пар одинаковых прямоугольников.', e: F('2(' + a * b + ' + ' + b * c + ' + ' + a * c + ') = ' + 2 * (a * b + b * c + a * c)) + '.' }; } },
+    { id: 'scale', name: 'Подобие тел', fix: 'Если все линейные размеры увеличить в k раз, площадь вырастет в k², а объём — в k³ раз.',
+      gen: function (r) { var k = ri(r, 2, 5), body = pick(r, ['куба', 'правильного тетраэдра', 'прямоугольного параллелепипеда']), vol = r() < .5;
+        return { q: 'Каждое ребро ' + body + ' увеличили в ' + k + ' раза. Во сколько раз увеличится ' + (vol ? 'объём' : 'площадь поверхности') + '?', a: vol ? k * k * k : k * k,
+          h: 'Площадь — двумерная величина, объём — трёхмерная. В какую степень возводится коэффициент?', e: (vol ? 'Объём растёт в ' + F('k³ = ' + k * k * k) : 'Площадь растёт в ' + F('k² = ' + k * k)) + ' раз.' }; } },
+    { id: 'cyl_cone', name: 'Цилиндр и конус', fix: 'Объём конуса в 3 раза меньше объёма цилиндра с тем же основанием и высотой (V = ⅓πR²h против πR²h).',
+      gen: function (r) { var V = 3 * ri(r, 3, 40);
+        if (r() < .5) return { q: 'Цилиндр и конус имеют общее основание и общую высоту. Объём цилиндра равен ' + V + '. Найдите объём конуса.', a: V / 3, h: 'Сравните формулы объёмов цилиндра и конуса.', e: F(V + ' / 3 = ' + V / 3) + '.' };
+        return { q: 'Цилиндр и конус имеют общее основание и общую высоту. Объём конуса равен ' + V / 3 + '. Найдите объём цилиндра.', a: V, h: 'Во сколько раз объём конуса меньше объёма цилиндра?', e: F(V / 3 + ' · 3 = ' + V) + '.' }; } },
+    { id: 'pyramid', name: 'Объём пирамиды', fix: 'V пирамиды = ⅓ · S осн · h. Не забывайте делить на 3.',
+      gen: function (r) { var S, h; do { S = ri(r, 4, 40); h = ri(r, 2, 15); } while ((S * h) % 3);
+        return { q: 'Площадь основания пирамиды равна ' + S + ', высота равна ' + h + '. Найдите объём пирамиды.', a: S * h / 3, h: 'Вспомните формулу объёма пирамиды — в ней есть дробь.', e: F('V = ⅓ · ' + S + ' · ' + h + ' = ' + S * h / 3) + '.' }; } },
+    { id: 'cyl_pi', name: 'Объём цилиндра и конуса через π', fix: 'V цилиндра = πR²h, V конуса = ⅓πR²h. Если просят «объём, делённый на π», просто уберите π из формулы.',
+      gen: function (r) { var R = ri(r, 2, 8), h = ri(r, 2, 12);
+        if (r() < .5) return { q: 'Радиус основания цилиндра равен ' + R + ', высота равна ' + h + '. Найдите объём цилиндра, делённый на π.', a: R * R * h, h: 'V = πR²h.', e: F('V/π = ' + R + '² · ' + h + ' = ' + R * R * h) + '.' };
+        while ((R * R * h) % 3) h++;
+        return { q: 'Радиус основания конуса равен ' + R + ', высота равна ' + h + '. Найдите объём конуса, делённый на π.', a: R * R * h / 3, h: 'V = ⅓πR²h.', e: F('V/π = ⅓ · ' + R + '² · ' + h + ' = ' + R * R * h / 3) + '.' }; } },
+    { id: 'water', name: 'Жидкость в сосудах', fix: 'При переливании объём не меняется: πR²h = π(kR)²·H, отсюда H = h / k².',
+      gen: function (r) { var k = ri(r, 2, 4), H = ri(r, 1, 6), h = H * k * k;
+        return { q: 'В цилиндрический сосуд налили жидкость до уровня ' + h + ' см. Её перелили во второй цилиндрический сосуд, диаметр которого в ' + k + ' раза больше. На какой высоте (в см) будет уровень жидкости?', a: H,
+          h: 'Объём жидкости не меняется. Как площадь основания зависит от диаметра?', e: 'Площадь основания выросла в ' + F(k + '² = ' + k * k) + ' раз, значит высота уменьшится во столько же: ' + F(h + ' / ' + k * k + ' = ' + H) + ' см.' }; } },
+    { id: 'prism', name: 'Объём прямой призмы', fix: 'V призмы = S основания · высота. Площадь прямоугольного треугольника в основании — половина произведения катетов.',
+      gen: function (r) { var a = ri(r, 2, 10), b = ri(r, 2, 10), h = ri(r, 2, 12); if ((a * b) % 2) a++;
+        return { q: 'Основание прямой призмы — прямоугольный треугольник с катетами ' + a + ' и ' + b + '. Высота призмы равна ' + h + '. Найдите её объём.', a: a * b / 2 * h,
+          h: 'Найдите площадь основания, затем умножьте на высоту.', e: F('S = ' + a + '·' + b + '/2 = ' + a * b / 2) + ', ' + F('V = ' + a * b / 2 + ' · ' + h + ' = ' + a * b / 2 * h) + '.' }; } },
+    { id: 'sphere', name: 'Шар', fix: 'S шара = 4πR² (зависит от R²), V шара = 4/3·πR³ (зависит от R³).',
+      gen: function (r) { var k = ri(r, 2, 5), vol = r() < .5;
+        return { q: 'Радиус шара увеличили в ' + k + ' раза. Во сколько раз увеличился ' + (vol ? 'объём шара' : 'площадь поверхности шара') + '?', a: vol ? k * k * k : k * k,
+          h: vol ? 'V = 4/3·πR³.' : 'S = 4πR².', e: 'Ответ: ' + F(vol ? k + '³ = ' + k * k * k : k + '² = ' + k * k) + '.' }; } }
+  ];
+
+  /* ---------- №4 Вероятность ---------- */
+  var NICE_N = [20, 25, 40, 50, 80, 100, 125, 200, 250, 400, 500, 1000];
+  T[4] = [
+    { id: 'classic', name: 'Классическая вероятность', fix: 'P = благоприятные / все исходы. Читайте вопрос: просят «не будет» — считайте именно эти исходы.',
+      gen: function (r) { var n = pick(r, NICE_N), m = ri(r, 1, Math.floor(n / 2)), v = ri(r, 0, 2);
+        var q = [
+          'В сборнике ' + n + ' билетов, в ' + m + ' из них встречается вопрос о логарифмах. Найдите вероятность того, что в случайно выбранном билете <b>не будет</b> вопроса о логарифмах.',
+          'Из ' + n + ' насосов в среднем ' + m + ' подтекают. Найдите вероятность того, что случайно выбранный насос <b>не подтекает</b>.',
+          'В соревнованиях участвуют ' + n + ' спортсменов, из них ' + (n - m) + ' из России. Порядок выступлений определяется жребием. Найдите вероятность того, что первым будет выступать спортсмен из России.'][v];
+        return { q: q, a: (n - m) / n, h: 'Посчитайте число подходящих исходов и поделите на общее число.', e: 'Подходящих исходов ' + F((n - m) + '') + ' из ' + F(n + '') + ': ' + F('P = ' + (n - m) + '/' + n + ' = ' + f((n - m) / n)) + '.' }; } },
+    { id: 'coins', name: 'Монеты', fix: 'При n бросках всего 2ⁿ исходов. Число исходов с ровно k орлами — C(n, k). Выпишите все варианты, если сомневаетесь.',
+      gen: function (r) { var n = ri(r, 2, 4), k = ri(r, 0, n), word = ['ни разу', 'ровно один раз', 'ровно два раза', 'ровно три раза', 'ровно четыре раза'][k];
+        var cnt = C(n, k);
+        return { q: 'Симметричную монету бросают ' + ['', '', 'дважды', 'трижды', 'четыре раза'][n] + '. Найдите вероятность того, что орёл выпадет ' + word + '.', a: cnt / Math.pow(2, n),
+          h: 'Сколько всего исходов при ' + n + ' бросках? Сколько из них подходят?', e: 'Всего ' + F('2' + sup(n) + ' = ' + Math.pow(2, n)) + ' исходов, подходящих ' + F(cnt + '') + '. ' + F('P = ' + cnt + '/' + Math.pow(2, n) + ' = ' + f(cnt / Math.pow(2, n))) + '.' }; } },
+    { id: 'dice', name: 'Игральные кости', fix: 'Две кости дают 36 равновозможных исходов. Выписывайте пары (a; b) аккуратно: (2; 6) и (6; 2) — разные исходы.',
+      gen: function (r) { var s = ri(r, 3, 11), cnt = 6 - Math.abs(7 - s);
+        return { q: 'Игральную кость бросают дважды. Найдите вероятность того, что в сумме выпадет ' + s + ' очков. Результат округлите до сотых.', a: rnd(cnt / 36, 2),
+          h: 'Всего 36 исходов. Выпишите пары, дающие нужную сумму.', e: 'Подходящих пар ' + F(cnt + '') + ' из 36: ' + F(cnt + '/36 ≈ ' + f(rnd(cnt / 36, 2))) + '.' }; } },
+    { id: 'taxi', name: 'Выбор из групп', fix: 'Число подходящих объектов делим на общее количество. Если «остальные» — найдите их число вычитанием.',
+      gen: function (r) { var N = pick(r, [20, 25, 40, 50]), a = ri(r, 2, N / 2), b = ri(r, 2, N - a - 1), c = N - a - b;
+        return { q: 'В фирме такси ' + N + ' машин: ' + a + ' чёрных, ' + b + ' жёлтых, остальные зелёные. На вызов выехала случайная машина. Найдите вероятность того, что приедет зелёное такси.', a: c / N,
+          h: 'Сначала посчитайте, сколько зелёных машин.', e: 'Зелёных ' + F(N + ' − ' + a + ' − ' + b + ' = ' + c) + '. ' + F('P = ' + c + '/' + N + ' = ' + f(c / N)) + '.' }; } },
+    { id: 'conference', name: 'Распределение по дням', fix: 'Найдите, сколько выступлений приходится на нужный день, и поделите на общее число.',
+      gen: function (r) { var d1 = pick(r, [10, 20, 25]), rest = pick(r, [15, 20, 30]), days = ri(r, 2, 4), N = d1 + rest * days, day = ri(r, 2, days + 1);
+        return { q: 'Конференция длится ' + (days + 1) + ' дня. Всего ' + N + ' докладов: в первый день ' + d1 + ', остальные распределены поровну между оставшимися днями. Порядок докладов определяется жеребьёвкой. Найдите вероятность того, что доклад профессора М. окажется запланирован на ' + day + '-й день.', a: rest / N,
+          h: 'Сколько докладов приходится на каждый из оставшихся дней?', e: 'На каждый оставшийся день ' + F('(' + N + ' − ' + d1 + ') / ' + days + ' = ' + rest) + ' докладов. ' + F('P = ' + rest + '/' + N + ' = ' + f(rest / N)) + '.' }; } }
+  ];
+  T[4].forEach(function (t) { var g = t.gen; t.gen = function (r) { var o = g(r); if (String(clean(o.a)).length > 8) o.a = rnd(o.a, 4); return o; }; });
+
+  /* ---------- №5 Сложная вероятность ---------- */
+  T[5] = [
+    { id: 'atleast', name: '«Хотя бы один»', fix: 'Вероятность «хотя бы один» удобнее находить через противоположное событие: 1 − P(ни одного).',
+      gen: function (r) { var p = ri(r, 5, 9) / 10, q = ri(r, 5, 9) / 10, res = 1 - (1 - p) * (1 - q);
+        return { q: 'Два стрелка независимо стреляют по мишени. Вероятность попадания первого ' + f(p) + ', второго ' + f(q) + '. Найдите вероятность того, что мишень будет поражена хотя бы одним стрелком.', a: clean(res),
+          h: 'Найдите вероятность того, что оба промахнутся.', e: 'Оба промахнутся: ' + F(f(1 - p) + ' · ' + f(1 - q) + ' = ' + f((1 - p) * (1 - q))) + '. Хотя бы один попадёт: ' + F('1 − ' + f((1 - p) * (1 - q)) + ' = ' + f(res)) + '.' }; } },
+    { id: 'both', name: 'Независимые события', fix: 'Для независимых событий вероятность того, что произойдут оба, равна произведению вероятностей.',
+      gen: function (r) { var p = ri(r, 5, 9) / 10, q = ri(r, 5, 9) / 10, miss = r() < .5;
+        var a = miss ? p * (1 - q) : p * q;
+        return { q: 'Два автомата работают независимо. Вероятность того, что первый исправен, ' + f(p) + ', второй — ' + f(q) + '. Найдите вероятность того, что ' + (miss ? 'первый исправен, а второй неисправен' : 'оба автомата исправны') + '.', a: clean(a),
+          h: 'События независимы — вероятности перемножаются.' + (miss ? ' Вероятность неисправности второго = 1 − ' + f(q) + '.' : ''), e: F((miss ? f(p) + ' · ' + f(1 - q) : f(p) + ' · ' + f(q)) + ' = ' + f(a)) + '.' }; } },
+    { id: 'kettle', name: 'Вложенные события', fix: 'Если событие B входит в A, то P(A, но не B) = P(A) − P(B).',
+      gen: function (r) { var p1 = ri(r, 85, 98) / 100, p2 = ri(r, 60, Math.round(p1 * 100) - 5) / 100;
+        return { q: 'Вероятность того, что новый электрический чайник прослужит больше года, равна ' + f(p1) + '. Вероятность того, что он прослужит больше двух лет, равна ' + f(p2) + '. Найдите вероятность того, что он прослужит больше года, но меньше двух лет.', a: clean(p1 - p2),
+          h: '«Больше года» = «от года до двух» или «больше двух». Эти события несовместны.', e: F(f(p1) + ' − ' + f(p2) + ' = ' + f(p1 - p2)) + '.' }; } },
+    { id: 'series', name: 'Серия выстрелов', fix: 'Вероятность конкретной последовательности — произведение вероятностей каждого шага. Промах = 1 − p.',
+      gen: function (r) { var p = pick(r, [.5, .6, .7, .8, .9]), n = ri(r, 3, 5), k = ri(r, 1, n - 1), v = Math.pow(p, k) * Math.pow(1 - p, n - k);
+        return { q: 'Стрелок попадает в мишень с вероятностью ' + f(p) + '. Он стреляет ' + n + ' раз. Найдите вероятность того, что первые ' + k + ' раз он попадёт, а остальные промахнётся. Результат округлите до сотых.', a: rnd(v, 2),
+          h: 'Перемножьте вероятности ' + k + ' попаданий и ' + (n - k) + ' промахов.', e: F(f(p) + sup(k) + ' · ' + f(1 - p) + sup(n - k) + ' ≈ ' + f(rnd(v, 2))) + '.' }; } },
+    { id: 'factory', name: 'Полная вероятность', fix: 'Разбейте на случаи (какая фабрика), в каждом перемножьте вероятности по ветке дерева, затем сложите.',
+      gen: function (r) { var a = ri(r, 2, 8) / 10, d1 = ri(r, 1, 5) / 100, d2 = ri(r, 1, 5) / 100, res = a * d1 + (1 - a) * d2;
+        return { q: 'Две фабрики выпускают одинаковые стёкла для фар. Первая выпускает ' + Math.round(a * 100) + '% стёкол, вторая — ' + Math.round((1 - a) * 100) + '%. Первая выпускает ' + Math.round(d1 * 100) + '% бракованных стёкол, вторая — ' + Math.round(d2 * 100) + '%. Найдите вероятность того, что случайно купленное стекло окажется бракованным.', a: clean(res),
+          h: 'Брак может быть с первой или со второй фабрики. Посчитайте каждую ветку отдельно.', e: F(f(a) + '·' + f(d1) + ' + ' + f(1 - a) + '·' + f(d2) + ' = ' + f(res)) + '.' }; } },
+    { id: 'two_auto', name: 'Совместные события', fix: 'P(A или B) = P(A) + P(B) − P(A и B). Или через противоположное: 1 − P(оба не произошли).',
+      gen: function (r) { var p = ri(r, 10, 30) / 100, q = ri(r, 2, Math.round(p * 100) - 3) / 100;
+        return { q: 'В торговом центре два одинаковых автомата продают кофе. Вероятность того, что к концу дня в автомате закончится кофе, равна ' + f(p) + '. Вероятность того, что кофе закончится в обоих автоматах, равна ' + f(q) + '. Найдите вероятность того, что к концу дня кофе останется в обоих автоматах.', a: clean(1 - (2 * p - q)),
+          h: 'Сначала найдите вероятность того, что кофе закончится хотя бы в одном автомате.', e: 'Хотя бы в одном: ' + F(f(p) + ' + ' + f(p) + ' − ' + f(q) + ' = ' + f(2 * p - q)) + '. Останется в обоих: ' + F('1 − ' + f(2 * p - q) + ' = ' + f(1 - (2 * p - q))) + '.' }; } }
+  ];
+
+  /* ---------- №6 Случайные величины (новое в 2027) ---------- */
+  function distr(r, k) { // k значений с вероятностями-десятыми
+    var vals = [], used = {}, probs = [], left = 10;
+    while (vals.length < k) { var v = ri(r, -4, 9); if (!used[v]) { used[v] = 1; vals.push(v); } }
+    vals.sort(function (a, b) { return a - b; });
+    for (var i = 0; i < k - 1; i++) { var p = ri(r, 1, left - (k - 1 - i)); probs.push(p); left -= p; }
+    probs.push(left);
+    return { x: vals, p: probs.map(function (p) { return p / 10; }) };
+  }
+  function tableHtml(d, miss) {
+    var s = '<table class="dist"><tr><th>X</th>' + d.x.map(function (v) { return '<td>' + f(v) + '</td>'; }).join('') + '</tr><tr><th>P</th>' +
+      d.p.map(function (p, i) { return '<td>' + (i === miss ? '?' : f(p)) + '</td>'; }).join('') + '</tr></table>';
+    return s;
+  }
+  T[6] = [
+    { id: 'expect', name: 'Математическое ожидание', fix: 'E(X) = x₁p₁ + x₂p₂ + … Умножайте каждое значение на его вероятность и складывайте, следя за знаками.',
+      gen: function (r) { var d = distr(r, ri(r, 3, 4)), E = 0; d.x.forEach(function (v, i) { E += v * d.p[i]; });
+        return { q: 'Случайная величина X задана таблицей распределения. Найдите её математическое ожидание.' + tableHtml(d), a: clean(E),
+          h: 'E(X) — сумма произведений значений на их вероятности.', e: F('E(X) = ' + d.x.map(function (v, i) { return f(v) + '·' + f(d.p[i]); }).join(' + ') + ' = ' + f(E)) + '.' }; } },
+    { id: 'missing', name: 'Сумма вероятностей равна 1', fix: 'Сумма всех вероятностей в таблице распределения равна 1. Неизвестная = 1 − сумма известных.',
+      gen: function (r) { var d = distr(r, ri(r, 3, 5)), m = ri(r, 0, d.x.length - 1), s = 0; d.p.forEach(function (p, i) { if (i !== m) s += p; });
+        return { q: 'В таблице распределения случайной величины X одна вероятность неизвестна. Найдите её.' + tableHtml(d, m), a: clean(d.p[m]),
+          h: 'Чему равна сумма всех вероятностей распределения?', e: F('1 − ' + f(s) + ' = ' + f(d.p[m])) + '.' }; } },
+    { id: 'variance', name: 'Дисперсия по таблице', fix: 'D(X) = E(X²) − (E(X))². Частая ошибка — забыть возвести E(X) в квадрат или возвести в квадрат вероятности.',
+      gen: function (r) { var d; do { d = distr(r, 3); d.x = d.x.map(function (v) { return ((v % 5) + 5) % 5 - 1; }); } while (new Set(d.x).size < 3);
+        d.x.sort(function (a, b) { return a - b; });
+        var E = 0, E2 = 0; d.x.forEach(function (v, i) { E += v * d.p[i]; E2 += v * v * d.p[i]; }); var D = E2 - E * E;
+        return { q: 'Случайная величина X задана таблицей. Найдите её дисперсию.' + tableHtml(d), a: clean(D),
+          h: 'Найдите E(X) и E(X²), затем D(X) = E(X²) − (E(X))².', e: F('E(X) = ' + f(E)) + ', ' + F('E(X²) = ' + f(E2)) + ', ' + F('D = ' + f(E2) + ' − ' + f(E) + '² = ' + f(D)) + '.' }; } },
+    { id: 'binom', name: 'Биномиальное распределение', fix: 'Для числа успехов в n испытаниях: E = n·p, D = n·p·(1 − p). Для стандартного отклонения извлеките корень из D.',
+      gen: function (r) { var n = pick(r, [10, 20, 25, 50, 100, 200]), p = ri(r, 1, 9) / 10, which = ri(r, 0, 1);
+        return { q: 'Монету с вероятностью «успеха» ' + f(p) + ' бросают ' + n + ' раз (броски независимы). X — число успехов. Найдите ' + (which ? 'дисперсию D(X)' : 'математическое ожидание E(X)') + '.', a: clean(which ? n * p * (1 - p) : n * p),
+          h: 'X имеет биномиальное распределение. Вспомните формулы для E и D.', e: which ? F('D = ' + n + '·' + f(p) + '·' + f(1 - p) + ' = ' + f(n * p * (1 - p))) : F('E = ' + n + '·' + f(p) + ' = ' + f(n * p)) }; } },
+    { id: 'linear', name: 'Свойства E и D', fix: 'E(aX + b) = a·E(X) + b, но D(aX + b) = a²·D(X): сдвиг b дисперсию не меняет, а множитель возводится в квадрат.',
+      gen: function (r) { var a = nz(r, -4, 4), b = ri(r, -9, 9), E = ri(r, -5, 8), D = ri(r, 1, 9), w = ri(r, 0, 1);
+        var expr = (a === 1 ? '' : a === -1 ? '−' : f(a)) + 'X ' + sgn(b);
+        return { q: 'Известно, что ' + F('E(X) = ' + f(E)) + ' и ' + F('D(X) = ' + D) + '. Найдите ' + F((w ? 'D' : 'E') + '(' + expr + ')') + '.', a: w ? a * a * D : a * E + b,
+          h: w ? 'Как дисперсия меняется при умножении на число и при сдвиге?' : 'Математическое ожидание линейно.', e: w ? F('D = ' + f(a) + '² · ' + D + ' = ' + a * a * D) + ' (сдвиг не влияет).' : F(f(a) + '·' + f(E) + ' ' + sgn(b) + ' = ' + f(a * E + b)) + '.' }; } },
+    { id: 'std', name: 'Стандартное отклонение', fix: 'Стандартное отклонение σ = √D. Не путайте σ и D.',
+      gen: function (r) { var s = pick(r, [0.2, 0.3, 0.5, 0.6, 1.2, 1.5, 2, 3, 4, 5, 6, 7]);
+        return { q: 'Дисперсия случайной величины равна ' + f(s * s) + '. Найдите её стандартное отклонение.', a: s, h: 'Как связаны дисперсия и стандартное отклонение?', e: F('σ = √' + f(s * s) + ' = ' + f(s)) + '.' }; } },
+    { id: 'sum_ev', name: 'Сумма случайных величин', fix: 'E(X + Y) = E(X) + E(Y) всегда; D(X + Y) = D(X) + D(Y) — только для независимых величин.',
+      gen: function (r) { var e1 = ri(r, -5, 9), e2 = ri(r, -5, 9), d1 = ri(r, 1, 9), d2 = ri(r, 1, 9), w = ri(r, 0, 1);
+        return { q: 'Независимые случайные величины X и Y имеют ' + F('E(X) = ' + f(e1)) + ', ' + F('D(X) = ' + d1) + ', ' + F('E(Y) = ' + f(e2)) + ', ' + F('D(Y) = ' + d2) + '. Найдите ' + F(w ? 'D(X + Y)' : 'E(X + Y)') + '.', a: w ? d1 + d2 : e1 + e2,
+          h: 'Для суммы независимых величин и ожидания, и дисперсии складываются.', e: F(w ? d1 + ' + ' + d2 + ' = ' + (d1 + d2) : f(e1) + ' + ' + f(e2) + ' = ' + f(e1 + e2)) + '.' }; } }
+  ];
+
+  /* ---------- №7 Уравнения ---------- */
+  T[7] = [
+    { id: 'exp_eq', name: 'Показательные уравнения', fix: 'Приведите обе части к одному основанию, затем приравняйте показатели. Помните: 1/a = a⁻¹.',
+      gen: function (r) { var a = pick(r, [2, 3, 5]), k = ri(r, 1, a === 2 ? 6 : 3), b = ri(r, -6, 6), inv = r() < .4, val = Math.pow(a, k);
+        if (!inv) return { q: 'Найдите корень уравнения ' + F(a + sup('x ' + (b >= 0 ? '− ' + b : '+ ' + (-b))) + ' = ' + val) + '.', a: k + b,
+          h: 'Представьте ' + val + ' как степень числа ' + a + '.', e: F(val + ' = ' + a + sup(k)) + ', значит ' + F('x ' + (b >= 0 ? '− ' + b : '+ ' + (-b)) + ' = ' + k) + ', ' + F('x = ' + f(k + b)) + '.' };
+        return { q: 'Найдите корень уравнения ' + F('(1/' + a + ')' + sup('x ' + (b >= 0 ? '+ ' + b : '− ' + (-b))) + ' = ' + val) + '.', a: -k - b,
+          h: 'Запишите 1/' + a + ' как ' + a + '⁻¹.', e: F('(1/' + a + ')' + sup('t') + ' = ' + a + sup('−t')) + ', поэтому ' + F('−(x ' + (b >= 0 ? '+ ' + b : '− ' + (-b)) + ') = ' + k) + ', ' + F('x = ' + f(-k - b)) + '.' }; } },
+    { id: 'log_eq', name: 'Логарифмические уравнения', fix: 'По определению: logₐ(t) = k ⇔ t = aᵏ. Затем проверьте, что выражение под логарифмом положительно.',
+      gen: function (r) { var a = pick(r, [2, 3, 4, 5, 7]), k = ri(r, 1, a <= 3 ? 4 : 2), b = ri(r, -9, 9), m = pick(r, [1, 1, 2, 3]);
+        var rhs = Math.pow(a, k) - b; if (rhs % m) m = 1; var x = rhs / m;
+        var inner = (m === 1 ? 'x' : m + 'x') + ' ' + sgn(b);
+        return { q: 'Найдите корень уравнения ' + F('log' + '<sub>' + a + '</sub>(' + inner + ') = ' + k) + '.', a: x,
+          h: 'Чему равно выражение под логарифмом по определению логарифма?', e: F(inner + ' = ' + a + sup(k) + ' = ' + Math.pow(a, k)) + ', ' + F('x = ' + f(x)) + '. Проверка: под логарифмом ' + Math.pow(a, k) + ' > 0.' }; } },
+    { id: 'quad', name: 'Квадратные уравнения', fix: 'Найдите оба корня (через дискриминант или Виета) и внимательно прочитайте, какой корень просят записать.',
+      gen: function (r) { var r1, r2; do { r1 = ri(r, -9, 9); r2 = ri(r, -9, 9); } while (r1 === r2); var lo = Math.min(r1, r2), hi = Math.max(r1, r2), big = r() < .5;
+        return { q: 'Решите уравнение ' + F(poly([[1, 'x²'], [-(r1 + r2), 'x'], [r1 * r2, '']]) + ' = 0') + '. Если корней несколько, запишите ' + (big ? 'больший' : 'меньший') + ' из них.', a: big ? hi : lo,
+          h: 'Найдите корни через дискриминант или по теореме Виета: сумма корней = ' + f(r1 + r2) + ', произведение = ' + f(r1 * r2) + '.', e: 'Корни ' + F(f(lo)) + ' и ' + F(f(hi)) + '. ' + (big ? 'Больший' : 'Меньший') + ': ' + F(f(big ? hi : lo)) + '.' }; } },
+    { id: 'sqrt_eq', name: 'Иррациональные уравнения', fix: 'Возведите обе части в квадрат. Правая часть должна быть неотрицательной, иначе корней нет.',
+      gen: function (r) { var a, b, c; do { a = pick(r, [1, 2, 3, 4, 5]); c = ri(r, 1, 9); b = ri(r, -9, 9); } while ((c * c - b) % a);
+        return { q: 'Найдите корень уравнения ' + F('√(' + (a === 1 ? '' : a) + 'x ' + sgn(b) + ') = ' + c) + '.', a: (c * c - b) / a,
+          h: 'Возведите обе части в квадрат.', e: F((a === 1 ? '' : a) + 'x ' + sgn(b) + ' = ' + c * c) + ', ' + F('x = ' + f((c * c - b) / a)) + '.' }; } },
+    { id: 'lin_frac', name: 'Дробно-рациональные уравнения', fix: 'Используйте пропорцию (перекрёстное умножение) и проверьте, что знаменатель не обращается в ноль.',
+      gen: function (r) { var x, a, b, c; do { x = ri(r, -9, 9); a = nz(r, -5, 5); b = ri(r, -9, 9); c = ri(r, 2, 9); } while (a * x + b === 0 || (x - a) === 0 || ((a * x + b) % (x - a)) !== 0);
+        var k = (a * x + b) / (x - a);
+        return { q: 'Найдите корень уравнения ' + F('(' + poly([[a, 'x'], [b, '']]) + ') / (x ' + sgn(-a) + ') = ' + f(k)) + '.', a: x,
+          h: 'Умножьте обе части на знаменатель (при условии, что он не равен нулю).', e: F(poly([[a, 'x'], [b, '']]) + ' = ' + f(k) + '(x ' + sgn(-a) + ')') + ' ⇒ ' + F('x = ' + f(x)) + '; знаменатель при этом ' + f(x - a) + ' ≠ 0.' }; } },
+    { id: 'trig_simple', name: 'Простейшие тригонометрические', fix: 'Запомните табличные значения и серии: cos x = a ⇒ x = ±arccos a + 2πn. Отбирайте корень по условию (например, наибольший отрицательный).',
+      gen: function (r) { var c = pick(r, [[.5, 60], [-.5, 120], [0, 90]]);
+        // наименьший положительный корень cos(πx/6)=..: проще — в градусах
+        return { q: 'Найдите наименьший положительный корень уравнения ' + F('cos x = ' + f(c[0])) + '. Ответ запишите в градусах.', a: c[1],
+          h: 'Найдите arccos ' + f(c[0]) + ' на единичной окружности.', e: F('x = ±' + c[1] + '° + 360°·n') + '. Наименьший положительный: ' + F(c[1] + '°') + '.' }; } }
+  ];
+
+  /* ---------- №8 Преобразования выражений ---------- */
+  T[8] = [
+    { id: 'log_diff', name: 'Разность логарифмов', fix: 'logₐb − logₐc = logₐ(b/c). Сначала упростите дробь, потом считайте логарифм.',
+      gen: function (r) { var a = pick(r, [2, 3, 5]), k = ri(r, 1, a === 2 ? 5 : 3), n = ri(r, 2, 12), m = n * Math.pow(a, k);
+        return { q: 'Найдите значение выражения ' + F('log<sub>' + a + '</sub>' + m + ' − log<sub>' + a + '</sub>' + n) + '.', a: k,
+          h: 'Разность логарифмов с одинаковым основанием — логарифм частного.', e: F('log<sub>' + a + '</sub>(' + m + '/' + n + ') = log<sub>' + a + '</sub>' + Math.pow(a, k) + ' = ' + k) + '.' }; } },
+    { id: 'log_sum', name: 'Сумма логарифмов', fix: 'logₐb + logₐc = logₐ(bc).',
+      gen: function (r) { var a = pick(r, [2, 3, 6, 10]), k = ri(r, 2, a === 2 ? 6 : 3), N = Math.pow(a, k), divs = [];
+        for (var d = 2; d < N; d++) if (N % d === 0) divs.push(d); var b = pick(r, divs), c = N / b;
+        return { q: 'Найдите значение выражения ' + F('log<sub>' + a + '</sub>' + b + ' + log<sub>' + a + '</sub>' + c) + '.', a: k,
+          h: 'Сумма логарифмов — логарифм произведения.', e: F('log<sub>' + a + '</sub>(' + b + '·' + c + ') = log<sub>' + a + '</sub>' + N + ' = ' + k) + '.' }; } },
+    { id: 'powers', name: 'Свойства степеней', fix: 'При умножении степени складываются, при делении вычитаются, при возведении в степень перемножаются.',
+      gen: function (r) { var a = pick(r, [2, 3, 5, 7]), m = ri(r, 2, 9), n = ri(r, 2, 9), res = ri(r, a === 2 ? -2 : a === 5 ? -1 : 0, a === 2 ? 4 : 2), p = m + n - res;
+        return { q: 'Найдите значение выражения ' + F(a + sup(m) + ' · ' + a + sup(n) + ' : ' + a + sup(p)) + '.', a: Math.pow(a, res),
+          h: 'Сложите и вычтите показатели.', e: F(a + sup(m + ' + ' + n + ' − ' + p) + ' = ' + a + sup(res) + ' = ' + f(Math.pow(a, res))) + '.' }; } },
+    { id: 'trig_val', name: 'Значение синуса/косинуса', fix: 'Из sin²α + cos²α = 1 находится модуль; знак определяйте по четверти, где лежит угол.',
+      gen: function (r) { var t = pick(r, [[3, 4, 5], [5, 12, 13], [8, 15, 17], [7, 24, 25]]), quarters = [['(0; π/2)', 1, 1], ['(π/2; π)', -1, 1], ['(π; 3π/2)', -1, -1], ['(3π/2; 2π)', 1, -1]];
+        var qq = pick(r, quarters), c = qq[1] * t[0] / t[2], s = qq[2] * t[1] / t[2], k = t[2] * ri(r, 1, 2), giveCos = r() < .5;
+        var given = giveCos ? 'cos α = ' + (qq[1] < 0 ? '−' : '') + t[0] + '/' + t[2] : 'sin α = ' + (qq[2] < 0 ? '−' : '') + t[1] + '/' + t[2];
+        var target = giveCos ? s : c, tname = giveCos ? 'sin α' : 'cos α';
+        return { q: 'Найдите ' + F(k + ' ' + tname) + ', если ' + F(given) + ' и ' + F('α ∈ ' + qq[0]) + '.', a: clean(k * target),
+          h: 'Используйте основное тригонометрическое тождество и определите знак ' + tname + ' в этой четверти.', e: F(tname + ' = ' + (target < 0 ? '−' : '') + (giveCos ? t[1] : t[0]) + '/' + t[2]) + ' (знак по четверти), ' + F(k + ' · ' + f(target) + ' = ' + f(k * target)) + '.' }; } },
+    { id: 'sqrt_diff', name: 'Разность квадратов с корнями', fix: '(√a − √b)(√a + √b) = a − b. Не раскрывайте скобки «в лоб».',
+      gen: function (r) { var a = ri(r, 10, 60), b = ri(r, 2, 40);
+        return { q: 'Найдите значение выражения ' + F('(√' + a + ' − √' + b + ')(√' + a + ' + √' + b + ')') + '.', a: a - b,
+          h: 'Это формула сокращённого умножения.', e: F(a + ' − ' + b + ' = ' + (a - b)) + '.' }; } },
+    { id: 'log_base', name: 'Основное логарифмическое тождество', fix: 'a^(logₐb) = b. Если в показателе k·logₐb, то это logₐ(bᵏ).',
+      gen: function (r) { var a = pick(r, [2, 3, 5, 7]), b = ri(r, 2, 12), k = ri(r, 2, 9), sq = r() < .4;
+        if (sq) return { q: 'Найдите значение выражения ' + F(a + sup('2·log<sub>' + a + '</sub>' + b)) + '.', a: b * b, h: '2·logₐb = logₐ(b²).', e: F(a + sup('log<sub>' + a + '</sub>' + b * b) + ' = ' + b * b) + '.' };
+        return { q: 'Найдите значение выражения ' + F(k + ' · ' + a + sup('log<sub>' + a + '</sub>' + b)) + '.', a: k * b, h: 'Чему равно a в степени logₐb?', e: F(k + ' · ' + b + ' = ' + k * b) + '.' }; } },
+    { id: 'log_change', name: 'Переход к другому основанию', fix: 'logₐb · log_b c = logₐc; logₐ(bᵏ) = k·logₐb.',
+      gen: function (r) { var a = pick(r, [2, 3, 5, 7, 11]), b = pick(r, [3, 5, 7, 13, 17]); if (a === b) b = 19; var k = ri(r, 2, 6);
+        return { q: 'Найдите значение выражения ' + F('log<sub>' + a + '</sub>' + b + ' · log<sub>' + b + '</sub>' + Math.pow(a, k)) + '.', a: k,
+          h: 'Произведение «цепочки» логарифмов сокращается.', e: F('log<sub>' + a + '</sub>' + b + ' · log<sub>' + b + '</sub>' + a + sup(k) + ' = log<sub>' + a + '</sub>' + a + sup(k) + ' = ' + k) + '.' }; } }
+  ];
+
+  /* ---------- №9 Производная ---------- */
+  T[9] = [
+    { id: 'velocity', name: 'Физический смысл производной', fix: 'Скорость — производная координаты: v(t) = x′(t). Сначала найдите производную, потом подставьте t.',
+      gen: function (r) { var a = ri(r, 1, 4), b = ri(r, -9, 9), c = ri(r, 1, 20), t = ri(r, 1, 8), cub = r() < .4;
+        if (cub) { var p = ri(r, 1, 6), v = 3 * t * t - 2 * p * t + b;
+          return { q: 'Точка движется по закону ' + F('x(t) = ' + poly([[1, 't³'], [-p, 't²'], [b, 't'], [c, '']])) + ' (x — в метрах, t — в секундах). Найдите скорость (в м/с) в момент ' + F('t = ' + t) + ' с.', a: v,
+            h: 'v(t) = x′(t).', e: F('v(t) = ' + poly([[3, 't²'], [-2 * p, 't'], [b, '']])) + ', ' + F('v(' + t + ') = ' + f(v)) + '.' }; }
+        return { q: 'Точка движется по закону ' + F('x(t) = ' + poly([[a, 't²'], [b, 't'], [c, '']])) + ' (x — в метрах, t — в секундах). Найдите её скорость (в м/с) в момент ' + F('t = ' + t) + ' с.', a: 2 * a * t + b,
+          h: 'Скорость — производная координаты.', e: F('v(t) = ' + poly([[2 * a, 't'], [b, '']])) + ', ' + F('v(' + t + ') = ' + f(2 * a * t + b)) + '.' }; } },
+    { id: 'tangent', name: 'Касательная', fix: 'Угловой коэффициент касательной равен f′(x₀). Параллельные прямые имеют равные угловые коэффициенты.',
+      gen: function (r) { var x0 = ri(r, -6, 6), p = ri(r, -9, 9), q = ri(r, -9, 9), k = 2 * x0 + p, m = ri(r, -9, 9);
+        return { q: 'Прямая ' + F('y = ' + poly([[k, 'x'], [m, '']])) + ' параллельна касательной к графику функции ' + F('y = ' + poly([[1, 'x²'], [p, 'x'], [q, '']])) + '. Найдите абсциссу точки касания.', a: x0,
+          h: 'Приравняйте производную функции к угловому коэффициенту прямой.', e: F('y′ = ' + poly([[2, 'x'], [p, '']]) + ' = ' + f(k)) + ' ⇒ ' + F('x = ' + f(x0)) + '.' }; } },
+    { id: 'extremum', name: 'Точки экстремума', fix: 'Найдите нули производной и знаки f′ слева и справа. Максимум: «+» → «−», минимум: «−» → «+». В ответ — x, а не значение функции.',
+      gen: function (r) { var a = ri(r, 1, 7), c = ri(r, -20, 20), mx = r() < .5;
+        return { q: 'Найдите точку ' + (mx ? 'максимума' : 'минимума') + ' функции ' + F('y = ' + poly([[1, 'x³'], [-3 * a * a, 'x'], [c, '']])) + '.', a: mx ? -a : a,
+          h: 'Найдите нули производной и определите, как меняется её знак.', e: F('y′ = 3x² − ' + 3 * a * a + ' = 0') + ' ⇒ ' + F('x = ±' + a) + '. Знаки y′: + − +. ' + (mx ? 'Максимум' : 'Минимум') + ' в ' + F('x = ' + f(mx ? -a : a)) + '.' }; } },
+    { id: 'minmax', name: 'Наименьшее/наибольшее на отрезке', fix: 'Сравнивайте значения в критических точках внутри отрезка И на концах отрезка.',
+      gen: function (r) { var a = ri(r, -5, 5), c = ri(r, -10, 15), L = a - ri(r, 1, 4), R = a + ri(r, 1, 4);
+        return { q: 'Найдите наименьшее значение функции ' + F('y = ' + poly([[1, 'x²'], [-2 * a, 'x'], [c, '']])) + ' на отрезке ' + F('[' + f(L) + '; ' + f(R) + ']') + '.', a: c - a * a,
+          h: 'Найдите точку, где производная равна нулю, и проверьте, лежит ли она в отрезке.', e: F('y′ = 2x ' + sgn(-2 * a) + ' = 0') + ' ⇒ ' + F('x = ' + f(a)) + ' — точка минимума внутри отрезка. ' + F('y(' + f(a) + ') = ' + f(c - a * a)) + '.' }; } },
+    { id: 'deriv_val', name: 'Значение производной', fix: 'Дифференцируйте почленно: (xⁿ)′ = n·xⁿ⁻¹, константа даёт 0.',
+      gen: function (r) { var a = nz(r, -3, 3), b = ri(r, -5, 5), c = ri(r, -9, 9), d = ri(r, -9, 9), x = ri(r, -3, 3), v = 3 * a * x * x + 2 * b * x + c;
+        return { q: 'Найдите ' + F("f′(" + f(x) + ")") + ', если ' + F('f(x) = ' + poly([[a, 'x³'], [b, 'x²'], [c, 'x'], [d, '']])) + '.', a: v,
+          h: 'Найдите производную каждого слагаемого.', e: F("f′(x) = " + poly([[3 * a, 'x²'], [2 * b, 'x'], [c, '']])) + ', ' + F("f′(" + f(x) + ") = " + f(v)) + '.' }; } },
+    { id: 'integral', name: 'Первообразная и площадь', fix: 'Площадь под графиком на [a; b] равна F(b) − F(a), где F — первообразная. Для 3x² первообразная x³, для 2x — x².',
+      gen: function (r) { var b = ri(r, 1, 4), w = r() < .5;
+        return { q: 'Найдите площадь фигуры, ограниченной графиком функции ' + F(w ? 'y = 3x²' : 'y = 2x') + ', осью Ox и прямыми ' + F('x = 0') + ' и ' + F('x = ' + b) + '.', a: w ? b * b * b : b * b,
+          h: 'Найдите первообразную и примените формулу Ньютона — Лейбница.', e: F('F(x) = ' + (w ? 'x³' : 'x²')) + ', ' + F('S = F(' + b + ') − F(0) = ' + (w ? b * b * b : b * b)) + '.' }; } }
+  ];
+
+  /* ---------- №10 Прикладная задача ---------- */
+  T[10] = [
+    { id: 'energy', name: 'Формула кинетической энергии', fix: 'Подставьте числа и выразите неизвестное. v² — не забудьте извлечь корень.',
+      gen: function (r) { var m = ri(r, 2, 10), v = ri(r, 2, 10), E = m * v * v / 2;
+        return { q: 'Кинетическая энергия тела вычисляется по формуле ' + F('E = mv²/2') + ', где m — масса (кг), v — скорость (м/с). Найдите скорость тела массой ' + m + ' кг, если его энергия ' + f(E) + ' Дж.', a: v,
+          h: 'Подставьте m и E, выразите v².', e: F(f(E) + ' = ' + m + '·v²/2') + ' ⇒ ' + F('v² = ' + v * v) + ', ' + F('v = ' + v) + '.' }; } },
+    { id: 'ball', name: 'Время над заданной высотой', fix: 'Решите неравенство h(t) ≥ H: найдите корни квадратного уравнения. Ответ — разность корней (длительность), а не корень.',
+      gen: function (r) { var t1 = pick(r, [.2, .4, .5, 1]), t2 = pick(r, [1.4, 1.5, 1.6, 2, 2.4, 2.5]); if (t2 <= t1) t2 = t1 + 1; var v = clean(5 * (t1 + t2)), H = clean(1 + 5 * t1 * t2);
+        return { q: 'Высота мяча над землёй меняется по закону ' + F('h(t) = 1 + ' + f(v) + 't − 5t²') + ' (h — в метрах, t — в секундах). Сколько секунд мяч будет находиться на высоте не менее ' + f(H) + ' м?', a: clean(t2 - t1),
+          h: 'Решите неравенство h(t) ≥ ' + f(H) + '. Ответ — длина промежутка.', e: F('5t² − ' + f(v) + 't + ' + f(H - 1) + ' ≤ 0') + ', корни ' + F(f(t1)) + ' и ' + F(f(t2)) + '. Время: ' + F(f(t2) + ' − ' + f(t1) + ' = ' + f(t2 - t1)) + ' с.' }; } },
+    { id: 'ohm', name: 'Закон Ома', fix: 'I = U/R: чем больше сопротивление, тем меньше ток. Найдите граничное R из равенства I = I max.',
+      gen: function (r) { var U = pick(r, [120, 180, 220, 240]), divs = [2, 4, 5, 6, 8, 10, 11, 12, 15, 20].filter(function (d) { return U % d === 0; }), I = pick(r, divs);
+        return { q: 'Сила тока в цепи ' + F('I = U/R') + ' (I в амперах, U в вольтах, R в омах). Напряжение ' + U + ' В. При каком наименьшем сопротивлении сила тока не превысит ' + I + ' А?', a: U / I,
+          h: 'Решите неравенство ' + U + '/R ≤ ' + I + '.', e: F(U + '/R ≤ ' + I) + ' ⇒ ' + F('R ≥ ' + U / I) + ' Ом.' }; } },
+    { id: 'power', name: 'Мощность тока', fix: 'P = I²R ⇒ I = √(P/R).',
+      gen: function (r) { var I = ri(r, 2, 10), R = ri(r, 2, 20);
+        return { q: 'Мощность тока вычисляется по формуле ' + F('P = I²R') + '. Найдите силу тока I (в амперах), если ' + F('P = ' + I * I * R) + ' Вт, ' + F('R = ' + R) + ' Ом.', a: I,
+          h: 'Выразите I² и извлеките корень.', e: F('I² = ' + I * I * R + ' / ' + R + ' = ' + I * I) + ', ' + F('I = ' + I) + '.' }; } },
+    { id: 'freefall', name: 'Свободное падение', fix: 'h = 5t² ⇒ t = √(h/5).',
+      gen: function (r) { var t = pick(r, [1, 2, 3, 4, 5, 6, .5, 1.5, 2.5]), h = clean(5 * t * t);
+        return { q: 'Высота падения тела без начальной скорости ' + F('h = 5t²') + ' (h — в метрах, t — в секундах). За сколько секунд тело пролетит ' + f(h) + ' м?', a: t,
+          h: 'Выразите t² из формулы.', e: F('t² = ' + f(h) + '/5 = ' + f(t * t)) + ', ' + F('t = ' + f(t)) + '.' }; } },
+    { id: 'lens', name: 'Формула линзы', fix: '1/f = 1/d₁ + 1/d₂. Приведите к общему знаменателю.',
+      gen: function (r) { var pairs = [[30, 60, 20], [20, 20, 10], [12, 60, 10], [15, 30, 10], [24, 120, 20], [40, 60, 24], [36, 45, 20], [30, 15, 10]], p = pick(r, pairs);
+        return { q: 'Для линзы с фокусным расстоянием f выполняется ' + F('1/f = 1/d₁ + 1/d₂') + '. Найдите f (в см), если ' + F('d₁ = ' + p[0]) + ' см, ' + F('d₂ = ' + p[1]) + ' см.', a: p[2],
+          h: 'Сложите дроби 1/' + p[0] + ' и 1/' + p[1] + '.', e: F('1/f = 1/' + p[0] + ' + 1/' + p[1] + ' = 1/' + p[2]) + ', ' + F('f = ' + p[2]) + '.' }; } }
+  ];
+
+  /* ---------- №11 Текстовые задачи ---------- */
+  T[11] = [
+    { id: 'boat', name: 'Движение по воде', fix: 'По течению скорость v + u, против — v − u. Составьте уравнение на разность времён и решите квадратное уравнение.',
+      gen: function (r) { var v, c, d, S, ok = false; while (!ok) { v = ri(r, 8, 25); c = ri(r, 1, 4); d = ri(r, 1, 8); S = d * (v * v - c * c) / (2 * c); ok = Number.isInteger(S) && S <= 400 && S >= 30; }
+        return { q: 'Моторная лодка прошла против течения ' + S + ' км и вернулась обратно, затратив на обратный путь на ' + d + ' ч меньше. Скорость течения ' + c + ' км/ч. Найдите скорость лодки в неподвижной воде (км/ч).', a: v,
+          h: 'Пусть скорость лодки v. Время против течения ' + S + '/(v − ' + c + '), по течению ' + S + '/(v + ' + c + ').', e: F(S + '/(v−' + c + ') − ' + S + '/(v+' + c + ') = ' + d) + ' ⇒ ' + F(2 * c * S + ' = ' + d + '(v² − ' + c * c + ')') + ' ⇒ ' + F('v = ' + v) + '.' }; } },
+    { id: 'mix', name: 'Смеси и сплавы', fix: 'Считайте массу (объём) чистого вещества в каждой части, складывайте и делите на общую массу.',
+      gen: function (r) { var V1, V2, c1, c2, res; do { V1 = ri(r, 2, 10); V2 = ri(r, 2, 10); c1 = 5 * ri(r, 1, 10); c2 = 5 * ri(r, 1, 18); res = (V1 * c1 + V2 * c2) / (V1 + V2); } while (!Number.isInteger(res * 10) || c1 === c2);
+        return { q: 'Смешали ' + V1 + ' литров ' + c1 + '-процентного раствора вещества и ' + V2 + ' литров ' + c2 + '-процентного раствора того же вещества. Сколько процентов составляет концентрация получившегося раствора?', a: clean(res),
+          h: 'Сколько литров вещества в каждом растворе?', e: 'Вещества: ' + F(f(V1 * c1 / 100) + ' + ' + f(V2 * c2 / 100) + ' = ' + f((V1 * c1 + V2 * c2) / 100)) + ' л на ' + (V1 + V2) + ' л. Концентрация ' + F(f(res) + '%') + '.' }; } },
+    { id: 'work', name: 'Совместная работа', fix: 'Производительности складываются: 1/a + 1/b. Время = 1 / (общая производительность).',
+      gen: function (r) { var p = pick(r, [[3, 6, 2], [4, 12, 3], [6, 12, 4], [10, 15, 6], [12, 24, 8], [20, 30, 12], [6, 3, 2], [15, 10, 6], [12, 6, 4], [8, 24, 6], [20, 5, 4], [18, 9, 6]]);
+        return { q: 'Первая труба наполняет бассейн за ' + p[0] + ' часов, вторая — за ' + p[1] + ' часов. За сколько часов наполнят бассейн обе трубы вместе?', a: p[2],
+          h: 'Какая часть бассейна наполняется за 1 час каждой трубой?', e: F('1/' + p[0] + ' + 1/' + p[1] + ' = 1/' + p[2]) + ', значит ' + F(p[2] + ' ч') + '.' }; } },
+    { id: 'percent', name: 'Проценты', fix: 'Каждое изменение на p% — умножение на (1 ± p/100). Проценты не складываются: +20% и −20% не дают 0.',
+      gen: function (r) { var P, p, q, res; do { P = 100 * ri(r, 5, 60); p = 5 * ri(r, 1, 8); q = 5 * ri(r, 1, 8); res = P * (100 + p) * (100 - q) / 10000; } while (!Number.isInteger(res));
+        return { q: 'Товар стоил ' + P + ' рублей. Сначала цену повысили на ' + p + '%, затем понизили на ' + q + '%. Сколько рублей стал стоить товар?', a: res,
+          h: 'Повышение на ' + p + '% — умножение на ' + f(1 + p / 100) + ', понижение на ' + q + '% — на ' + f(1 - q / 100) + '.', e: F(P + ' · ' + f(1 + p / 100) + ' · ' + f(1 - q / 100) + ' = ' + res) + '.' }; } },
+    { id: 'meet', name: 'Движение навстречу', fix: 'При движении навстречу скорости складываются: t = S / (v₁ + v₂).',
+      gen: function (r) { var v1 = 5 * ri(r, 8, 18), v2 = 5 * ri(r, 8, 18), t = ri(r, 1, 6), S = (v1 + v2) * t;
+        return { q: 'Из двух городов, расстояние между которыми ' + S + ' км, одновременно навстречу друг другу выехали два автомобиля со скоростями ' + v1 + ' км/ч и ' + v2 + ' км/ч. Через сколько часов они встретятся?', a: t,
+          h: 'Скорость сближения равна сумме скоростей.', e: F(S + ' / (' + v1 + ' + ' + v2 + ') = ' + t) + ' ч.' }; } },
+    { id: 'avg', name: 'Средняя скорость', fix: 'Средняя скорость = весь путь / всё время. Это НЕ среднее арифметическое скоростей.',
+      gen: function (r) { var p = pick(r, [[40, 60, 48], [30, 70, 42], [60, 90, 72], [45, 90, 60], [20, 30, 24], [60, 100, 75], [35, 140, 56], [42, 84, 56], [36, 45, 40]]);
+        return { q: 'Первую половину пути автомобиль проехал со скоростью ' + p[0] + ' км/ч, а вторую — со скоростью ' + p[1] + ' км/ч. Найдите среднюю скорость на всём пути.', a: p[2],
+          h: 'Пусть весь путь 2S. Найдите общее время.', e: F('v = 2·' + p[0] + '·' + p[1] + '/(' + p[0] + ' + ' + p[1] + ') = ' + p[2]) + ' км/ч.' }; } },
+    { id: 'progr', name: 'Арифметическая прогрессия', fix: 'Sₙ = (2a₁ + d(n − 1))·n / 2. Внимательно определите a₁, d и n из условия.',
+      gen: function (r) { var a1 = ri(r, 1, 10), d = ri(r, 1, 5), n = ri(r, 5, 15), S = (2 * a1 + d * (n - 1)) * n / 2;
+        return { q: 'Рабочий в первый день изготовил ' + a1 + ' деталей, а каждый следующий день — на ' + d + ' больше, чем в предыдущий. Сколько деталей он изготовил за ' + n + ' дней?', a: S,
+          h: 'Это сумма арифметической прогрессии.', e: F('S = (2·' + a1 + ' + ' + d + '·' + (n - 1) + ')·' + n + '/2 = ' + S) + '.' }; } }
+  ];
+
+  /* ---------- №12 Графики функций ---------- */
+  T[12] = [
+    { id: 'line2', name: 'Линейная функция по двум точкам', fix: 'k = (y₂ − y₁)/(x₂ − x₁), затем b из любой точки. Аккуратно со знаками.',
+      gen: function (r) { var k = nz(r, -4, 4), b = ri(r, -8, 8), x1 = ri(r, -5, 0), x2 = ri(r, 1, 5), x0 = ri(r, -12, 12);
+        return { q: 'График функции ' + F('f(x) = kx + b') + ' проходит через точки ' + F('(' + f(x1) + '; ' + f(k * x1 + b) + ')') + ' и ' + F('(' + f(x2) + '; ' + f(k * x2 + b) + ')') + '. Найдите ' + F('f(' + f(x0) + ')') + '.', a: k * x0 + b,
+          h: 'Найдите k по двум точкам, затем b.', e: F('k = ' + f(k)) + ', ' + F('b = ' + f(b)) + ', ' + F('f(' + f(x0) + ') = ' + f(k * x0 + b)) + '.' }; } },
+    { id: 'parab', name: 'Парабола через вершину', fix: 'Запишите параболу в виде y = a(x − x₀)² + y₀ и подставьте известную точку.',
+      gen: function (r) { var a = nz(r, -3, 3), m = ri(r, -4, 4), n = ri(r, -6, 6), x1 = m + nz(r, -3, 3), w = r() < .5;
+        var y1 = a * (x1 - m) * (x1 - m) + n, x2 = ri(r, -5, 5);
+        return { q: 'Парабола ' + F('f(x) = ax² + bx + c') + ' имеет вершину в точке ' + F('(' + f(m) + '; ' + f(n) + ')') + ' и проходит через точку ' + F('(' + f(x1) + '; ' + f(y1) + ')') + '. Найдите ' + (w ? F('a') : F('f(' + f(x2) + ')')) + '.', a: w ? a : a * (x2 - m) * (x2 - m) + n,
+          h: 'Используйте вид f(x) = a(x − ' + f(m) + ')² + ' + f(n) + '.', e: F(f(y1) + ' = a·' + f((x1 - m) * (x1 - m)) + ' + ' + f(n)) + ' ⇒ ' + F('a = ' + f(a)) + (w ? '.' : '; ' + F('f(' + f(x2) + ') = ' + f(a * (x2 - m) * (x2 - m) + n)) + '.') }; } },
+    { id: 'hyper', name: 'Гипербола', fix: 'Для y = k/x: k = x·y для любой точки графика.',
+      gen: function (r) { var k = nz(r, -6, 6) * pick(r, [2, 3, 4, 6]), divs = []; for (var d = -Math.abs(k); d <= Math.abs(k); d++) if (d && k % d === 0) divs.push(d);
+        var x0 = pick(r, divs), x1 = pick(r, divs.filter(function (v) { return v !== x0; }));
+        return { q: 'График функции ' + F('f(x) = k/x') + ' проходит через точку ' + F('(' + f(x0) + '; ' + f(k / x0) + ')') + '. Найдите ' + F('f(' + f(x1) + ')') + '.', a: k / x1,
+          h: 'Найдите k, подставив координаты точки.', e: F('k = ' + f(x0) + '·' + f(k / x0) + ' = ' + f(k)) + ', ' + F('f(' + f(x1) + ') = ' + f(k / x1)) + '.' }; } },
+    { id: 'intersect', name: 'Пересечение прямых', fix: 'Приравняйте правые части уравнений прямых и решите линейное уравнение.',
+      gen: function (r) { var x, k1, k2, b1, b2; do { x = ri(r, -8, 8); k1 = nz(r, -5, 5); k2 = nz(r, -5, 5); b1 = ri(r, -9, 9); } while (k1 === k2); b2 = k1 * x + b1 - k2 * x; var w = r() < .5;
+        return { q: 'Прямые ' + F('y = ' + poly([[k1, 'x'], [b1, '']])) + ' и ' + F('y = ' + poly([[k2, 'x'], [b2, '']])) + ' пересекаются в точке A. Найдите ' + (w ? 'абсциссу' : 'ординату') + ' точки A.', a: w ? x : k1 * x + b1,
+          h: 'Приравняйте правые части.', e: F('x = ' + f(x)) + ', ' + F('y = ' + f(k1 * x + b1)) + '.' }; } },
+    { id: 'loggraph', name: 'Логарифмическая функция', fix: 'Если график y = logₐx проходит через (p; q), то aᵠ = p.',
+      gen: function (r) { var a = pick(r, [2, 3, 4, 5]), q = ri(r, 2, a === 2 ? 5 : 3), p = Math.pow(a, q), x = Math.pow(a, ri(r, 1, 4));
+        return { q: 'График функции ' + F('f(x) = log<sub>a</sub>x') + ' проходит через точку ' + F('(' + p + '; ' + q + ')') + '. Найдите ' + F('f(' + x + ')') + '.', a: Math.log(x) / Math.log(a),
+          h: 'Найдите основание a из условия aᵠ = p.', e: F('a' + sup(q) + ' = ' + p) + ' ⇒ ' + F('a = ' + a) + '; ' + F('log<sub>' + a + '</sub>' + x + ' = ' + f(Math.round(Math.log(x) / Math.log(a)))) + '.' }; } },
+    { id: 'expgraph', name: 'Показательная функция', fix: 'Для y = aˣ + b: при x = 0 получаем 1 + b. Найдите b, затем a.',
+      gen: function (r) { var a = pick(r, [2, 3, 4, 5]), b = ri(r, -6, 6), x2 = ri(r, 2, 3);
+        return { q: 'График функции ' + F('f(x) = a' + sup('x') + ' + b') + ' проходит через точки ' + F('(0; ' + f(1 + b) + ')') + ' и ' + F('(1; ' + f(a + b) + ')') + '. Найдите ' + F('f(' + x2 + ')') + '.', a: Math.pow(a, x2) + b,
+          h: 'Подставьте x = 0: a⁰ = 1.', e: F('b = ' + f(b)) + ', ' + F('a = ' + a) + ', ' + F('f(' + x2 + ') = ' + Math.pow(a, x2) + ' ' + sgn(b) + ' = ' + f(Math.pow(a, x2) + b)) + '.' }; } }
+  ];
+
+  /* ---------- №13 Финансовая математика (часть 1 в 2027) ---------- */
+  T[13] = [
+    { id: 'diff', name: 'Дифференцированный кредит', fix: 'Долг уменьшается равными частями; проценты начисляются на текущий остаток. Сумма процентов = S·r·(n + 1)/2.',
+      gen: function (r) { var S, rr, n, over; do { S = 300 * ri(r, 1, 10); rr = ri(r, 1, 4); n = ri(r, 3, 24); over = S * rr / 100 * (n + 1) / 2; } while (!Number.isInteger(over));
+        return { q: '15-го числа планируется взять кредит на ' + n + ' месяцев. 1-го числа каждого месяца долг возрастает на ' + rr + '% по сравнению с концом предыдущего месяца; со 2-го по 14-е число нужно выплатить часть долга; 15-го числа каждого месяца долг должен быть на одну и ту же сумму меньше долга на 15-е число предыдущего месяца. Сколько тысяч рублей нужно выплатить банку за весь срок, если сумма кредита ' + S + ' тыс. руб.?', a: S + over,
+          h: 'Долг каждый месяц уменьшается на S/' + n + '. Проценты начисляются на остаток: на S, S·' + (n - 1) + '/' + n + ', … Сложите их.', e: 'Проценты: ' + F(f(rr / 100) + ' · ' + S + ' · (' + n + ' + 1)/2 = ' + f(over)) + '. Всего: ' + F(S + ' + ' + f(over) + ' = ' + f(S + over)) + ' тыс. руб.' }; } },
+    { id: 'deposit', name: 'Вклад со сложными процентами', fix: 'Каждый год сумма умножается на (1 + r/100). За 2 года — на (1 + r/100)².',
+      gen: function (r) { var k = ri(r, 1, 9), S = 10000 * k, rr = ri(r, 2, 15), Y = ri(r, 2, 2), res = k * (100 + rr) * (100 + rr);
+        return { q: 'Вкладчик положил в банк ' + S + ' рублей под ' + rr + '% годовых (проценты начисляются раз в год и добавляются к вкладу). Сколько рублей будет на счёте через 2 года?', a: res,
+          h: 'Каждый год сумма умножается на ' + f(1 + rr / 100) + '.', e: F(S + ' · ' + f(1 + rr / 100) + '² = ' + res) + ' руб.' }; } },
+    { id: 'annuity2', name: 'Кредит двумя равными платежами', fix: 'Составьте уравнение: (S·b − x)·b − x = 0, где b = 1 + r/100. Отсюда x = S·b²/(b + 1).',
+      gen: function (r) { var o = pick(r, [[10, 2100, 1210], [20, 2200, 1440], [25, 4500, 3125], [10, 4200, 2420], [20, 1100, 720]]), k = ri(r, 1, 3), S = o[1] * k, x = o[2] * k;
+        return { q: 'В январе взяли кредит ' + S + ' тыс. руб. на 2 года. Каждый декабрь долг увеличивается на ' + o[0] + '%, а с января по ноябрь нужно сделать платёж. Кредит погашен двумя равными платежами. Найдите размер платежа (тыс. руб.).', a: x,
+          h: 'Пусть платёж x, b = ' + f(1 + o[0] / 100) + '. Долг после первого года: ' + S + '·b − x. После второго он равен 0.', e: F('(' + S + '·' + f(1 + o[0] / 100) + ' − x)·' + f(1 + o[0] / 100) + ' − x = 0') + ' ⇒ ' + F('x = ' + x) + ' тыс. руб.' }; } },
+    { id: 'overpay', name: 'Переплата по кредиту', fix: 'Переплата = все выплаты − сумма кредита.',
+      gen: function (r) { var o = pick(r, [[10, 2100, 1210], [20, 2200, 1440], [25, 4500, 3125], [20, 1100, 720]]), k = ri(r, 1, 3), S = o[1] * k, x = o[2] * k;
+        return { q: 'Кредит ' + S + ' тыс. руб. погашен двумя равными ежегодными платежами по ' + x + ' тыс. руб. На сколько тысяч рублей общая сумма выплат больше суммы кредита?', a: 2 * x - S,
+          h: 'Посчитайте сумму всех платежей.', e: F('2·' + x + ' − ' + S + ' = ' + (2 * x - S)) + ' тыс. руб.' }; } },
+    { id: 'price_chain', name: 'Цепочка изменения цены', fix: 'Каждое изменение применяется к новой цене, а не к исходной.',
+      gen: function (r) { var P, p, n, res; do { P = 1000 * ri(r, 1, 20); p = pick(r, [10, 20, 25, 50]); n = ri(r, 2, 3); res = P * Math.pow(1 + p / 100, n); } while (!Number.isInteger(clean(res)));
+        return { q: 'Цена товара ' + P + ' руб. Каждый год она повышается на ' + p + '%. Сколько рублей будет стоить товар через ' + n + ' года?', a: clean(res),
+          h: 'Каждый год цена умножается на ' + f(1 + p / 100) + '.', e: F(P + ' · ' + f(1 + p / 100) + sup(n) + ' = ' + f(res)) + ' руб.' }; } }
+  ];
+
+  /* ---------- №14 Уравнение (часть 2): отбор корней ---------- */
+  // серии корней в долях π: [база, период]
+  var EQ14 = [
+    { s: '2sin²x + 3cos x − 3 = 0', series: [[0, 2], [1 / 3, 2], [-1 / 3, 2]], h: 'Замените sin²x на 1 − cos²x — получится квадратное уравнение относительно cos x.', sol: 'cos x = 1 или cos x = ½: x = 2πn, x = ±π/3 + 2πn' },
+    { s: '2cos²x − sin x − 1 = 0', series: [[1 / 6, 2], [5 / 6, 2], [-1 / 2, 2]], h: 'Замените cos²x на 1 − sin²x.', sol: 'sin x = ½ или sin x = −1: x = π/6 + 2πn, 5π/6 + 2πn, −π/2 + 2πn' },
+    { s: 'cos 2x + sin x = 0', series: [[1 / 2, 2], [-1 / 6, 2], [-5 / 6, 2]], h: 'cos 2x = 1 − 2sin²x.', sol: 'sin x = 1 или sin x = −½: x = π/2 + 2πn, −π/6 + 2πn, −5π/6 + 2πn' },
+    { s: 'sin 2x = sin x', series: [[0, 1], [1 / 3, 2], [-1 / 3, 2]], h: 'sin 2x = 2sin x cos x. Перенесите всё влево и вынесите sin x.', sol: 'sin x = 0 или cos x = ½: x = πn, ±π/3 + 2πn' },
+    { s: 'cos 2x = cos x', series: [[0, 2], [2 / 3, 2], [-2 / 3, 2]], h: 'cos 2x = 2cos²x − 1 — получится квадратное уравнение относительно cos x.', sol: 'cos x = 1 или cos x = −½: x = 2πn, ±2π/3 + 2πn' },
+    { s: '2cos²x + √3 cos x = 0', series: [[1 / 2, 1], [5 / 6, 2], [-5 / 6, 2]], h: 'Вынесите cos x за скобки.', sol: 'cos x = 0 или cos x = −√3/2: x = π/2 + πn, ±5π/6 + 2πn' },
+    { s: 'sin 2x + √2 cos x = 0', series: [[1 / 2, 1], [-1 / 4, 2], [-3 / 4, 2]], h: 'sin 2x = 2sin x cos x, вынесите cos x.', sol: 'cos x = 0 или sin x = −√2/2: x = π/2 + πn, −π/4 + 2πn, −3π/4 + 2πn' },
+    { s: '4sin²x = 3', series: [[1 / 3, 1], [-1 / 3, 1]], h: 'sin x = ±√3/2.', sol: 'x = ±π/3 + πn' },
+    { s: 'tg²x = 1', series: [[1 / 4, 1], [-1 / 4, 1]], h: 'tg x = ±1.', sol: 'x = ±π/4 + πn' },
+    { s: '2sin²x − √3 sin x = 0', series: [[0, 1], [1 / 3, 2], [2 / 3, 2]], h: 'Вынесите sin x за скобки.', sol: 'sin x = 0 или sin x = √3/2: x = πn, π/3 + 2πn, 2π/3 + 2πn' }
+  ];
+  var INTERVALS = [[-1, 1, '[−π; π]'], [0, 2, '[0; 2π]'], [1, 2.5, '[π; 5π/2]'], [-1.5, 0, '[−3π/2; 0]'], [2, 3.5, '[2π; 7π/2]'], [-2, -0.5, '[−2π; −π/2]'], [1.5, 3, '[3π/2; 3π]'], [-0.5, 1, '[−π/2; π]'], [-3, -1.5, '[−3π; −3π/2]'], [3, 4.5, '[3π; 9π/2]']];
+  function piStr(v) { // v в долях π → строка
+    if (Math.abs(v) < 1e-9) return '0';
+    for (var d = 1; d <= 12; d++) { var n = Math.round(v * d); if (Math.abs(n / d - v) < 1e-9) { var g = gcd(Math.abs(n), d); n /= g; var dd = d / g; return (n < 0 ? '−' : '') + (Math.abs(n) === 1 ? '' : Math.abs(n)) + 'π' + (dd === 1 ? '' : '/' + dd); } }
+    return f(v) + 'π';
+  }
+  function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+  T[14] = [
+    { id: 'trig_select', name: 'Тригонометрическое уравнение с отбором корней', fix: 'Аккуратно запишите все серии корней, затем отбирайте корни на отрезке с помощью окружности или двойного неравенства. Проверяйте концы отрезка.',
+      gen: function (r) { var e = pick(r, EQ14), I = pick(r, INTERVALS), roots = [];
+        e.series.forEach(function (s) { for (var n = -10; n <= 10; n++) { var x = s[0] + s[1] * n; if (x >= I[0] - 1e-9 && x <= I[1] + 1e-9) roots.push(clean(x)); } });
+        roots = roots.filter(function (v, i, a) { return a.indexOf(v) === i; }).sort(function (a, b) { return a - b; });
+        return { q: 'а) Решите уравнение ' + F(e.s) + '. б) Укажите корни, принадлежащие отрезку ' + F(I[2]) + '. <br><i>В тренажёре запишите количество корней из пункта б.</i>', a: roots.length,
+          h: e.h + ' Потом отметьте отрезок на окружности.', e: 'а) ' + F(e.sol) + '. б) На отрезке ' + F(I[2]) + ': ' + F(roots.map(piStr).join('; ') || 'нет корней') + ' — всего ' + F(roots.length + '') + '. На экзамене нужно полностью записать решение и отбор.' }; } }
+  ];
+
+  /* ---------- №16 Неравенства (часть 2) ---------- */
+  T[16] = [
+    { id: 'log_ineq', name: 'Логарифмическое неравенство', fix: 'Начните с ОДЗ, затем объедините логарифмы и сравните аргументы. Итог — пересечение с ОДЗ.',
+      gen: function (r) { var p = ri(r, 1, 3), k = ri(r, 3, 6), lim = Math.pow(2, k) + p * p, top = Math.floor(Math.sqrt(lim) + 1e-9), ints = []; for (var x = p + 1; x <= top; x++) ints.push(x);
+        var sum = ints.reduce(function (a, b) { return a + b; }, 0), w = r() < .5;
+        return { q: 'Решите неравенство ' + F('log<sub>2</sub>(x − ' + p + ') + log<sub>2</sub>(x + ' + p + ') ≤ ' + k) + '. <br><i>В ответ запишите ' + (w ? 'количество' : 'сумму') + ' целых решений.</i>', a: w ? ints.length : sum,
+          h: 'ОДЗ: x > ' + p + '. Сумма логарифмов — логарифм произведения.', e: 'ОДЗ ' + F('x > ' + p) + '. ' + F('x² − ' + p * p + ' ≤ ' + Math.pow(2, k)) + ' ⇒ ' + F('x² ≤ ' + lim) + '. С учётом ОДЗ ' + F('x ∈ (' + p + '; √' + lim + ']') + '. Целые решения: ' + F(ints.join(', ')) + '.' }; } },
+    { id: 'exp_ineq', name: 'Показательное неравенство (замена)', fix: 'Сделайте замену t = 2ˣ > 0, решите квадратное неравенство, вернитесь к x.',
+      gen: function (r) { var m = ri(r, -2, 2), n = m + ri(r, 1, 4), A = Math.pow(2, m) + Math.pow(2, n), B = Math.pow(2, m + n), w = r() < .5, ints = []; for (var x = m; x <= n; x++) ints.push(x);
+        return { q: 'Решите неравенство ' + F('4' + sup('x') + ' − ' + f(A) + '·2' + sup('x') + ' + ' + f(B) + ' ≤ 0') + '. <br><i>В ответ запишите ' + (w ? 'количество' : 'сумму') + ' целых решений.</i>', a: w ? ints.length : ints.reduce(function (a, b) { return a + b; }, 0),
+          h: 'Пусть t = 2ˣ. Тогда 4ˣ = t².', e: F('(t − ' + f(Math.pow(2, m)) + ')(t − ' + f(Math.pow(2, n)) + ') ≤ 0') + ' ⇒ ' + F(f(Math.pow(2, m)) + ' ≤ 2' + sup('x') + ' ≤ ' + f(Math.pow(2, n))) + ' ⇒ ' + F('x ∈ [' + m + '; ' + n + ']') + '. Целые: ' + F(ints.map(f).join(', ')) + '.' }; } },
+    { id: 'logsq_ineq', name: 'Квадратное относительно логарифма', fix: 'Замена t = log₂x (при x > 0), решите квадратное неравенство, затем перейдите к x — не забудьте ОДЗ.',
+      gen: function (r) { var m = ri(r, 0, 2), n = m + ri(r, 1, 2), lo = Math.pow(2, m), hi = Math.pow(2, n);
+        return { q: 'Решите неравенство ' + F('log<sub>2</sub>²x − ' + (m + n) + '·log<sub>2</sub>x + ' + m * n + ' ≤ 0') + '. <br><i>В ответ запишите количество целых решений.</i>', a: hi - lo + 1,
+          h: 'Пусть t = log₂x. Найдите корни квадратного трёхчлена по t.', e: F(m + ' ≤ log<sub>2</sub>x ≤ ' + n) + ' ⇒ ' + F('x ∈ [' + lo + '; ' + hi + ']') + '. Целых решений: ' + F((hi - lo + 1) + '') + '.' }; } }
+  ];
+
+  /* ---------- №17 Моделирование (часть 2, новое) ---------- */
+  T[17] = [
+    { id: 'generator', name: 'Максимальная мощность генератора', fix: 'P(R) = E²R/(R + r)². Исследуйте функцию на максимум: P′(R) = 0 при R = r. Тогда P max = E²/(4r).',
+      gen: function (r) { var E = pick(r, [12, 20, 24, 30, 36, 40, 60]), rr = pick(r, [1, 2, 3, 4, 5, 6]).valueOf(); while ((E * E) % (4 * rr)) rr = pick(r, [1, 2, 3, 4, 5, 6]); var w = r() < .5;
+        return { q: 'Источник тока с ЭДС ' + F('E = ' + E) + ' В и внутренним сопротивлением ' + F('r = ' + rr) + ' Ом подключён к нагрузке R. Ток ' + F('I = E/(R + r)') + ', тепловая мощность на нагрузке ' + F('P = I²R') + '. ' + (w ? 'При каком R (Ом) мощность максимальна?' : 'Найдите максимальную мощность (Вт).'), a: w ? rr : E * E / (4 * rr),
+          h: 'Запишите P как функцию от R и найдите её максимум через производную.', e: F('P(R) = E²R/(R + r)²') + ', ' + F("P′(R) = E²(r − R)/(R + r)³ = 0") + ' ⇒ ' + F('R = r = ' + rr) + '. ' + F('P max = E²/(4r) = ' + E * E / (4 * rr)) + ' Вт.' }; } },
+    { id: 'throw', name: 'Максимальная высота броска', fix: 'h(t) = v₀t − 5t². Максимум в вершине параболы: t = v₀/10, h = v₀²/20.',
+      gen: function (r) { var v = 10 * ri(r, 1, 6), w = r() < .5;
+        return { q: 'Камень брошен вертикально вверх, его высота ' + F('h(t) = ' + v + 't − 5t²') + ' (м). ' + (w ? 'Найдите наибольшую высоту (м).' : 'Через сколько секунд камень достигнет наибольшей высоты?'), a: w ? v * v / 20 : v / 10,
+          h: 'Найдите вершину параболы или ноль производной.', e: F("h′(t) = " + v + ' − 10t = 0') + ' ⇒ ' + F('t = ' + v / 10) + ', ' + F('h = ' + v * v / 20) + '.' }; } },
+    { id: 'revenue', name: 'Максимальная выручка', fix: 'Выручка = цена × спрос. Получится квадратичная функция; максимум в вершине.',
+      gen: function (r) { var b = ri(r, 1, 5), a = 2 * b * ri(r, 10, 50), w = r() < .5, p = a / (2 * b);
+        return { q: 'Спрос на товар при цене p (руб.) равен ' + F('q = ' + a + ' − ' + (b === 1 ? '' : b) + 'p') + ' шт. ' + (w ? 'При какой цене выручка ' + F('p·q') + ' будет максимальной?' : 'Найдите максимальную выручку ' + F('p·q') + ' (руб.).'), a: w ? p : p * (a - b * p),
+          h: 'Выручка R(p) = p(' + a + ' − ' + b + 'p) — парабола ветвями вниз.', e: F("R′(p) = " + a + ' − ' + 2 * b + 'p = 0') + ' ⇒ ' + F('p = ' + p) + ', ' + F('R = ' + p * (a - b * p)) + '.' }; } }
+  ];
+
+  var POOL = 50;
+  function pool(n) { // 50 детерминированных задач для номера
+    var tpls = T[n]; if (!tpls) return [];
+    var out = [], seen = {}, i = 0, tries = 0;
+    while (out.length < POOL && tries < 2000) {
+      var t = tpls[i % tpls.length], r = rng(n * 100003 + tries * 7919 + 17);
+      var o = t.gen(r); tries++; i++;
+      if (seen[o.q]) continue; seen[o.q] = 1;
+      o.tpl = t.id; o.n = n; o.a = clean(o.a); o.key = n + ':' + out.length;
+      out.push(o);
+    }
+    return out;
+  }
+  function fresh(n, tplId, seed) {
+    var tpls = T[n].filter(function (t) { return !tplId || t.id === tplId; });
+    var r = rng(seed || Math.floor(Math.random() * 1e9));
+    var t = tpls[Math.floor(r() * tpls.length)], o = t.gen(r);
+    o.tpl = t.id; o.n = n; o.a = clean(o.a); o.key = 'x:' + n + ':' + t.id + ':' + Math.floor(r() * 1e9);
+    return o;
+  }
+  function tpl(n, id) { return (T[n] || []).filter(function (t) { return t.id === id; })[0]; }
+  return { T: T, pool: pool, fresh: fresh, tpl: tpl, f: f, POOL: POOL, nums: Object.keys(T).map(Number) };
+})();
+
+
+/* ===== Приложение ===== */
+(function () {
+  'use strict';
+  var HAS_CLAUDE = !!(window.claude && window.claude.use);
+  var EXAM = new Date(2027, 5, 1);
+  var TRAIN = GEN.nums;                // номера с тренажёром
+  var BY_N = {}; THEORY.forEach(function (t) { BY_N[t.n] = t; });
+  var MAX_PTS = THEORY.map(function (t) { return t.pts; });
+  var MAX_TOTAL = MAX_PTS.reduce(function (a, b) { return a + b; }, 0);
+  var $app = document.getElementById('app'), $layer = document.getElementById('layer');
+
+  /* ---------- утилиты ---------- */
+  function pad(x) { return (x < 10 ? '0' : '') + x; }
+  function dstr(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function today() { return dstr(new Date()); }
+  function parseD(s) { var p = s.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function daysBetween(a, b) { return Math.round((parseD(b) - parseD(a)) / 86400000); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  function plural(n, a, b, c) { var m = Math.abs(n) % 100, k = m % 10; if (m > 10 && m < 20) return c; if (k > 1 && k < 5) return b; if (k === 1) return a; return c; }
+  function fmtD(s) { var d = parseD(s); return d.getDate() + ' ' + ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'][d.getMonth()]; }
+  function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function toast(html, ms) {
+    var box = document.getElementById('toasts'), t = document.createElement('div');
+    t.className = 'toast'; t.innerHTML = html; box.appendChild(t);
+    setTimeout(function () { t.classList.add('out'); setTimeout(function () { t.remove(); }, 320); }, ms || 3200);
+  }
+  function parseNum(s) {
+    s = String(s).trim().replace(/\s/g, '').replace(',', '.').replace(/[−–]/g, '-');
+    if (!/^-?\d*\.?\d+$/.test(s)) return NaN;
+    return parseFloat(s);
+  }
+
+  /* ---------- состояние ---------- */
+  function blank() { return { v: 2, created: today(), updatedAt: 0, current: 1, nums: {}, plan: {}, mocks: [], days: {}, sessions: [], greetDay: '', review: { day: '', done: false } }; }
+  var S = blank();
+  var store = { mode: 'local', ref: null, name: '', saving: false, pending: false, timer: null };
+  function loadLocal() { try { var raw = localStorage.getItem('pm7-state'); if (raw) return JSON.parse(raw); } catch (e) {} return null; }
+  function fixup(s) { var b = blank(); for (var k in b) if (s[k] === undefined) s[k] = b[k]; return s; }
+  function save() {
+    S.updatedAt = Date.now();
+    try { localStorage.setItem('pm7-state', JSON.stringify(S)); } catch (e) {}
+    if (!store.ref) return;
+    clearTimeout(store.timer);
+    store.timer = setTimeout(flush, 900);
+  }
+  function flush() {
+    if (!store.ref) return;
+    if (store.saving) { store.pending = true; return; }
+    store.saving = true;
+    store.ref.set(JSON.parse(JSON.stringify(S))).then(function () {
+      store.saving = false; if (store.pending) { store.pending = false; flush(); }
+    }, function () { store.saving = false; setAcct(); });
+  }
+  function setAcct() {
+    var el = document.getElementById('acct');
+    if (store.mode === 'account') { el.className = 'acct on'; el.innerHTML = '<i></i><span>' + (store.name ? esc(store.name) + ' · ' : '') + 'прогресс в аккаунте</span>'; }
+    else if (store.mode === 'loading') { el.className = 'acct'; el.innerHTML = '<i></i><span>Подключаю аккаунт…</span>'; }
+    else { el.className = 'acct'; el.innerHTML = '<i></i><span>' + (HAS_CLAUDE ? 'Сохранение в этом браузере' : 'Сохранено на устройстве') + '</span>'; }
+  }
+  function connect() {
+    store.mode = 'loading'; setAcct();
+    if (!window.claude || !window.claude.use) { store.mode = 'local'; setAcct(); return Promise.resolve(); }
+    return Promise.all([window.claude.use('db'), window.claude.use('user')]).then(function (r) {
+      var db = r[0], user = r[1];
+      if (!db || !user) { store.mode = 'local'; setAcct(); return; }
+      return Promise.all([user.id(), user.me().catch(function () { return null; })]).then(function (x) {
+        var id = x[0]; store.name = x[1] && x[1].name ? x[1].name : '';
+        if (!id) { store.mode = 'local'; setAcct(); return; }
+        store.ref = db.collection('data/users/' + id).doc('progress');
+        var timeout = new Promise(function (res) { setTimeout(function () { res('timeout'); }, 10000); });
+        return Promise.race([store.ref.get(), timeout]).then(function (snap) {
+          if (snap === 'timeout') { store.ref = null; store.mode = 'local'; setAcct(); return; }
+          var remote = snap.exists ? snap.data() : null;
+          if (remote && (remote.updatedAt || 0) >= (S.updatedAt || 0)) { S = fixup(remote); try { localStorage.setItem('pm7-state', JSON.stringify(S)); } catch (e) {} }
+          else flush();
+          store.mode = 'account'; setAcct(); route(); maybeGreet();
+        });
+      });
+    }).catch(function () { store.ref = null; store.mode = 'local'; setAcct(); });
+  }
+
+  /* ---------- статистика ---------- */
+  var pools = {};
+  function pool(n) { return pools[n] || (pools[n] = GEN.pool(n)); }
+  function ns(n) { var o = S.nums[n]; if (!o) o = S.nums[n] = { solved: {}, wrong: {}, att: 0, ok: 0, tpl: {}, mastered: false }; if (!o.wrong) o.wrong = {}; return o; }
+  function solvedCount(n) { return Object.keys(ns(n).solved).length; }
+  function acc(n) { var o = ns(n); return o.att ? o.ok / o.att : 0; }
+  function isMastered(n) { var o = ns(n); return o.mastered || (solvedCount(n) >= 45 && acc(n) >= 0.85); }
+  function tplAcc(n, id) { var t = ns(n).tpl[id]; return t && t[0] ? t[1] / t[0] : null; }
+  function weakTpls(n, k) {
+    var list = (GEN.T[n] || []).map(function (t) { var s = ns(n).tpl[t.id] || [0, 0]; return { id: t.id, name: t.name, att: s[0], ok: s[1], err: s[0] ? 1 - s[1] / s[0] : 0.5 }; });
+    list.sort(function (a, b) { return b.err - a.err; });
+    return k ? list.slice(0, k) : list;
+  }
+  function streak() {
+    var d = new Date(), s = 0;
+    if (!S.days[dstr(d)]) d.setDate(d.getDate() - 1);
+    while (S.days[dstr(d)]) { s++; d.setDate(d.getDate() - 1); }
+    return s;
+  }
+  function totalSolved() { var s = 0; TRAIN.forEach(function (n) { s += solvedCount(n); }); return s; }
+  function nextTrain(n) { var i = TRAIN.indexOf(n); return i >= 0 && i < TRAIN.length - 1 ? TRAIN[i + 1] : null; }
+  function record(task, ok) {
+    var o = ns(task.n); o.att++; if (ok) o.ok++;
+    var t = o.tpl[task.tpl] || [0, 0]; t[0]++; if (ok) t[1]++; o.tpl[task.tpl] = t;
+    var idx = task.key.indexOf('x:') === 0 ? null : task.key.split(':')[1];
+    if (idx !== null) { if (ok) { o.solved[idx] = 1; delete o.wrong[idx]; } else if (!o.solved[idx]) o.wrong[idx] = 1; }
+    var d = today(); S.days[d] = (S.days[d] || 0) + 1;
+    var keys = Object.keys(S.days).sort(); while (keys.length > 120) delete S.days[keys.shift()];
+  }
+  function checkMastery(n) {
+    var o = ns(n);
+    if (!o.mastered && solvedCount(n) >= 45 && acc(n) >= 0.85) {
+      o.mastered = true;
+      var nx = nextTrain(n);
+      if (S.current === n && nx) { S.current = nx; return 'advance'; }
+      return 'mastered';
+    }
+    return null;
+  }
+  function grade(ok, total) { var r = total ? ok / total : 0; return r >= 0.9 ? 5 : r >= 0.75 ? 4 : r >= 0.5 ? 3 : 2; }
+
+  /* ---------- сборка серий ---------- */
+  function buildPractice(n, count) {
+    count = count || 10;
+    var p = pool(n), o = ns(n), fresh = [], wrong = [];
+    p.forEach(function (t, i) { if (o.solved[i]) return; (o.wrong[i] ? wrong : fresh).push(t); });
+    var items = fresh.slice(0, count);
+    if (items.length < count) items = items.concat(wrong.slice(0, count - items.length));
+    if (items.length < count) { var w = weakTpls(n, 3); for (var i = items.length; i < count; i++) items.push(GEN.fresh(n, w[i % w.length].id)); }
+    return items;
+  }
+  function buildFix(list, count) { // list: [{n, tpl}]
+    var items = [];
+    for (var i = 0; i < count; i++) { var x = list[i % list.length]; items.push(GEN.fresh(x.n, x.tpl)); }
+    return shuffle(items);
+  }
+  function buildQuiz(check) {
+    if (check.mix) return check.mix.map(function (n) { return GEN.fresh(n, weakTpls(n, 2)[Math.floor(Math.random() * 2)].id); });
+    var tpls = check.tpls || GEN.T[check.n].map(function (t) { return t.id; }), items = [];
+    var order = shuffle(tpls.slice());
+    for (var i = 0; i < check.count; i++) items.push(GEN.fresh(check.n, order[i % order.length]));
+    return items;
+  }
+  function reviewNums() {
+    var cur = TRAIN.indexOf(S.current);
+    return TRAIN.slice(0, Math.max(cur, 0)).filter(function (n) { return ns(n).att > 0 || isMastered(n); });
+  }
+  function buildReview() {
+    var nums = reviewNums();
+    nums.sort(function (a, b) { return acc(a) - acc(b); });
+    nums = nums.slice(0, 6);
+    var items = [];
+    nums.forEach(function (n) {
+      var k = acc(n) < 0.8 ? 5 : 3, w = weakTpls(n, 3);
+      for (var i = 0; i < k; i++) items.push(GEN.fresh(n, w[i % w.length].id));
+    });
+    return items;
+  }
+
+  /* ---------- тренажёр ---------- */
+  var sess = null;
+  function startSession(opt) {
+    sess = { kind: opt.kind, title: opt.title, items: opt.items, i: 0, res: [], planId: opt.planId || null, n: opt.n || null, checked: false, hint: false };
+    renderSheet();
+  }
+  function closeSheet() { sess = null; $layer.innerHTML = ''; document.body.style.overflow = ''; route(); }
+  function renderSheet() {
+    document.body.style.overflow = 'hidden';
+    var t = sess.items[sess.i], th = BY_N[t.n], done = sess.i;
+    $layer.innerHTML =
+      '<div class="overlay" role="dialog" aria-modal="true" aria-label="' + esc(sess.title) + '"><div class="sheet">' +
+        '<div class="sheet-top"><div class="ttl">' + esc(sess.title) + '</div><span class="mono muted">' + (done + 1) + '/' + sess.items.length + '</span><button class="x" id="sx" aria-label="Закрыть">×</button></div>' +
+        '<div class="meter g"><div style="width:' + (done / sess.items.length * 100) + '%"></div></div>' +
+        '<div class="tcard" id="tc">' +
+          '<div class="meta"><span class="chip' + (th.n >= 14 ? ' red' : '') + '">№' + t.n + '</span><span class="chip gray">' + esc(GEN.tpl(t.n, t.tpl).name) + '</span></div>' +
+          '<div class="q">' + t.q + '</div>' +
+          '<form class="ansrow" id="af"><input class="ans" id="ans" inputmode="decimal" autocomplete="off" placeholder="Ответ" aria-label="Ваш ответ">' +
+            '<button class="btn" type="submit" id="chk">Проверить</button><button class="btn ghost" type="button" id="hb">Подсказка</button></form>' +
+          '<div id="hintbox"></div><div id="resbox"></div>' +
+        '</div></div></div>';
+    var inp = document.getElementById('ans');
+    setTimeout(function () { inp.focus(); }, 60);
+    document.getElementById('sx').onclick = function () { if (sess.res.length && sess.res.length < sess.items.length) finishSession(true); else closeSheet(); };
+    document.getElementById('hb').onclick = function () {
+      var hb = document.getElementById('hintbox');
+      if (hb.innerHTML) { hb.innerHTML = ''; return; }
+      sess.hint = true;
+      hb.innerHTML = '<div class="msg hint"><b class="t">Подсказка</b>' + t.h + '</div>';
+    };
+    document.getElementById('af').onsubmit = function (ev) {
+      ev.preventDefault();
+      if (sess.checked) { nextTask(); return; }
+      var v = parseNum(inp.value);
+      inp.classList.remove('bad', 'good'); void inp.offsetWidth;
+      if (isNaN(v)) { inp.classList.add('bad'); document.getElementById('resbox').innerHTML = '<div class="msg tip"><b class="t">Введите число</b>Например: 12, −3 или 0,75.</div>'; return; }
+      var ok = Math.abs(v - t.a) < 1e-6;
+      sess.checked = true;
+      sess.res.push({ t: t, ok: ok, given: inp.value.trim(), hint: sess.hint });
+      record(t, ok); save();
+      inp.classList.add(ok ? 'good' : 'bad'); inp.readOnly = true;
+      document.getElementById('hb').disabled = true;
+      var rb = document.getElementById('resbox');
+      if (ok) rb.innerHTML = '<div class="msg right"><b class="t">Верно!' + (sess.hint ? ' (с подсказкой)' : '') + '</b><details><summary style="cursor:pointer">Посмотреть решение</summary>' + t.e + '</details></div>';
+      else rb.innerHTML = '<div class="msg wrong"><b class="t">Неверно. Правильный ответ: ' + GEN.f(t.a) + '</b>' + t.e + '</div>' +
+        '<div class="msg tip"><b class="t">Как не ошибиться</b>' + GEN.tpl(t.n, t.tpl).fix + '</div>';
+      var b = document.getElementById('chk'); b.textContent = sess.i + 1 < sess.items.length ? 'Дальше →' : 'Итоги'; b.focus();
+    };
+  }
+  function nextTask() { sess.i++; sess.checked = false; sess.hint = false; if (sess.i >= sess.items.length) finishSession(false); else renderSheet(); }
+  function finishSession(early) {
+    var res = sess.res, ok = res.filter(function (r) { return r.ok; }).length, total = res.length;
+    if (!total) { closeSheet(); return; }
+    var g = grade(ok, total), perfect = ok === total && !early;
+    S.sessions.push({ d: today(), kind: sess.kind, n: sess.n, t: sess.title, ok: ok, total: total, g: g });
+    while (S.sessions.length > 60) S.sessions.shift();
+    var notes = [];
+    // план
+    if (sess.planId) {
+      if (perfect) { S.plan[sess.planId] = { done: true, d: today() }; notes.push('Пункт плана выполнен и отмечен галочкой.'); }
+      else notes.push('Чтобы пункт плана засчитался, нужна серия без ошибок. Добейте ошибки ниже.');
+    }
+    if (sess.kind === 'review' && !early) { S.review.done = true; }
+    if (sess.kind === 'skiptest' && !early) {
+      if (ok >= 9) { ns(sess.n).mastered = true; var nx0 = nextTrain(sess.n); if (S.current === sess.n && nx0) S.current = nx0; notes.push('Проверка пройдена: №' + sess.n + ' засчитан, переходим к №' + S.current + '.'); }
+      else notes.push('Для перехода нужно 9 из 10. Пока остаёмся на №' + sess.n + ' — разберите ошибки.');
+    }
+    // освоение
+    var adv = [];
+    TRAIN.forEach(function (n) { var r = checkMastery(n); if (r) adv.push([n, r]); });
+    save();
+    // ошибки по шаблонам
+    var errs = {}, errList = [];
+    res.forEach(function (r) { if (r.ok) return; var k = r.t.n + '|' + r.t.tpl; if (!errs[k]) { errs[k] = { n: r.t.n, tpl: r.t.tpl, items: [] }; errList.push(errs[k]); } errs[k].items.push(r); });
+    var praise = perfect ? pick(['Идеально! Ни одной ошибки — так держать.', 'Чистая работа: всё верно с первого раза.', 'Отлично! Эта тема у вас в кармане.'])
+      : g === 5 ? 'Отличный результат! Осталась мелочь — добейте её.' : g === 4 ? 'Хорошо, но есть что подтянуть. Разберите ошибки и решите добивку.' : g === 3 ? 'Тема пока держится неуверенно. Перечитайте теорию и решите добивку.' : 'Тема пока не освоена. Откройте теорию, разберите разборы ниже и решите добивку — мы будем повторять, пока не станет идеально.';
+    var hintUsed = res.filter(function (r) { return r.hint; }).length;
+    var html = '<div class="overlay" role="dialog" aria-modal="true"><div class="sheet">' +
+      '<div class="sheet-top"><div class="ttl">Итоги: ' + esc(sess.title) + '</div><button class="x" id="sx" aria-label="Закрыть">×</button></div>' +
+      '<div class="result"><div class="bigGrade g' + g + '">' + g + '</div>' +
+        '<div class="mono">' + ok + ' из ' + total + ' верно' + (hintUsed ? ' · подсказок: ' + hintUsed : '') + '</div>' +
+        '<p style="margin:0;max-width:52ch">' + praise + '</p>' +
+        notes.map(function (x) { return '<p class="muted" style="margin:0">' + x + '</p>'; }).join('') +
+        adv.map(function (a) { return '<div class="msg right" style="width:100%;text-align:left"><b class="t">№' + a[0] + ' освоен!</b>' + (a[1] === 'advance' ? 'Переходим к №' + S.current + ' — ' + esc(BY_N[S.current].t) + '. Предыдущие номера будут приходить в ежедневном повторении.' : 'Он будет приходить в ежедневном повторении.') + '</div>'; }).join('') +
+      '</div>';
+    if (errList.length) {
+      html += '<div class="errlist"><b>Разбор ошибок</b>' + errList.map(function (e) {
+        var tp = GEN.tpl(e.n, e.tpl), r0 = e.items[0];
+        return '<div><div class="row" style="margin-bottom:6px"><span class="chip">№' + e.n + '</span><b>' + esc(tp.name) + '</b><span class="chip red">' + e.items.length + ' ' + plural(e.items.length, 'ошибка', 'ошибки', 'ошибок') + '</span></div>' +
+          '<div class="muted" style="font-size:15px">Ваш ответ: <span class="mono">' + esc(r0.given) + '</span>, верный: <span class="mono">' + GEN.f(r0.t.a) + '</span></div>' +
+          '<div style="margin-top:6px"><b>В чём ошибка и как исправить:</b> ' + tp.fix + '</div></div>';
+      }).join('') + '</div>';
+    }
+    html += '<div class="row" style="justify-content:center">';
+    if (errList.length) html += '<button class="btn" id="fixb">Добивка: ещё ' + Math.max(5, errList.length * 3) + ' задач на ошибки</button>';
+    if (sess.kind === 'practice' && sess.n) html += '<button class="btn ' + (errList.length ? 'ghost' : '') + '" id="morep">Ещё серия по №' + sess.n + '</button>';
+    html += '<button class="btn quiet" id="closeb">Закрыть</button></div></div></div>';
+    $layer.innerHTML = html;
+    var prev = sess;
+    document.getElementById('sx').onclick = closeSheet;
+    document.getElementById('closeb').onclick = closeSheet;
+    if (errList.length) document.getElementById('fixb').onclick = function () {
+      startSession({ kind: 'fix', title: 'Добивка ошибок', items: buildFix(errList, Math.max(5, errList.length * 3)), planId: prev.planId, n: prev.n });
+    };
+    var mp = document.getElementById('morep'); if (mp) mp.onclick = function () { startPractice(prev.n); };
+    if (perfect && !reduce) confetti();
+  }
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+  function startPractice(n) { startSession({ kind: 'practice', title: 'Серия по №' + n + ' · ' + BY_N[n].t, items: buildPractice(n), n: n }); }
+  function startReview() {
+    var items = buildReview();
+    if (!items.length) { toast('Повторять пока нечего — решите первые задачи текущего номера.'); return; }
+    startSession({ kind: 'review', title: 'Ежедневное повторение', items: items });
+  }
+  function confetti() {
+    var c = document.createElement('canvas'), ctx = c.getContext('2d'), W = c.width = innerWidth, H = c.height = innerHeight, parts = [], cols = ['#2747c9', '#d93a4c', '#18804a', '#f0b34a', '#8ea4ff'];
+    c.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:70';
+    document.body.appendChild(c);
+    for (var i = 0; i < 120; i++) parts.push({ x: W / 2, y: H / 3, vx: (Math.random() - .5) * 14, vy: Math.random() * -12 - 3, s: 4 + Math.random() * 5, c: cols[i % cols.length], r: Math.random() * 6 });
+    var t0 = performance.now();
+    (function tick(t) {
+      ctx.clearRect(0, 0, W, H);
+      parts.forEach(function (p) { p.vy += .35; p.x += p.vx; p.y += p.vy; p.r += .2; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 2, p.s, p.s * .6); ctx.restore(); });
+      if (t - t0 < 1800) requestAnimationFrame(tick); else c.remove();
+    })(t0);
+  }
+
+  /* ---------- план ---------- */
+  function monthIndex() { var d = new Date(), i = (d.getFullYear() - 2026) * 12 + d.getMonth() - 10; return Math.max(0, Math.min(PLAN.length - 1, i)); }
+  function itemDone(it) {
+    if (it.kind === 'mock') return S.mocks.length >= it.need;
+    if (it.kind === 'master') return isMastered(it.n);
+    return !!(S.plan[it.id] && S.plan[it.id].done);
+  }
+  function monthProg(m) { var d = m.items.filter(itemDone).length; return [d, m.items.length]; }
+  function ring(d, t) {
+    var r = 22, c = 2 * Math.PI * r, off = c * (1 - (t ? d / t : 0));
+    return '<svg class="ring" viewBox="0 0 54 54" aria-label="' + d + ' из ' + t + '"><circle class="bg" cx="27" cy="27" r="' + r + '"/><circle class="fg" cx="27" cy="27" r="' + r + '" stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '"/><text x="27" y="27">' + d + '/' + t + '</text></svg>';
+  }
+  function itemAction(it) {
+    var done = itemDone(it);
+    if (it.kind === 'quiz') return '<div class="row"><button class="btn' + (done ? ' ghost' : '') + '" data-quiz="' + it.id + '">' + (done ? 'Пройти проверку ещё раз' : 'Проверить себя: ' + it.check.count + ' ' + plural(it.check.count, 'задача', 'задачи', 'задач')) + '</button><span class="muted" style="font-size:14px">Галочка ставится сама, когда вы решите проверку без ошибок. Ошибки → добивка, пока не будет идеально.</span></div>';
+    if (it.kind === 'master') { var s = solvedCount(it.n); return '<div class="stack"><div class="spread"><span>Решено <b class="mono">' + s + '/50</b>, точность <b class="mono">' + Math.round(acc(it.n) * 100) + '%</b></span><span class="muted" style="font-size:14px">нужно 45+ и 85%+</span></div><div class="meter g"><div style="width:' + Math.min(100, s / 45 * 100) + '%"></div></div><div class="row"><button class="btn" data-practice="' + it.n + '">Решать серию по №' + it.n + '</button><a class="btn ghost" href="#n-' + it.n + '">Теория</a></div></div>'; }
+    if (it.kind === 'mock') return '<div class="row"><span>Пробников записано: <b class="mono">' + S.mocks.length + '/' + it.need + '</b></span><a class="btn" href="#mocks">Записать пробник</a></div>';
+    return '<div class="row"><button class="btn' + (done ? ' ghost' : '') + '" data-manual="' + it.id + '">' + (done ? 'Снять отметку' : 'Я выполнил все шаги') + '</button><span class="muted" style="font-size:14px">Этот пункт нельзя проверить задачами — отметьте сами, когда выполните все шаги из таблицы.</span></div>';
+  }
+  function findItem(id) { for (var i = 0; i < PLAN.length; i++) for (var j = 0; j < PLAN[i].items.length; j++) if (PLAN[i].items[j].id === id) return PLAN[i].items[j]; return null; }
+  function kindChip(it) { return { quiz: '<span class="chip">проверка задачами</span>', master: '<span class="chip">50 задач</span>', mock: '<span class="chip warn">пробник</span>', manual: '<span class="chip gray">отметить самому</span>' }[it.kind]; }
+  function itemHtml(it) {
+    var done = itemDone(it);
+    return '<details class="item' + (done ? ' ok' : '') + '" data-id="' + it.id + '"><summary><span class="box" aria-hidden="true"></span><span class="it-t">' + esc(it.t) + '<br>' + kindChip(it) + '</span><span class="chev">›</span></summary>' +
+      '<div class="content"><div class="inner"><div class="tbl-wrap"><table class="steps"><thead><tr><th>Что сделать</th><th>Сколько</th><th>Как понять, что готово</th></tr></thead><tbody>' +
+      it.steps.map(function (s) { return '<tr><td>' + esc(s[0]) + '</td><td class="mono">' + esc(s[1]) + '</td><td>' + esc(s[2]) + '</td></tr>'; }).join('') +
+      '</tbody></table></div>' + itemAction(it) + '</div></div></details>';
+  }
+
+  /* ---------- виды ---------- */
+  function setTab(v) { document.querySelectorAll('.tab').forEach(function (a) { if (a.dataset.v === v) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }); }
+  function daysLeft() { return Math.max(0, Math.ceil((EXAM - new Date()) / 86400000)); }
+  function lastMockAgo() { if (!S.mocks.length) return null; return daysBetween(S.mocks[S.mocks.length - 1].d, today()); }
+  function todayList() {
+    var list = [], rn = reviewNums(), cur = S.current, th = BY_N[cur];
+    var rc = 0; rn.slice(0, 6).forEach(function (n) { rc += acc(n) < 0.8 ? 5 : 3; });
+    if (rn.length) list.push({ ic: '↺', t: 'Повторение: ' + rc + ' задач по №' + rn.slice(0, 6).join(', №'), s: 'Чтобы не забыть пройденное. Слабые номера — по 5 задач, остальные — по 3.', done: S.review.day === today() && S.review.done, act: 'review' });
+    list.push({ ic: cur, t: 'Новое: серия из 10 задач по №' + cur, s: th.t + ' · решено ' + solvedCount(cur) + '/50', done: false, act: 'practice' });
+    var mi = monthIndex(), next = PLAN[mi].items.filter(function (it) { return !itemDone(it); })[0];
+    if (next && next.kind !== 'mock') list.push({ ic: '✓', t: 'План: ' + next.t, s: PLAN[mi].m + ' · ' + PLAN[mi].t, done: false, act: 'plan' });
+    var ago = lastMockAgo();
+    if (ago === null || ago >= 7) list.push({ ic: '★', t: ago === null ? 'Напишите первый пробник' : 'Пора писать пробник: прошло ' + ago + ' ' + plural(ago, 'день', 'дня', 'дней'), s: 'Раз в неделю я сравниваю баллы и ищу, где подтянуться.', done: false, act: 'mocks' });
+    return list;
+  }
+  function todoHtml(list) {
+    return '<ul class="todo">' + list.map(function (x, i) { return '<li class="' + (x.done ? 'done' : '') + '"><span class="ic">' + (x.done ? '✓' : x.ic) + '</span><span class="tx">' + esc(x.t) + '<small>' + esc(x.s) + '</small></span>' + (x.done ? '' : '<button class="btn ghost" data-act="' + x.act + '">Начать</button>') + '</li>'; }).join('') + '</ul>';
+  }
+  function vToday() {
+    if (S.review.day !== today()) { S.review = { day: today(), done: false }; save(); }
+    var cur = S.current, th = BY_N[cur], s = solvedCount(cur), st = streak(), last = S.sessions[S.sessions.length - 1];
+    var nx = nextTrain(cur);
+    return '<section class="view">' +
+      '<div class="head"><div class="eyebrow">ЕГЭ-2027 · профильная математика</div><h1>' + greetWord() + (store.name ? ', ' + esc(store.name.split(' ')[0]) : '') + '</h1><p>До экзамена примерно <b class="mono">' + daysLeft() + '</b> ' + plural(daysLeft(), 'день', 'дня', 'дней') + ' (ориентир — 1 июня 2027).</p></div>' +
+      '<div class="hero">' +
+        '<div class="card now stack"><div class="spread"><span class="eyebrow">Сейчас вы проходите</span>' + (th.pts > 1 || cur >= 14 ? '<span class="chip red">часть 2</span>' : '<span class="chip">часть 1</span>') + '</div>' +
+          '<div class="row" style="gap:16px;align-items:flex-end"><span class="num">№' + cur + '</span><h2 style="font-size:22px">' + esc(th.t) + '</h2></div>' +
+          '<div class="spread"><span>Решено <b class="mono">' + s + '/50</b> · точность <b class="mono">' + Math.round(acc(cur) * 100) + '%</b></span><span class="muted" style="font-size:14px">освоен при 45+ и 85%+</span></div>' +
+          '<div class="meter g"><div style="width:' + Math.min(100, s / 45 * 100) + '%"></div></div>' +
+          '<div class="row"><button class="btn" data-act="practice">Решать 10 задач</button><a class="btn ghost" href="#n-' + cur + '">Теория</a>' + (nx ? '<button class="btn quiet" id="skipb">Я уже знаю — к №' + nx + '</button>' : '') + '</div>' +
+          '<div id="skipc"></div></div>' +
+        '<div class="card stack"><div class="stats3"><div><b>' + st + '</b><span>' + plural(st, 'день', 'дня', 'дней') + ' подряд</span></div><div><b>' + totalSolved() + '</b><span>задач решено</span></div><div><b>' + S.mocks.length + '</b><span>пробников</span></div></div>' +
+          (last ? '<div class="row"><span class="grade g' + last.g + '">' + last.g + '</span><span style="flex:1;min-width:0">Последняя серия: ' + esc(last.t) + '<br><span class="muted mono" style="font-size:13px">' + last.ok + '/' + last.total + ' · ' + fmtD(last.d) + '</span></span></div>' : '<p class="muted" style="margin:0">Решите первую серию — здесь появится оценка.</p>') +
+          '<button class="btn quiet" id="greetb">Показать напоминание на сегодня</button></div>' +
+      '</div>' +
+      '<div class="card stack"><h2>План на сегодня</h2>' + todoHtml(todayList()) + '</div>' +
+    '</section>';
+  }
+  function greetWord() { var h = new Date().getHours(); return h < 5 ? 'Доброй ночи' : h < 12 ? 'Доброе утро' : h < 18 ? 'Добрый день' : 'Добрый вечер'; }
+  function statusChip(n) {
+    if (isMastered(n)) return '<span class="chip done">освоен</span>';
+    if (n === S.current) return '<span class="chip red">сейчас</span>';
+    if (ns(n).att) return '<span class="chip">в работе</span>';
+    if (TRAIN.indexOf(n) < 0) return '<span class="chip gray">теория</span>';
+    return '<span class="chip gray">впереди</span>';
+  }
+  function vTasks() {
+    return '<section class="view"><div class="head"><div class="eyebrow">20 заданий ЕГЭ-2027</div><h1>Задания</h1><p>Откройте номер: там теория, 50 задач с проверкой, подсказки и разбор ошибок. Номера 15, 18, 19, 20 оцениваются по полному решению — для них есть теория и пункты плана.</p></div>' +
+      '<div class="numgrid">' + THEORY.map(function (t) {
+        var tr = TRAIN.indexOf(t.n) >= 0, s = tr ? solvedCount(t.n) : 0;
+        return '<a class="numcard' + (t.n >= 14 ? ' p2' : '') + (t.n === S.current ? ' cur' : '') + '" href="#n-' + t.n + '"><div class="top"><span class="n">' + t.n + '</span>' + statusChip(t.n) + '</div><div class="ttl">' + esc(t.t) + '</div>' +
+          '<div class="spread"><span class="muted mono" style="font-size:13px">' + t.pts + ' ' + plural(t.pts, 'балл', 'балла', 'баллов') + '</span>' + (tr ? '<span class="mono" style="font-size:13px">' + s + '/50</span>' : '') + '</div>' +
+          (tr ? '<div class="meter g"><div style="width:' + (s / 50 * 100) + '%"></div></div>' : '') + '</a>';
+      }).join('') + '</div></section>';
+  }
+  function vNum(n) {
+    var t = BY_N[n]; if (!t) return vTasks();
+    var tr = TRAIN.indexOf(n) >= 0, o = ns(n), s = tr ? solvedCount(n) : 0, wrongN = Object.keys(o.wrong).length;
+    var html = '<section class="view"><div class="head"><div class="eyebrow"><a href="#tasks">← Все задания</a> · №' + n + ' · ' + t.pts + ' ' + plural(t.pts, 'балл', 'балла', 'баллов') + '</div><h1>' + esc(t.t) + '</h1></div>';
+    if (tr) {
+      html += '<div class="card stack"><div class="spread"><h2>Тренажёр</h2>' + statusChip(n) + '</div>' +
+        '<div class="stats3"><div><b>' + s + '/50</b><span>решено</span></div><div><b>' + Math.round(acc(n) * 100) + '%</b><span>точность</span></div><div><b>' + wrongN + '</b><span>с ошибкой</span></div></div>' +
+        '<div class="meter g"><div style="width:' + (s / 50 * 100) + '%"></div></div>' +
+        '<div class="row"><button class="btn" data-practice="' + n + '">' + (s >= 50 ? 'Новая серия (свежие задачи)' : 'Решать серию из 10 задач') + '</button>' +
+        (wrongN || o.att > o.ok ? '<button class="btn ghost" data-fixnum="' + n + '">Добить ошибки: 5 задач</button>' : '') +
+        (n !== S.current && !isMastered(n) ? '<button class="btn quiet" data-setcur="' + n + '">Сделать текущим</button>' : '') + '</div>';
+      if (o.att) {
+        html += '<details class="item"><summary><span class="it-t"><b>Статистика по типам задач</b></span><span class="chev">›</span></summary><div class="content"><div class="inner">' +
+          weakTpls(n).map(function (w) { var p = w.att ? Math.round(w.ok / w.att * 100) : null; return '<div class="tplrow"><span>' + esc(w.name) + '<br><span class="muted mono" style="font-size:13px">' + (w.att ? w.ok + '/' + w.att + ' верно' : 'ещё не было') + '</span></span>' + (p === null ? '<span class="chip gray">—</span>' : '<span class="chip ' + (p >= 85 ? 'done' : p >= 60 ? 'warn' : 'red') + '">' + p + '%</span>') + '</div>'; }).join('') +
+          '</div></div></details>';
+      }
+      html += '</div>';
+    }
+    html += '<div class="card stack"><h2>Теория</h2>' + t.groups.map(function (g) { return '<div class="theory-group"><h3>' + esc(g[0]) + '</h3><ul>' + g[1].map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>'; }).join('') +
+      '<div class="mistakes"><b>Частые ошибки</b><ul>' + t.mistakes.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div></div>';
+    var nx = n < 20 ? n + 1 : null, pv = n > 1 ? n - 1 : null;
+    html += '<div class="spread">' + (pv ? '<a class="btn quiet" href="#n-' + pv + '">← №' + pv + '</a>' : '<span></span>') + (nx ? '<a class="btn quiet" href="#n-' + nx + '">№' + nx + ' →</a>' : '') + '</div></section>';
+    return html;
+  }
+  function vPlan() {
+    var mi = monthIndex();
+    return '<section class="view"><div class="head"><div class="eyebrow">Ноябрь 2026 — май 2027</div><h1>План на 7 месяцев</h1><p>Под каждым пунктом — таблица: что сделать, сколько и как понять, что готово. Пункты с задачами отмечаются сами, когда вы проходите проверку без ошибок.</p></div>' +
+      PLAN.map(function (m, i) { var p = monthProg(m);
+        return '<div class="card month' + (i === mi ? ' cur' : '') + '"><div class="month-head">' + ring(p[0], p[1]) + '<div><div class="mn">' + m.m + (i === mi ? ' · сейчас' : '') + '</div><h2>' + esc(m.t) + '</h2><div class="muted" style="font-size:15px">Цель: ' + esc(m.goal) + '</div></div></div>' +
+          '<div class="stack">' + m.items.map(itemHtml).join('') + '</div></div>'; }).join('') + '</section>';
+  }
+  function mockTotal(m) { return m.pts.reduce(function (a, b) { return a + (+b || 0); }, 0); }
+  function weakFromMocks() {
+    var last = S.mocks.slice(-3); if (!last.length) return [];
+    var out = [];
+    THEORY.forEach(function (t, i) { var lost = 0; last.forEach(function (m) { lost += t.pts - (+m.pts[i] || 0); }); var avg = lost / last.length; if (avg / t.pts >= 0.5) out.push({ n: t.n, lost: avg, pts: t.pts }); });
+    out.sort(function (a, b) { return b.lost / b.pts - a.lost / a.pts || a.n - b.n; });
+    return out.slice(0, 6);
+  }
+  function chartSvg() {
+    var ms = S.mocks.slice(-12); if (!ms.length) return '';
+    var W = 640, H = 220, L = 34, R = 16, T = 18, B = 30, iw = W - L - R, ih = H - T - B;
+    var x = function (i) { return L + (ms.length === 1 ? iw / 2 : i * iw / (ms.length - 1)); }, y = function (v) { return T + ih - v / MAX_TOTAL * ih; };
+    var g = '';
+    [0, 10, 20, 30].forEach(function (v) { g += '<line class="gridl" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(v) + '" y2="' + y(v) + '"/><text x="' + (L - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end">' + v + '</text>'; });
+    var pts = ms.map(function (m, i) { return [x(i), y(mockTotal(m))]; });
+    var line = pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    var area = line + ' L' + pts[pts.length - 1][0].toFixed(1) + ',' + y(0) + ' L' + pts[0][0].toFixed(1) + ',' + y(0) + ' Z';
+    var dots = pts.map(function (p, i) { var last = i === pts.length - 1; return '<circle class="' + (last ? 'last' : 'pt') + '" cx="' + p[0] + '" cy="' + p[1] + '" r="' + (last ? 5.5 : 4) + '"/>' + (last || ms.length <= 6 ? '<text class="lbl" x="' + p[0] + '" y="' + (p[1] - 10) + '" text-anchor="middle">' + mockTotal(ms[i]) + '</text>' : '') + '<text x="' + p[0] + '" y="' + (H - 8) + '" text-anchor="middle">' + fmtD(ms[i].d) + '</text>'; }).join('');
+    return '<svg class="chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Первичные баллы за пробники">' + g + '<path class="area" d="' + area + '"/><path class="ln" d="' + line + '"/>' + dots + '</svg>';
+  }
+  function vMocks() {
+    var ago = lastMockAgo(), weak = weakFromMocks(), last = S.mocks[S.mocks.length - 1], prev = S.mocks[S.mocks.length - 2];
+    var nextD = last ? (function () { var d = parseD(last.d); d.setDate(d.getDate() + 7); return dstr(d); })() : today();
+    var html = '<section class="view"><div class="head"><div class="eyebrow">Комната пробников</div><h1>Пробники</h1><p>Раз в неделю решайте полный вариант на 3 ч 55 мин и записывайте баллы по каждому номеру. Я сравниваю результаты и показываю, где подтянуться.</p></div>';
+    html += '<div class="grid2"><div class="card stack"><h2>Ваш балл</h2>' +
+      (last ? '<div class="row" style="align-items:baseline;gap:10px"><span class="mono" style="font-size:48px;font-weight:600;color:var(--pen)">' + mockTotal(last) + '</span><span class="muted">из ' + MAX_TOTAL + ' первичных</span>' +
+        (prev ? '<span class="chip ' + (mockTotal(last) >= mockTotal(prev) ? 'done' : 'red') + '">' + (mockTotal(last) >= mockTotal(prev) ? '+' : '') + (mockTotal(last) - mockTotal(prev)) + ' к прошлому</span>' : '') + '</div>' : '<p class="muted" style="margin:0">Пока нет пробников. Запишите первый — и появится график.</p>') +
+      '<div class="spread"><span>Следующий пробник: <b>' + (ago !== null && ago < 7 ? fmtD(nextD) : 'сегодня') + '</b></span>' + (ago !== null ? '<span class="muted" style="font-size:14px">последний ' + (ago === 0 ? 'сегодня' : ago + ' ' + plural(ago, 'день', 'дня', 'дней') + ' назад') + '</span>' : '') + '</div>' +
+      chartSvg() + '</div>';
+    html += '<div class="card stack"><h2>Где подтянуться</h2>' + (weak.length ? '<p class="muted" style="margin:0;font-size:15px">До 6 номеров, где за последние ' + Math.min(3, S.mocks.length) + ' ' + plural(Math.min(3, S.mocks.length), 'пробник', 'пробника', 'пробников') + ' теряется половина баллов и больше.</p><div class="weak">' + weak.map(function (w) {
+        var tr = TRAIN.indexOf(w.n) >= 0;
+        return '<div><span><span class="chip red">№' + w.n + '</span> ' + esc(BY_N[w.n].t) + '<br><span class="muted mono" style="font-size:13px">теряете ≈' + GEN.f(Math.round(w.lost * 10) / 10) + ' из ' + w.pts + '</span></span>' + (tr ? '<button class="btn" data-fixnum="' + w.n + '">Тренировать</button>' : '<a class="btn ghost" href="#n-' + w.n + '">Теория</a>') + '</div>';
+      }).join('') + '</div>' : '<p class="muted" style="margin:0">' + (S.mocks.length ? 'Сильных провалов нет — так держать! Продолжайте пробники каждую неделю.' : 'Здесь появятся номера, на которых вы теряете баллы.') + '</p>') +
+      (S.mocks.length && HAS_CLAUDE ? '<div class="stack"><button class="btn ghost" id="aib">Разбор от Claude</button><div id="aiout"></div></div>' : '') + '</div></div>';
+    html += '<form class="card stack" id="mockf"><h2>Записать пробник</h2><div class="row"><label for="md" class="muted">Дата</label><input type="date" id="md" value="' + today() + '" style="width:auto"></div>' +
+      '<div class="mockform">' + THEORY.map(function (t, i) { return '<label class="' + (t.n >= 14 ? 'p2' : '') + '" for="mp' + t.n + '">№' + t.n + ' · из ' + t.pts + '<input type="number" id="mp' + t.n + '" min="0" max="' + t.pts + '" step="1" inputmode="numeric" placeholder="0"></label>'; }).join('') + '</div>' +
+      '<div class="row"><button class="btn" type="submit">Сохранить пробник</button><span class="muted" id="mocksum">Итого: 0 из ' + MAX_TOTAL + '</span></div></form>';
+    if (S.mocks.length) {
+      html += '<div class="card stack"><h2>История</h2><div class="tbl-wrap"><table class="hist"><thead><tr><th>Дата</th><th>Часть 1</th><th>Часть 2</th><th>Всего</th><th></th></tr></thead><tbody>' +
+        S.mocks.slice().reverse().map(function (m, ri) { var i = S.mocks.length - 1 - ri, p1 = m.pts.slice(0, 13).reduce(function (a, b) { return a + (+b || 0); }, 0); return '<tr><td>' + fmtD(m.d) + '</td><td>' + p1 + '/13</td><td>' + (mockTotal(m) - p1) + '/20</td><td><b>' + mockTotal(m) + '</b></td><td><button class="btn quiet" data-delmock="' + i + '" style="padding:3px 10px;font-size:13px">удалить</button></td></tr>'; }).join('') + '</tbody></table></div></div>';
+    }
+    return html + '</section>';
+  }
+  function vProgress() {
+    var cells = '', d = new Date(); d.setDate(d.getDate() - 34);
+    for (var i = 0; i < 35; i++) { var k = dstr(d), c = S.days[k] || 0, l = c === 0 ? '' : c < 10 ? 'l1' : c < 25 ? 'l2' : 'l3'; cells += '<i class="' + l + (k === today() ? ' today' : '') + '" title="' + fmtD(k) + ': ' + c + '"></i>'; d.setDate(d.getDate() + 1); }
+    var weakAll = []; TRAIN.forEach(function (n) { weakTpls(n).forEach(function (w) { if (w.att >= 3 && w.err > 0.2) weakAll.push({ n: n, id: w.id, name: w.name, err: w.err, att: w.att }); }); });
+    weakAll.sort(function (a, b) { return b.err - a.err; }); weakAll = weakAll.slice(0, 6);
+    var html = '<section class="view"><div class="head"><div class="eyebrow">Оценки и статистика</div><h1>Прогресс</h1></div>' +
+      '<div class="grid2"><div class="card stack"><h2>Активность за 5 недель</h2><div class="heat">' + cells + '</div><div class="muted" style="font-size:14px">Серия: <b class="mono">' + streak() + '</b> ' + plural(streak(), 'день', 'дня', 'дней') + ' подряд</div></div>' +
+      '<div class="card stack"><h2>Слабые темы</h2>' + (weakAll.length ? weakAll.map(function (w) { return '<div class="tplrow"><span><span class="chip">№' + w.n + '</span> ' + esc(w.name) + '<br><span class="muted mono" style="font-size:13px">ошибок ' + Math.round(w.err * 100) + '% из ' + w.att + '</span></span><button class="btn ghost" data-fixtpl="' + w.n + '|' + w.id + '">5 задач</button></div>'; }).join('') : '<p class="muted" style="margin:0">Пока нет тем, где вы часто ошибаетесь.</p>') + '</div></div>' +
+      '<div class="card"><h2>По номерам</h2>' + TRAIN.map(function (n) {
+        var o = ns(n), s = solvedCount(n), lastS = S.sessions.filter(function (x) { return x.n === n; }).slice(-1)[0];
+        return '<div class="numrow"><span class="n">' + n + '</span><span style="min-width:0"><a href="#n-' + n + '">' + esc(BY_N[n].t) + '</a> ' + statusChip(n) + '<div class="meter g" style="margin-top:6px"><div style="width:' + (s / 50 * 100) + '%"></div></div><span class="muted mono" style="font-size:13px">' + s + '/50 · точность ' + (o.att ? Math.round(acc(n) * 100) + '%' : '—') + '</span></span>' + (lastS ? '<span class="grade g' + lastS.g + '" title="последняя оценка">' + lastS.g + '</span>' : '<span class="muted">—</span>') + '</div>';
+      }).join('') + '</div>';
+    if (!HAS_CLAUDE) html += '<div class="card stack"><h2>Резервная копия</h2><p class="muted" style="margin:0">Прогресс хранится на этом устройстве. Сохраните его в файл раз в неделю или чтобы перенести на другое устройство.</p>' +
+      '<div class="row"><button class="btn" id="expb">Сохранить прогресс в файл</button><label class="btn ghost" for="impf" style="cursor:pointer">Загрузить из файла</label><input type="file" id="impf" accept=".json,application/json" hidden></div><div id="impmsg"></div></div>';
+    if (S.sessions.length) html += '<div class="card"><h2>Последние серии</h2>' + S.sessions.slice(-10).reverse().map(function (x) { return '<div class="tplrow"><span>' + esc(x.t) + '<br><span class="muted mono" style="font-size:13px">' + fmtD(x.d) + ' · ' + x.ok + '/' + x.total + '</span></span><span class="grade g' + x.g + '">' + x.g + '</span></div>'; }).join('') + '</div>';
+    return html + '</section>';
+  }
+
+  /* ---------- напоминание ---------- */
+  function greetHtml() {
+    var st = streak(), list = todayList();
+    var msg = st >= 3 ? 'Вы занимаетесь ' + st + ' ' + plural(st, 'день', 'дня', 'дней') + ' подряд — не прерывайте серию!' : st > 0 ? 'Вчера вы занимались. Продолжим?' : 'Сегодня — отличный день, чтобы начать серию.';
+    return '<div class="overlay" role="dialog" aria-modal="true" aria-label="Напоминание на сегодня"><div class="sheet greet">' +
+      '<div class="row" style="justify-content:space-between;align-items:flex-start"><div><div class="eyebrow">' + new Date().toLocaleDateString('ru-RU', { weekday: 'long', day: 'numeric', month: 'long' }) + '</div>' +
+        '<h2>' + greetWord() + (store.name ? ', ' + esc(store.name.split(' ')[0]) : '') + '!</h2><svg class="underline" viewBox="0 0 180 10" aria-hidden="true"><path d="M2 7 C 40 2, 80 9, 120 4 S 170 6, 178 3"/></svg></div>' +
+        '<button class="x" id="gx" aria-label="Закрыть">×</button></div>' +
+      '<div class="row" style="gap:18px"><span class="flame"><b>' + st + '</b>' + plural(st, 'день', 'дня', 'дней') + ' подряд</span><span class="flame"><b>' + daysLeft() + '</b>до ЕГЭ</span></div>' +
+      '<p style="margin:0">' + msg + '</p>' + todoHtml(list) +
+      '<div class="row"><button class="btn" id="gstart">' + (list[0].act === 'review' && !list[0].done ? 'Начать с повторения' : 'Начать') + '</button><button class="btn quiet" id="glater">Позже</button></div></div></div>';
+  }
+  function showGreet() {
+    $layer.innerHTML = greetHtml(); document.body.style.overflow = 'hidden';
+    var close = function () { $layer.innerHTML = ''; document.body.style.overflow = ''; };
+    document.getElementById('gx').onclick = close; document.getElementById('glater').onclick = close;
+    document.getElementById('gstart').onclick = function () { close(); var l = todayList().filter(function (x) { return !x.done; })[0]; if (l) doAct(l.act); };
+    $layer.querySelectorAll('[data-act]').forEach(function (b) { b.onclick = function () { close(); doAct(b.dataset.act); }; });
+  }
+  var greeted = false;
+  function maybeGreet() {
+    if (greeted || sess || S.greetDay === today()) return;
+    greeted = true; S.greetDay = today(); save(); showGreet();
+  }
+  function doAct(a) {
+    if (a === 'review') startReview();
+    else if (a === 'practice') startPractice(S.current);
+    else if (a === 'plan') location.hash = '#plan';
+    else if (a === 'mocks') location.hash = '#mocks';
+  }
+
+  /* ---------- роутинг и события ---------- */
+  function route() {
+    if (sess) return;
+    var h = (location.hash || '#today').slice(1), v = h, html;
+    if (h.indexOf('n-') === 0) { v = 'tasks'; html = vNum(+h.slice(2)); }
+    else if (h === 'tasks') html = vTasks();
+    else if (h === 'plan') html = vPlan();
+    else if (h === 'mocks') html = vMocks();
+    else if (h === 'progress') html = vProgress();
+    else { v = 'today'; html = vToday(); }
+    setTab(v);
+    $app.innerHTML = html;
+    bindView();
+  }
+  function animateDetails(root) {
+    root.querySelectorAll('details.item').forEach(function (d) {
+      var sm = d.querySelector('summary'), ct = d.querySelector('.content');
+      if (!ct) return;
+      sm.addEventListener('click', function (ev) {
+        if (reduce || !ct.animate) return;
+        ev.preventDefault();
+        if (d.dataset.busy) return; d.dataset.busy = '1';
+        if (d.open) { var h = ct.offsetHeight; ct.animate([{ height: h + 'px', opacity: 1 }, { height: '0px', opacity: 0 }], { duration: 260, easing: 'cubic-bezier(.4,0,.2,1)' }).onfinish = function () { d.open = false; delete d.dataset.busy; }; }
+        else { d.open = true; var h2 = ct.offsetHeight; ct.animate([{ height: '0px', opacity: 0 }, { height: h2 + 'px', opacity: 1 }], { duration: 340, easing: 'cubic-bezier(.2,.7,.2,1)' }).onfinish = function () { delete d.dataset.busy; }; }
+      });
+    });
+  }
+  function bindView() {
+    animateDetails($app);
+    $app.querySelectorAll('[data-act]').forEach(function (b) { b.onclick = function () { doAct(b.dataset.act); }; });
+    $app.querySelectorAll('[data-practice]').forEach(function (b) { b.onclick = function () { startPractice(+b.dataset.practice); }; });
+    $app.querySelectorAll('[data-fixnum]').forEach(function (b) { b.onclick = function () { var n = +b.dataset.fixnum, w = weakTpls(n, 3).map(function (x) { return { n: n, tpl: x.id }; }); startSession({ kind: 'fix', title: 'Добивка по №' + n, items: buildFix(w, 5), n: n }); }; });
+    $app.querySelectorAll('[data-fixtpl]').forEach(function (b) { b.onclick = function () { var p = b.dataset.fixtpl.split('|'); startSession({ kind: 'fix', title: 'Тема: ' + GEN.tpl(+p[0], p[1]).name, items: buildFix([{ n: +p[0], tpl: p[1] }], 5), n: +p[0] }); }; });
+    $app.querySelectorAll('[data-setcur]').forEach(function (b) { b.onclick = function () { S.current = +b.dataset.setcur; save(); toast('Теперь текущий номер — №' + S.current); route(); }; });
+    $app.querySelectorAll('[data-quiz]').forEach(function (b) { b.onclick = function () { var it = findItem(b.dataset.quiz); startSession({ kind: 'quiz', title: 'Проверка: ' + it.t, items: buildQuiz(it.check), planId: it.id, n: it.check.n || null }); }; });
+    $app.querySelectorAll('[data-manual]').forEach(function (b) { b.onclick = function () { var id = b.dataset.manual; if (S.plan[id] && S.plan[id].done) delete S.plan[id]; else { S.plan[id] = { done: true, d: today() }; toast('Пункт отмечен. Отличная работа!'); } save(); var open = id; route(); var el = $app.querySelector('details[data-id="' + open + '"]'); if (el) el.open = true; }; });
+    $app.querySelectorAll('[data-delmock]').forEach(function (b) { b.onclick = function () {
+      if (b.dataset.sure) { S.mocks.splice(+b.dataset.delmock, 1); save(); route(); return; }
+      b.dataset.sure = '1'; b.textContent = 'точно удалить?'; b.style.color = 'var(--margin)'; }; });
+    var sk = document.getElementById('skipb');
+    if (sk) sk.onclick = function () {
+      var nx = nextTrain(S.current);
+      document.getElementById('skipc').innerHTML = '<div class="msg tip"><b class="t">Перейти к №' + nx + '?</b>Сначала можно доказать, что вы знаете №' + S.current + ': 10 задач, нужно 9+ верно. Или перейти сразу — №' + S.current + ' будет приходить в повторении.<div class="row" style="margin-top:8px"><button class="btn" id="skt">Проверить меня</button><button class="btn ghost" id="skn">Перейти сразу</button></div></div>';
+      document.getElementById('skn').onclick = function () { var n = S.current; S.current = nx; save(); toast('Переходим к №' + nx + '. №' + n + ' добавлен в ежедневное повторение.'); route(); };
+      document.getElementById('skt').onclick = function () { var n = S.current; startSession({ kind: 'skiptest', title: 'Проверка знания №' + n, items: buildQuiz({ n: n, count: 10 }), n: n }); };
+    };
+    var gb = document.getElementById('greetb'); if (gb) gb.onclick = showGreet;
+    var mf = document.getElementById('mockf');
+    if (mf) {
+      var upd = function () { var s = 0; THEORY.forEach(function (t) { var v = Math.max(0, Math.min(t.pts, +document.getElementById('mp' + t.n).value || 0)); s += v; }); document.getElementById('mocksum').textContent = 'Итого: ' + s + ' из ' + MAX_TOTAL; };
+      mf.addEventListener('input', upd);
+      mf.onsubmit = function (ev) {
+        ev.preventDefault();
+        var pts = THEORY.map(function (t) { return Math.max(0, Math.min(t.pts, Math.round(+document.getElementById('mp' + t.n).value || 0))); });
+        var d = document.getElementById('md').value || today();
+        S.mocks.push({ d: d, pts: pts }); S.mocks.sort(function (a, b) { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; }); save();
+        var tot = pts.reduce(function (a, b) { return a + b; }, 0), prev = S.mocks.length > 1 ? mockTotal(S.mocks[S.mocks.length - 2]) : null;
+        toast('Пробник сохранён: ' + tot + ' из ' + MAX_TOTAL + (prev !== null ? (tot > prev ? '. Рост на ' + (tot - prev) + ' — отлично!' : tot === prev ? '. Стабильно.' : '. Немного ниже — посмотрите слабые места.') : '.'), 4500);
+        route(); window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+      };
+    }
+    var expb = document.getElementById('expb');
+    if (expb) expb.onclick = function () {
+      var name = 'profil7-progress-' + today() + '.json', blob = new Blob([JSON.stringify(S)], { type: 'application/json' });
+      var file = null; try { file = new File([blob], name, { type: 'application/json' }); } catch (e) {}
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) { navigator.share({ files: [file], title: 'Прогресс ЕГЭ' }).catch(function () {}); return; }
+      var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000); toast('Файл с прогрессом сохранён.');
+    };
+    var impf = document.getElementById('impf');
+    if (impf) impf.onchange = function () {
+      var f = impf.files[0]; if (!f) return;
+      var rd = new FileReader();
+      rd.onload = function () {
+        var box = document.getElementById('impmsg');
+        try { var o = JSON.parse(rd.result); if (!o || o.v !== 2 || typeof o.nums !== 'object') throw 0;
+          box.innerHTML = '<div class="msg tip"><b class="t">Заменить текущий прогресс?</b>В файле: ' + Object.keys(o.nums).length + ' номеров, ' + (o.mocks || []).length + ' пробников.<div class="row" style="margin-top:8px"><button class="btn" id="impok">Заменить</button><button class="btn quiet" id="impno">Отмена</button></div></div>';
+          document.getElementById('impok').onclick = function () { S = fixup(o); S.updatedAt = 0; save(); toast('Прогресс загружен.'); route(); };
+          document.getElementById('impno').onclick = function () { box.innerHTML = ''; impf.value = ''; };
+        } catch (e) { box.innerHTML = '<div class="msg wrong"><b class="t">Не получилось прочитать файл</b>Выберите файл, который сохранили кнопкой «Сохранить прогресс в файл».</div>'; }
+      };
+      rd.readAsText(f);
+    };
+    var aib = document.getElementById('aib');
+    if (aib) aib.onclick = function () { aiReview(aib); };
+  }
+  function aiReview(btn) {
+    var out = document.getElementById('aiout');
+    btn.disabled = true; out.innerHTML = '<div class="ai muted">Думаю…</div>';
+    var box = out.firstChild;
+    var data = 'Пробники (первичные баллы по номерам 1–20, максимум: ' + MAX_PTS.join(',') + '):\n' + S.mocks.slice(-6).map(function (m) { return m.d + ': ' + m.pts.join(',') + ' (итого ' + mockTotal(m) + '/' + MAX_TOTAL + ')'; }).join('\n') +
+      '\nТочность в тренажёре: ' + TRAIN.filter(function (n) { return ns(n).att; }).map(function (n) { return '№' + n + ' ' + Math.round(acc(n) * 100) + '% (' + ns(n).att + ' задач)'; }).join(', ') +
+      '\nСейчас ученик проходит №' + S.current + '. До экзамена ' + daysLeft() + ' дней.';
+    var prompt = 'Ты — репетитор по профильной математике, ЕГЭ-2027 (20 заданий, 33 первичных балла; №6 — случайные величины, №13 — финансовая задача в первой части, №17 — моделирование). ' +
+      'Проанализируй динамику пробников ученика и дай короткий разбор на русском (до 170 слов, без markdown-заголовков): 1) что улучшилось, 2) где теряются баллы, 3) три конкретных шага на эту неделю. Обращайся на «вы», тон тёплый и деловой.\n\n' + data;
+    window.claude.use('sample').then(function (sample) {
+      if (!sample) { box.textContent = 'Разбор от Claude недоступен в этом окне. Ориентируйтесь на блок «Где подтянуться» выше.'; btn.disabled = false; return; }
+      return sample(prompt, { modelTier: 'default', onText: function (u) { box.classList.remove('muted'); box.textContent = u.text; } }).then(function (r) { box.textContent = r.text; btn.disabled = false; btn.textContent = 'Обновить разбор'; });
+    }).catch(function (e) { box.textContent = e && e.code === 'rate_limited' ? 'Слишком много запросов — попробуйте через минуту.' : 'Не получилось получить разбор. Разрешите доступ к Claude в настройках страницы и попробуйте снова.'; btn.disabled = false; });
+  }
+
+  window.addEventListener('hashchange', function () { if (sess) return; route(); window.scrollTo(0, 0); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $layer.innerHTML && !sess) { $layer.innerHTML = ''; document.body.style.overflow = ''; } });
+
+  /* ---------- старт ---------- */
+  var local = loadLocal(); if (local) S = fixup(local);
+  setAcct(); route();
+  var started = Date.now();
+  connect().then(function () { if (store.mode !== 'account') maybeGreet(); });
+  setTimeout(function () { if (store.mode === 'loading') { store.mode = 'local'; setAcct(); maybeGreet(); } }, 11000);
+})();
+
+</script>
+
+<script>
+if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('sw.js').catch(function () {}); });
+}
+</script>
+</body>
+</html>
